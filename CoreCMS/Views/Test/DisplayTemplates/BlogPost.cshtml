@@ -1,0 +1,15 @@
+﻿@model CoreCMS.Controllers.BlogPost
+
+
+<div id="display-@Model.Id" >
+    @if (true)
+    {
+        <div style="border-bottom: 1px solid #CCC;">
+            <h1 id="title-@Model.Id" >@Model.Text</h1>
+        </div>
+        
+        <div style="height: 0.25cm;">@Model.Value</div>
+        <div style="clear: both;"></div>        
+    }
+</div>
+

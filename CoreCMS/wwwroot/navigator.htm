@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>User agent test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=1.00, maximum-scale=1.00" />
+    
+    <style type="text/css">
+
+        html, body
+        {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1 id="navi"></h1>
+
+    <h1 id="browserFamily"></h1>
+    <h1 id="majorVersion"></h1>
+    <h1 id="fullVersion"></h1>
+    <h1 id="geckoVersion"></h1>
+    
+    <script type="text/javascript">
+        
+        // Edge 15:          Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063
+        // Edge 12 (Spartan) Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+        // Edge 13:          Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+
+        // IE 11: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; rv:11.0) like Gecko
+        // IE 10: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)
+        // IE  9: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)
+        // IE  8: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)
+        // IE  7: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)
+        // IE  5: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)
+
+        // Chromium: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3211.0 Safari/537.36
+        // Chrome:   Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36
+        // Opera: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36 OPR/48.0.2685.35
+
+        // Safari: Mozilla / 5.0(Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/536.26.14 (KHTML, like Gecko) Version/6.0.1 Safari/536.26.14
+        // Chrome: Mozilla / 5.0(Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4
+        
+        var navi = document.getElementById("navi");
+        var browserFamily = document.getElementById("browserFamily");
+        var majorVersion = document.getElementById("majorVersion");
+        var version = document.getElementById("fullVersion");
+        var geckoVersion = document.getElementById("geckoVersion");
+
+        var tn = document.createTextNode(navigator.userAgent);
+        navi.appendChild(tn);
+
+        function detectBrowser()
+        {
+            if (navigator == null || navigator.userAgent == null)
+                return null;
+
+            var ua = navigator.userAgent.toLowerCase();
+
+            var getVersion = function (ua, family, brow, ver)
+            {
+                ver.family = family;
+                var r1 = new RegExp("(" + brow.toLowerCase() + "(?=\\/))\\/?\\s*([\\d]+)", "i");
+                var r2 = new RegExp("(" + brow.toLowerCase() + "(?=\\/))\\/?\\s*([\\d\\.]+)", "i");
+                
+                if (brow == "msie")
+                {
+                    r1 = new RegExp("(msie\\s*([\\d]+))", "i");
+                    r2 = new RegExp("(msie\\s*([\\d\\.]+))", "i");
+                }
+
+                if (family == "Firefox")
+                {
+                    var r3 = new RegExp("(gecko(?=\\/))\\/?\\s*([\\d\\.]+)", "i");
+                    var geck = ua.match(r3) || [];
+                    ver.gecko = geck[2];
+                }
+                
+                var vMain = ua.match(r1) || [];
+                var vExact = ua.match(r2) || [];
+                ver.main = vMain[2] || -1;
+                ver.exact = vExact[2] || -1;
+                ver.gecko = ver.gecko || -1;
+
+                return ver;
+            };
+
+            // var vMain = ua.match(/(chrome(?=\/))\/?\s*([\d]+)/i) || [];
+            // var vExact = ua.match(/(chrome(?=\/))\/?\s*([\d\.]+)/i) || [];
+            
+
+
+            var ver = {
+                family: "Unknown",
+                main: -1,
+                exact: -1,
+                gecko: -1,
+                os: -1,
+                processor: -1,
+                bit: -1,
+            };
+            
+
+            if (ua.indexOf("edge/") != -1)
+            {
+                ver = getVersion(ua, "Edge", "Edge", ver);
+
+            } else if (ua.indexOf(" msie ") != -1) // 4-10
+            {
+                ver = getVersion(ua, "IE", "msie", ver);
+            } else if (ua.indexOf("trident/") != -1)  // IE11
+            {
+                ver.family = "IE";
+                ver.main = "11";
+                ver.exact = "11.0";
+            } else if (ua.indexOf("opera") != -1 || ua.indexOf("opr/") != -1 || ua.indexOf("presto") != -1) // chrome
+            {
+                ver = getVersion(ua, "Opera", "opr", ver);
+            }
+            else if (ua.indexOf("chrome/") != -1) // chrome
+            {
+                ver = getVersion(ua, "Chrome", "Chrome", ver);
+            } else if (ua.indexOf("safari/") != -1) // chrome
+            {
+                ver = getVersion(ua, "Safari", "Safari", ver);
+            }
+            else if (ua.indexOf("firefox/") != -1 || ua.indexOf("gecko/") != -1) // Firefox & derivates
+            {
+                ver = getVersion(ua, "Firefox", "Firefox", ver);
+            }
+            else if (ua.indexOf("khtml") != -1 || ua.indexOf("applewebkit/") != -1) // khtml
+            {
+                ver.family = "Chrome-Like"; // 11
+            }
+            else if (ua.indexOf("like gecko") != -1) // Gecko Engine
+            {
+                ver.family = "Firefox-Like"; // 11
+            }
+
+            // https://deviceatlas.com/blog/list-of-user-agent-strings
+
+            if (ua.indexOf("windows") != -1) // Windows Phone = Android ? ...
+            {
+                ver.os = "Windows";
+            }
+            else if (ua.indexOf("macintosh") != -1 || ua.indexOf("mac os x") != -1) // OS X
+            {
+                ver.os = "Mac";
+            }
+            else if (ua.indexOf("android") != -1) // Linux
+            {
+                ver.os = "Android";
+            }
+            else if (ua.indexOf("linux") != -1) // Linux
+            {
+                ver.os = "Android";
+            } else if (ua.indexOf("ipad") != -1 || ua.indexOf("iphone") != -1 || ua.indexOf("ipod") != -1) // iAnything
+            {
+                ver.os = "iAnything";
+            }
+
+            if (ua.indexOf("win64") != -1
+                || ua.indexOf("wow64") != -1
+                || ua.indexOf("x86_64") != -1
+                || ua.indexOf("x86-64") != -1
+                || ua.indexOf("x64") != -1
+                || ua.indexOf("x64_64") != -1
+                || ua.indexOf("amd64") != -1
+                || ua.indexOf("ia64") != -1
+                || ua.indexOf("sparc64") != -1
+                || ua.indexOf("ppc64") != -1
+                || ua.indexOf("irix64") != -1
+            ) // Windows Phone = Android ? ...
+            {
+                ver.bit = 64;
+            }
+            else if (ua.indexOf("windows")) // iAnything
+            {
+                // https://stackoverflow.com/questions/1741933/detect-64-bit-or-32-bit-windows-from-user-agent-or-javascript
+                ver.bit = 32;
+            }
+            else
+            {
+                ver.bit = 32;
+            }
+
+
+            if (ua.indexOf("win64") != -1
+                || ua.indexOf("wow64") != -1
+                || ua.indexOf("x86_64") != -1
+                || ua.indexOf("x86-64") != -1
+                || ua.indexOf("x64") != -1
+                || ua.indexOf("x64_64") != -1
+                || ua.indexOf("amd64") != -1
+            )
+            {
+                ver.processor = "x86";
+            }
+            else if (ua.indexOf("arm") != -1 || ua.indexOf("arm64") != -1)
+            {
+                ver.processor = "ARM";
+            }
+            else if (ua.indexOf("windows") != -1)
+            {
+                ver.processor = "x86";
+            }
+            else
+            {
+                ver.processor = "x86";
+            }
+
+            return ver;
+        }
+
+        var vers = detectBrowser();
+
+        var tnFamily = document.createTextNode(vers.family);
+        browserFamily.appendChild(tnFamily);
+        
+        var tnMajor = document.createTextNode(vers.main);
+        majorVersion.appendChild(tnMajor);
+
+        var tnFull = document.createTextNode(vers.exact);
+        fullVersion.appendChild(tnFull);
+
+        var tnGecko = document.createTextNode(vers.gecko);
+        geckoVersion.appendChild(tnGecko);
+
+    </script>
+
+</body>
+</html>

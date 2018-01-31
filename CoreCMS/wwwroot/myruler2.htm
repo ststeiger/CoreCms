@@ -1,0 +1,551 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>Legende</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=1.00, maximum-scale=1.00" />
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="ruler.min.css">
+
+    <script src="ruler.js"></script>
+    -->
+
+    <style type="text/css">
+        html, body
+        {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        div
+        {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+
+            div.horizontal.cm
+            {
+                display: inline-block;
+                width: 1cm;
+                height: 0.5cm;
+                border-right: 1px solid black;
+            }
+
+            div.horizontal.mm
+            {
+                display: inline-block;
+                width: 1mm;
+                height: 3mm;
+                margin: 0px;
+                padding: 0px;
+                border-right: 0.1mm solid black;
+            }
+
+            div.horizontal.halfcm
+            {
+                display: inline-block;
+                width: 5mm;
+                height: 4mm;
+            }
+
+                div.horizontal.halfcm.first
+                {
+                    border-right: 0.3mm solid red;
+                }
+
+            div.horizontal.cmlabel
+            {
+                display: inline-block;
+                width: 1cm;
+                height: 0.4cm;
+                font-family: Verdana;
+                font-size: 2.5mm;
+                text-align: center;
+            }
+
+
+            div.vertical.cm
+            {
+                display: block;
+                width: 0.5cm;
+                height: 1cm;
+                border-bottom: 1px solid black;
+                clear: both;
+            }
+
+            div.vertical.mm
+            {
+                display: block;
+                width: 0.3cm;
+                height: 1mm;
+                margin: 0px;
+                padding: 0px;
+                border-bottom: 0.1mm solid black;
+            }
+
+            div.vertical.halfcm
+            {
+                display: block;
+                width: 4mm;
+                height: 0.5cm;
+            }
+
+                div.vertical.halfcm.first
+                {
+                    border-bottom: 0.3mm solid red;
+                }
+
+
+            div.vertical.cmlabel
+            {
+                display: block;
+                width: 1cm;
+                height: 1cm;
+                #border-right: 1px solid black;
+                font-size: 2.5mm;
+                font-family: Verdana;
+                writing-mode: vertical-lr;
+                #writing-mode: vertical-rl;
+                -ms-writing-mode: tb-rl;
+                transform-origin: center;
+                transform: rotate(180deg);
+            }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+        {
+            div.vertical.cmlabel
+            {
+                #IE 10/11 ONLY;
+                margin-left: 0.65cm;
+            }
+        }
+    </style>
+
+
+</head>
+<body style="background-color: lightgrey;">
+
+    <div style="display: block; position:relative;">
+
+        <div id="measure" style="background-color: hotpink; width: 1cm; height: 1cm; position:absolute; left: 0cm; top: 0cm; 
+        text-align: center; line-height: 1cm; font-size: 4.25mm;">A4</div>
+
+        <div id="horizontalRuler" style="position:absolute; left: 1cm; top: 0cm; white-space: nowrap;">
+            <div style="display: inline-block; position:absolute; left: 0.0cm; top: 0.5cm; width: 0.5cm; height: 0.5cm; background-color: whitesmoke; "></div>
+            <div class="ruler" style="background-color: whitesmoke; padding-right: 0.5cm"></div>
+            <div class="scale" style="display: inline-block; position:absolute; left: 0.5cm; top: 0.5cm; background-color: whitesmoke;"></div>
+        </div>
+
+        <div id="verticalRuler" style="position:absolute; left: 0cm; top: 1cm; width: 1cm; white-space: normal;">
+            <div class="ruler" style="background-color: whitesmoke; padding-bottom: 0.5cm;"></div>
+            <div class="scale" style="display: block; width: 1cm; position: absolute; top: 0.25cm; left: 0cm; z-index: 9999;"></div>
+        </div><!--
+
+     --><div id="page" style="display: block; position:relative; left: 1cm; top: 1cm; width: 29.7cm; height: 21cm; background-color: white; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);">
+
+            <div id="title" title="Titel" style="position:absolute; display: block; 
+                left: 1cm; top: 1cm; border: 1px solid black; margin: 0px; padding: 0px;">
+                <div style="width: 100%; height: 100%; overflow: hidden; 
+                font-family: 'Bodoni MT'; font-size: 1cm; padding: 0.25cm; "
+                contenteditable="true">Überschrift</div>
+            </div>
+
+            <div id="drawing" title="Zeichung" style="width: 13cm; height: 10cm; 
+            position:absolute; background-color: #fffdf9; left: 1cm; top: 3cm; 
+            border: 1px solid black; ">
+                <img src="plan_forum.svg" style="width: 100%; height: 100%;" />
+            </div>
+
+            <div id="logo" title="Logo" style="width: 6cm; height: 3cm; 
+            position:absolute; background-color: #fffdf9; left: 23cm; top: 1cm; 
+            border: 1px solid black; ">
+                <img  src="logo.svg" style="width: 100%; height: 100%;" />
+            </div>
+
+            <div id="north_arrow" title="Nordpfeil" style="padding: 0.25cm; 
+            width: 3cm; height: 3cm; position:absolute; background-color: #fffdf9; 
+            left: 1cm; top: 17cm; border: 1px solid black; ">
+                <img src="windrose.svg" style="width: 100%; height: 100%;" />
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // https://codepen.io/j4n/pen/wBVVVN
+
+        function verticalRuler()
+        {
+            var verticalRuler = document.getElementById("verticalRuler");
+            var myruler = verticalRuler.getElementsByClassName("ruler")[0];
+
+            var numCm = 25;
+
+            for (var i = 0; i < numCm; ++i)
+            {
+                var div = document.createElement("div");
+                div.classList.add("vertical");
+                div.classList.add("cm");
+
+
+
+                var divHalf = document.createElement("div");
+                divHalf.classList.add("vertical");
+                divHalf.classList.add("halfcm");
+                divHalf.classList.add("first");
+
+
+                for (var j = 0; j < 4; ++j)
+                {
+                    var divmm = document.createElement("div");
+                    divmm.classList.add("vertical");
+                    divmm.classList.add("mm");
+
+                    var divClear = document.createElement("div");
+                    divClear.style = "clear: both; width: 0px; height: 0px;";
+
+                    divHalf.appendChild(divmm);
+                    divHalf.appendChild(divClear);
+                }
+
+
+                div.appendChild(divHalf);
+
+
+
+
+                var divHalf = document.createElement("div");
+                divHalf.classList.add("vertical");
+                divHalf.classList.add("halfcm");
+
+
+                for (var j = 0; j < 4; ++j)
+                {
+                    var divmm = document.createElement("div");
+                    divmm.classList.add("vertical");
+                    divmm.classList.add("mm");
+
+                    var divClear = document.createElement("div");
+                    divClear.style = "clear: both; width: 0px; height: 0px;";
+
+                    divHalf.appendChild(divmm);
+                    divHalf.appendChild(divClear);
+                }
+
+                div.appendChild(divHalf);
+
+
+
+                myruler.appendChild(div);
+
+                var div = document.createElement("div");
+                div.style = "clear: both; width: 0px; height: 0px;";
+
+                myruler.appendChild(div);
+            }
+
+
+
+            var scale = verticalRuler.getElementsByClassName("scale")[0];
+            for (var i = 0; i < numCm; ++i)
+            {
+                var div = document.createElement("div");
+                div.classList.add("vertical");
+                div.classList.add("cmlabel");
+
+                div.appendChild(document.createTextNode((i + 1).toString() + "cm"));
+                scale.appendChild(div);
+            }
+
+        }
+
+
+        function horizonalRuler()
+        {
+            var horizontalRuler = document.getElementById("horizontalRuler");
+            var myruler = horizontalRuler.getElementsByClassName("ruler")[0];
+
+            var numCm = 40;
+
+            for (var i = 0; i < numCm; ++i)
+            {
+                var div = document.createElement("div");
+                div.classList.add("horizontal");
+                div.classList.add("cm");
+
+
+                var divHalf = document.createElement("div");
+                divHalf.classList.add("horizontal");
+                divHalf.classList.add("halfcm");
+                divHalf.classList.add("first");
+
+                for (var j = 0; j < 4; ++j)
+                {
+                    var divmm = document.createElement("div");
+                    divmm.classList.add("horizontal");
+                    divmm.classList.add("mm");
+                    divHalf.appendChild(divmm);
+                }
+
+                div.appendChild(divHalf);
+
+
+                var divHalf = document.createElement("div");
+                divHalf.classList.add("horizontal");
+                divHalf.classList.add("halfcm");
+
+                for (var j = 0; j < 4; ++j)
+                {
+                    var divmm = document.createElement("div");
+                    divmm.classList.add("horizontal");
+                    divmm.classList.add("mm");
+                    divHalf.appendChild(divmm);
+                }
+
+                div.appendChild(divHalf);
+
+
+                myruler.appendChild(div);
+            }
+
+
+            var numRuler = horizontalRuler.getElementsByClassName("scale")[0];
+
+            for (var i = 0; i < numCm; ++i)
+            {
+                var div = document.createElement("div");
+                div.classList.add("horizontal");
+                div.classList.add("cmlabel");
+
+                div.appendChild(document.createTextNode((i + 1).toString() + "cm"));
+                numRuler.appendChild(div);
+            }
+        }
+
+        horizonalRuler();
+        verticalRuler();
+        
+        
+        
+
+        // Make the DIV element draggagle:
+        dragElement(document.getElementById("drawing"));
+        dragElement(document.getElementById("title"));
+        dragElement(document.getElementById("logo"));
+        dragElement(document.getElementById("north_arrow"));
+
+
+        function dragElement(element)
+        {
+            // console.log(elmnt)
+
+            // hres: HorizontalResolution
+            // vres: VerticalResolution
+            var  page = document.getElementById("page")
+                ,unit = document.getElementById("measure") 
+                ,hres = unit.offsetWidth 
+                ,vres = unit.offsetHeight 
+                ,pageInfo = page.getBoundingClientRect()
+                ;
+
+
+            function fX(event) { return (event.touches && event.touches.length) ? event.touches[0].clientX : event.clientX; }
+            function fY(event) { return (event.touches && event.touches.length) ? event.touches[0].clientY : event.clientY; }
+
+
+
+            function getMaxZindex() 
+            {
+                return Math.max.apply(null,
+                    Array.prototype.map.call(document.getElementById("page").querySelectorAll("*"),
+                        function (e, n)
+                        {
+                            var zindex = window.getComputedStyle(e).getPropertyValue("z-index");
+
+                            if ((zindex != 'static') && (zindex != 'auto'))
+                                return parseInt(zindex) || 1;
+
+                            return 0;
+                        }
+                    )
+                );
+            }
+
+
+            var setPos = function (e)
+            {
+                console.log("pos");
+
+                var ele = page.querySelector(".active")
+                    , width = ele.offsetWidth
+                    , height = ele.offsetHeight
+                    , dragX = ele.getAttribute("data-dragoffset-x")
+                    , dragY = ele.getAttribute("data-dragoffset-y")
+                    , pos = { x: fX(e) - dragX, y: fY(e) - dragY }
+                    ;
+
+                if (pos.x < 0)
+                    pos.x = 0;
+                if (pos.y < 0)
+                    pos.y = 0;
+
+                if (pos.x + width > pageInfo.width)
+                    pos.x = pageInfo.width - width;
+
+                if (pos.y + height > pageInfo.height)
+                    pos.y = pageInfo.height - height;
+
+                // ele.style.left = pos.x + 'px';
+                // ele.style.top = pos.y + 'px';
+
+                // console.log("rest", pos)
+
+                ele.style.left = (pos.x / hres).toString() + 'cm';
+                ele.style.top = (pos.y / vres).toString() + 'cm';
+
+            }.bind(this);
+
+
+            var setSize = function (e)
+            {
+                var ele = page.querySelector(".resizing")
+                    , width = ele.offsetWidth
+                    , height = ele.offsetHeight
+                    , dragX = ele.getAttribute("data-dragoffset-x")
+                    , dragY = ele.getAttribute("data-dragoffset-y")
+                    , pos = { x: fX(e) - dragX, y: fY(e) - dragY }
+                    ;
+
+                var bcr = ele.getBoundingClientRect();
+
+                var w = pos.x - bcr.x, h = pos.y - bcr.y;
+
+                if(w < 0.4 * hres)
+                    w = 0.4 * hres;
+                if(h < 0.4 * vres)
+                    h = 0.4 * vres;
+                
+                // ele.style.width = w + "px";
+                // ele.style.height = h + "px";
+                
+                ele.style.width = (w/hres) + "cm";
+                ele.style.height = (h/vres) + "cm";
+
+                console.log("width", ele.style.width);
+                console.log("height", ele.style.height);
+                /*
+                var img = ele.getElementsByTagName("img")[0];
+                if (img != null)
+                {
+                    img.style.width = pos.x - bcr.x + "px";
+                    img.style.height = pos.y - bcr.y + "px";
+                }
+                */
+            }.bind(this);
+
+
+            element.onmousedown = element.ontouchstart = function (ele, e)
+            {
+                console.log("drag mousedown");
+
+                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                var zindex = getMaxZindex() + 1;
+                ele.style["z-index"] = zindex;
+
+                ele.classList.add("active");
+                ele.setAttribute("data-dragoffset-x", fX(e) - ele.offsetLeft);
+                ele.setAttribute("data-dragoffset-y", fY(e) - ele.offsetTop);
+            }.bind(this, element)
+
+
+            element.onmouseup = element.ontouchend = function (ele, e)
+            {
+                // console.log("onmouseUP", o);
+                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                if (ele == null)
+                    return;
+
+                ele.classList.remove("active");
+                ele.removeAttribute("data-dragoffset-x");
+                ele.removeAttribute("data-dragoffset-y");
+            }.bind(this, element);
+
+
+            element.onmouseenter = function (ele, e)
+            {
+                ele.style.cursor = "move";
+            }.bind(this, element);
+
+
+            var d = document.createElement("div");
+            // https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+            d.setAttribute("style", [
+                 "display: block; position:absolute; opacity: 0.2; "
+                ,"width: 0.4cm; height: 0.4cm; background-color: #42cbed; " 
+                ,"bottom: -0.2cm; right: -0.2cm; cursor: nwse-resize;"
+                ].join("")
+            );
+            
+            d.onmousedown = d.ontouchstart = function (ele, resizer, e)
+            {
+                console.log("resize mousedown");
+                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+
+                ele.classList.add("resizing");
+            }.bind(this, element, d);
+
+            d.onmouseup = d.ontouchend = function (ele, resizer, e)
+            {
+                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+
+                if (ele == null)
+                    return;
+
+                ele.classList.remove("resizing");
+            }.bind(this, element,d );
+
+            element.appendChild(d);
+
+
+            page.onmousemove = page.ontouchmove = function (e)
+            {
+                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                if (page.querySelector(".active") != null)
+                {
+                    setPos(e);
+                }
+
+                if (page.querySelector(".resizing") != null)
+                {
+                    setSize(e);
+                }
+                    
+
+                
+            }.bind(this);
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>

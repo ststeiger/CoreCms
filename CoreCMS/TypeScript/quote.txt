@@ -1,0 +1,35 @@
+https://www.mikesdotnetting.com/article/283/asp-net-5-managing-client-side-dependencies-with-npm-bower-and-gulp
+
+
+https://stackoverflow.com/questions/37935524/how-to-use-npm-with-asp-net-core
+
+
+https://docs.npmjs.com/getting-started/using-a-package.json
+
+
+
+https://microsoft.github.io/monaco-editor/
+
+http://joehalliwell.com/aphorisms.html#17-27-0-1
+
+
+
+0...365
+0..100
+
+http://bigdata-madesimple.com/30-thought-provoking-big-data-quotes-that-you-should-know/
+https://www.tibco.com/blog/2013/06/28/19781/
+https://www.brainyquote.com/topics/database
+https://www.brainyquote.com/quote_of_the_day
+
+https://www.brainyquote.com/authors/paul_valery
+The best way to make your dreams come true is to wake up.
+Power without abuse loses its charm. Paul Valery
+The trouble with our times is that the future is not what it used to be.
+
+https://www.brainyquote.com/authors/voltaire
+The Holy Roman Empire is neither Holy, nor Roman, nor an Empire.
+
+
+http://www.faganfinder.com/quotes/
+

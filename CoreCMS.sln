@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreCMS", "CoreCMS\CoreCMS.csproj", "{9D339C46-7622-48DC-9843-5FC0A0B7A4B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BouncyCastle", "BouncyCastle\BouncyCastle.csproj", "{BF04052A-647E-46F3-90D6-FAC207C5DBEB}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CoreDb", "..\CoreDAL\CoreDb\CoreDb.shproj", "{38C40453-132F-41F0-9922-55D64402B0BD}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\CoreDAL\CoreDb\CoreDb.projitems*{38c40453-132f-41f0-9922-55d64402b0bd}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D339C46-7622-48DC-9843-5FC0A0B7A4B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D339C46-7622-48DC-9843-5FC0A0B7A4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D339C46-7622-48DC-9843-5FC0A0B7A4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D339C46-7622-48DC-9843-5FC0A0B7A4B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF04052A-647E-46F3-90D6-FAC207C5DBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF04052A-647E-46F3-90D6-FAC207C5DBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF04052A-647E-46F3-90D6-FAC207C5DBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF04052A-647E-46F3-90D6-FAC207C5DBEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D0CAE24-9B37-41FD-BB14-4A1E20726BDE}
+	EndGlobalSection
+EndGlobal

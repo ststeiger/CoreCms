@@ -1,0 +1,96 @@
+﻿
+https://www.reddit.com/r/javascript/comments/1v6irn/til_javascript_allows_for_utf8_variable_names_so/
+https://github.com/Stuk/require1k
+https://stuk.github.io/require1k/
+https://github.com/je-an/jean-amd/tree/master/dist
+https://curiosity-driven.org/minimal-loader
+https://curiosity-driven.org/amd-loader-with-promises
+https://github.com/young-steveo/bottlejs
+
+
+<script src="require1k.min.js" data-main="./index"></script>
+
+Not quite all of unicode is valid however:
+An identifier must start with $, _, 
+or any character in the Unicode categories 
+  “Uppercase letter (Lu)”
+, “Lowercase letter (Ll)”
+, “Titlecase letter (Lt)”
+, “Modifier letter (Lm)”
+, “Other letter (Lo)”
+, or “Letter number (Nl)”.
+
+
+
+TIL: JavaScript allows for UTF8 variable names, 
+so var ಠ_ಠ = 5; is a perfectly valid assignment 
+
+
+
+lambda: λ
+http://www.fileformat.info/info/unicode/char/03bb/index.htm
+phi: ϕ
+http://www.fileformat.info/info/unicode/char/03d5/index.htm
+delta: 	δ
+http://www.fileformat.info/info/unicode/char/0394/index.htm
+epsilon: ε 
+http://www.fileformat.info/info/unicode/char/3b5/index.htm
+xi: ξ Ξ
+http://www.fileformat.info/info/unicode/char/039e/index.htm
+pi: π
+http://www.fileformat.info/info/unicode/char/03C0/index.htm
+omega: ω Ω
+http://www.fileformat.info/info/unicode/char/03a9/index.htm
+theta: θ Θ
+http://www.fileformat.info/info/unicode/char/03b8/index.htm
+sigma:  σ Σ
+http://www.fileformat.info/info/unicode/char/03c3/index.htm
+psi: Ψ ψ
+http://www.fileformat.info/info/unicode/char/03A8/index.htm
+mu: μ
+http://www.fileformat.info/info/unicode/char/03bc/index.htm
+zeta:  ζ
+http://www.fileformat.info/info/unicode/char/03b6/index.htm
+alpha: α
+http://www.fileformat.info/info/unicode/char/3b1/index.htm
+beta: β
+http://www.fileformat.info/info/unicode/char/3b2/index.htm
+gamma: γ Γ
+http://www.fileformat.info/info/unicode/char/03b3/index.htm
+rho: ρ
+http://www.fileformat.info/info/unicode/char/03c1/index.htm
+tau: τ
+http://www.fileformat.info/info/unicode/char/03C4/index.htm
+eta: η
+http://www.fileformat.info/info/unicode/char/03B7/index.htm
+
+
+好: hao
+女: female, woman, girl, daughter, frail	
+男: male, man, boy, son
+童: child, boy, virgin
+我: Me
+粪: shit, manure, dung, droppings, turd, ordure
+咒: curse, damn
+
+
+一: one (yī)
+二: two (èr)
+三: three (sān)
+四: four (sì)
+五: five (wǔ)
+六: six (liù)
+七: seven (qī)
+八: eight (bā)
+九: nine (jiǔ)
+十: ten (shí)
+
+
+greek questionmark (not allowed): ;
+http://www.fileformat.info/info/unicode/char/037e/index.htm
+
+
+var D = "God, you're so immature."; var ಠ_ಠ =  8==D--
+
+var λ = " ಠ_ಠ       8==D-- ";
+console.log(λ);

@@ -1,0 +1,871 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8" />
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>Legende</title>
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=1.00, maximum-scale=1.00" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=1.00, maximum-scale=10.00, user-scalable=yes" />
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=0.00, maximum-scale=10.00, user-scalable=yes" />
+
+    <script>
+        // console.log(window.Promise);
+        // window.Promise = null;
+    </script>
+
+    <script src="GeneratedScripts/loader.js?v=1"
+            data-js="['js/ruler', 'js/contextMenu', 'js/AsyncAjax', 'js/dragElement', 'js/HtmlTools']"
+            data-js-ie="['js/polyfills/es6-promise-2.0.0.min', 'js/polyfills/classList']"
+            data-css="['css/ruler']"
+            data-css-iedge="['css/rulerIE']"></script>
+
+
+
+    <!--
+    https://stackoverflow.com/questions/35027046/difference-between-data-main-and-normal-script-loading
+    <script src="scripts/require.js"></script>
+    <script>require(["scripts/main"])</script>
+    -->
+
+    <style type="text/css">
+
+    </style>
+
+
+</head>
+<body style="z-index: 999999; background-color: lightgrey; ">
+
+    <div style="z-index: 99999; display: block; position:relative;">
+
+        <div id="measure" class="disable-select" style="position:absolute; left: 0cm; top: 0cm; cursor: pointer;
+            background-color: #eaeaeabf; width: 1cm; height: 1cm; #border: 1px solid white;
+        text-align: center; line-height: 1cm; font-size: 4.25mm;">A4</div>
+
+        <div id="horizontalRuler" class="disable-select" style="position:absolute; left: 1cm; top: 0cm; white-space: nowrap;">
+            <div style="display: inline-block; position:absolute; left: 0.0cm; top: 0.5cm; width: 0.5cm; height: 0.5cm; background-color: whitesmoke; "></div>
+            <div class="ruler" style="background-color: whitesmoke; padding-right: 0.5cm"></div>
+            <div class="scale" style="display: inline-block; position:absolute; left: 0.5cm; top: 0.5cm; background-color: whitesmoke;"></div>
+        </div>
+
+        <div id="verticalRuler" class="disable-select" style="position:absolute; left: 0cm; top: 1cm; width: 1cm; white-space: normal;">
+            <div class="ruler" style="background-color: whitesmoke; padding-bottom: 0.5cm;"></div>
+            <div class="scale" style="display: block; width: 1cm; position: absolute; top: 0.25cm; left: 0cm; z-index: 9999;"></div>
+        </div>
+        <!--
+
+        -->
+
+        <style>
+            .lblLeft
+            {
+                display: inline-block;
+                width: 3cm;
+                font-family: Arial;
+                font-size: 3mm;
+                text-align: right;
+                padding-right: 0.25cm;
+                font-weight: bold;
+            }
+
+            select, option, input
+            {
+                font-family: Arial;
+                font-size: 3mm;
+                width: 3.5cm;
+            }
+
+                input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn
+                {
+                    color: #ffffff;
+                    background-color: #0095ff;
+                    border-color: #0077cc;
+                    box-shadow: inset 0 1px 0 #66bfff;
+                }
+
+                    input[type="button"].red
+                    {
+                        color: #ffffff;
+                        background-color: #950000;
+                        border-color: #620000;
+                        box-shadow: inset 0 1px 0 #fb0000;
+                    }
+
+
+                input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"]
+                {
+                    box-sizing: border-box;
+                    display: inline-block;
+                    position: relative;
+                    outline: none;
+                    padding: 0mm 5mm;
+                    line-height: 10mm;
+                    vertical-align: middle;
+                    font-weight: 400;
+                    font-family: inherit;
+                    text-align: center;
+                    text-decoration: none;
+                    #background-color: transparent;
+                    border-radius: 5px;
+                    margin: 1mm;
+                    border: 1px solid transparent;
+                    cursor: pointer;
+                    touch-action: manipulation;
+                    transition: all .1s ease-in;
+                }
+
+
+            #paperMenu
+            {
+                transition: all .5s ease-in;
+            }
+
+
+            input[type="submit"]:hover, input[type="submit"]:focus, input[type="button"]:hover, input[type="button"]:focus, a.button:hover, a.button:focus, a.button:visited:hover, a.button:visited:focus, button:hover, button:focus, .button:hover, .button:focus, .btn:hover, .btn:focus
+            {
+                color: rgba(255, 255, 255, 0.9);
+                background-color: #0077cc;
+                border-color: #005999;
+                box-shadow: inset 0 1px 0 #33aaff;
+            }
+
+            input[type="button"].red:hover, input[type="button"].red:focus, .red:visited:hover, .red:visited:focus
+            {
+                color: rgba(255, 255, 255, 0.9);
+                background-color: #620000;
+                border-color: #2f0000;
+                box-shadow: inset 0 1px 0 #c80000;
+            }
+
+            #saveNotifier
+            {
+                transition: all 0.75s ease-in-out;
+                opacity: 0;
+                top: 60%;
+                left: 70%;
+                background-color: limegreen;
+            }
+
+            .noselect
+            {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        </style>
+
+
+        <div id="saveNotifier" class="noselect"></div>
+
+
+        <div id="paperMenu" style="display: none; ">
+            <label class="lblLeft">Paper format</label>
+            <select id="selPaperFormat">
+                <option>A0</option>
+                <option>A1</option>
+                <option>A2</option>
+                <option>A3</option>
+                <option>A4</option>
+            </select>
+            <br />
+
+            <!--
+            <label class="lblLeft">Orientation</label>
+            <select id="selOrientation">
+                <option value="0">Portrait</option>
+                <option value="1">Landscape</option>
+            </select>
+            <br />
+            -->
+
+            <label class="lblLeft">Layerset</label>
+            <select id="selDarstellung">
+                <option>Darstellung 1</option>
+                <option>Darstellung 2</option>
+            </select>
+            <br />
+
+
+            <label class="lblLeft">Category</label>
+            <select id="selCathegory" onchange="if(this.value === 'custom') document.getElementById('customCategory').style.display = 'block'; else document.getElementById('customCategory').style.display = 'none'; ">
+                <option value="1">With Legend</option>
+                <option value="2">Without Legend</option>
+                <option value="3">Drawing only</option>
+                <option value="custom">Custom</option>
+            </select>
+            <br /><br />
+            <div id="customCategory" style="display: none;">
+                <label class="lblLeft">Custom Category</label>
+                <input type="text" value="" placeholder="custom category name" />
+            </div>
+            <br />
+            <div style="padding: 0.1cm; text-align: left; position: absolute; bottom: 3mm; left: 3mm; right: 3mm;">
+                <input type="button" value="Apply" onclick="this.parentElement.parentElement.style.display = 'none';" />
+            </div>
+            <!--
+            <a class="btn" href="www.google.com">test</a>
+                -->
+
+        </div>
+
+
+        <div id="page" style="z-index: 9999; display: block; position:relative;
+left: 1cm; top: 1cm;
+width: 29.7cm; height: 21cm;
+background-color: white; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);">
+
+            <div id="title" title="Titel" style="position:absolute; display: block;
+                left: 1cm; top: 1cm; width: 21cm; height: 1.75cm;
+                background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+                <div style="width: 100%; height: 100%; overflow: hidden;
+                font-family: 'Bodoni MT'; font-size: 1cm; padding: 0.25cm; "
+                     contenteditable="true">Überschrift</div>
+            </div>
+
+            <!--
+            <div id="drawing" title="Zeichung" style="position:absolute; display: block;
+                left: 1cm; top: 3cm; width: 21cm; height: 14cm;
+                background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+                <img src="plan_forum.svg" style="width: 100%; height: 100%;" />
+            </div>
+                -->
+
+            <div id="drawing" title="Zeichung" style="position:absolute; display: block;
+                left: 6.0cm; top: 3cm; width: 23.16cm; height: 17.49cm;
+                background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+                <!--
+                <img src="plan_forum.svg" style="width: 100%; height: 100%;" />
+                -->
+                <iframe onload="forwardMouse(this);" src="plan_forum.svg" style="width: 100%; height: 100%; z-index: -5;" frameborder="0"></iframe>
+            </div>
+
+            <!--
+            <div id="logo" title="Logo" style="position:absolute; display: block;
+                left: 23.7cm; top: 1cm; width: 5cm; height: 1.75cm;
+                background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+                <img src="logo.svg" style="width: 100%; height: 100%;" />
+            </div>
+            -->
+
+
+            <div id="logo" title="Logo" style="position:absolute; display: block;
+                left: 0.5cm; top: 1cm; width: 5cm; height: 1.75cm;
+                background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+
+                <!--
+                <img src="logo_swissre_black.svg" style="width: 100%; height: 100%;" />
+                    <object type="image/svg+xml" data="logo_swissre_black.svg" style="width: 100%; height: 100%; z-index: -5;">SwissRe Logo</object>
+                    <iframe src="logo_swissre_black.svg" style="width: 100%; height: 100%; z-index: -5;" frameborder="0"></iframe>
+                -->
+
+                <script>
+
+
+
+                    function forwardMouse(ele)
+                    {
+                        var referenceElement = ele.parentElement;
+                        var doc = ele.contentWindow.document;
+
+                        function getOffset(el)
+                        {
+                            let _x = 0, _y = 0;
+                            while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop))
+                            {
+                                _x += el.offsetLeft - el.scrollLeft;
+                                _y += el.offsetTop - el.scrollTop;
+                                el = el.offsetParent;
+                            }
+
+                            // return { x: _x, y: _y };
+                            return { left: _x, top: _y };
+                        }
+
+
+
+
+                        function forwardContextMenu(e)
+                        {
+                            console.log("forwardContextMenu");
+                            e = e || event;
+                            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                            var ev = document.createEvent("MouseEvents");
+                            // alert(ele.parentElement.offsetLeft);
+                            //ev.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 2, null);
+                            //console.log(ele.parentElement);
+                            //ele.parentElement.dispatchEvent(ev);
+
+                            if (window.CustomEvent)
+                            {
+                                var ce = new CustomEvent("contextmenu");
+                                var bd = getOffset(referenceElement);
+
+                                ce.pageX = (bd.left + e.pageX);
+                                ce.pageY = (bd.top + e.pageY);
+                                ele.parentElement.dispatchEvent(ce);
+                            }
+                            //else if (document.createEvent)
+                            //{
+                            //    var ev = document.createEvent('HTMLEvents');
+                            //    ev.initEvent('contextmenu', true, false);
+                            //    element.dispatchEvent(ev);
+                            //}
+
+                            return false;
+                        }
+
+                        function forwardMouseDown(e)
+                        {
+                            console.log("forwardMouseDown");
+
+                            e = e || event;
+                            // alert("oo");
+                            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                            // 0: touch, 1: left, 3: right
+                            if ((e.keyCode || e.which) == 3)
+                                return;
+
+
+                            if (window.CustomEvent)
+                            {
+                                var evt = new CustomEvent('mousedown', { bubbles: true, cancelable: false });
+                                var bd = getOffset(referenceElement);
+                                evt.pageX = bd.left + e.pageX;
+                                evt.pageY = bd.top + e.pageY;
+                                ele.parentElement.dispatchEvent(evt);
+                            }
+
+                        }
+
+                        function forwardMouseUp(e)
+                        {
+                            e = e || event;
+                            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                            if ((e.keyCode || e.which) == 3)
+                                return;
+
+                            if (window.CustomEvent)
+                            {
+                                var evt = new CustomEvent('mouseup', { bubbles: true, cancelable: false });
+                                var bd = getOffset(referenceElement);
+                                evt.pageX = bd.left + e.pageX;
+                                evt.pageY = bd.top + e.pageY;
+                                ele.parentElement.dispatchEvent(evt);
+                            }
+
+                        }
+
+                        function forwardMouseMove(e)
+                        {
+                            e = e || event;
+                            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                            if (window.CustomEvent)
+                            {
+                                var evt = new CustomEvent('mousemove', { bubbles: true, cancelable: false });
+                                var bd = getOffset(referenceElement);
+                                evt.pageX = bd.left + e.pageX;
+                                evt.pageY = bd.top + e.pageY;
+                                ele.parentElement.dispatchEvent(evt);
+                            }
+                        }
+
+                        function forwardMouseEnter(e)
+                        {
+                            e = e || event;
+                            doc.documentElement.style.cursor = "move";
+                        };
+
+                        function forwardMouseOver(e)
+                        {
+                            e = e || event;
+                            doc.documentElement.style.cursor = "move";
+                        };
+
+
+                        doc.oncontextmenu = forwardContextMenu;
+                        doc.onmousedown = doc.ontouchstart = forwardMouseDown;
+                        doc.onmouseup = forwardMouseUp;
+                        doc.onmousemove = forwardMouseMove;
+                        doc.onmouseenter = forwardMouseEnter;
+                        doc.onmouseover = forwardMouseOver;
+                    }
+
+                </script>
+
+                <iframe onload="forwardMouse(this);" src="logo.svg" style="width: 100%; height: 100%; z-index: -5;" frameborder="0"></iframe>
+
+                <!--
+                <svg id="svg9498" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+                     viewBox="-10.6299372 -10.6299372 1530.5224744 375.5911144"
+                     preserveAspectRatio="xMinYMin"
+                     width="100%" height="100%">
+                    <path style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                          d="m 265.91,124.35875 -177.17175,0 0,-37.30625 177.17175,0 0,37.30625 z m -1.5525,142.97637 -39.48375,0 0,-115.01512 39.48375,0 0,115.01512 z m -67.45125,0 -39.48,0 0,-115.01512 39.48,0 0,115.01512 z m -67.13875,0 -39.477,0 0,-115.01512 39.477,0 0,115.01512 z M 177.1675,0 C 79.32025,0 0,79.3175 0,177.1625 0,275.01 79.32025,354.33125 177.1675,354.33125 c 97.8475,0 177.165,-79.32125 177.165,-177.16875 C 354.3325,79.3175 275.015,0 177.1675,0" />
+                    <path style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                          d="m 1447.4126,160.865 c 18.75,0 22.3375,15.5525 23.15,30.7175 l -44.2875,0 c 0.3875,-13.5725 4.3875,-30.7175 21.1375,-30.7175 z m 2.4,87.354 c -19.9501,0 -23.5375,-17.15388 -23.5375,-33.89275 l 82.9875,0 c 0,-40.30625 -14.3625,-76.20125 -61.0375,-76.20125 -40.3,0 -60.6375,32.70875 -60.6375,69.81375 0,38.6865 23.125,63.02487 61.8125,63.02487 26.35,0 53.4625,-11.15625 55.4625,-40.6885 l -33.5,0 c -2.4125,11.9575 -9.175,17.94388 -21.55,17.94388 m -153.2001,-83.37775 -27.925,0 0,-49.4575 28.3125,0 c 15.975,0 29.1375,6.76625 29.1375,24.33375 0,17.94375 -13.1625,25.12375 -29.525,25.12375 z M 1327.725,178.01 c 22.35,-6.38 39.1125,-19.94 39.1125,-44.67375 0,-34.7175 -32.325,-46.2775 -62.25,-46.2775 l -74.5925,0 0,180.32137 38.6925,0 0,-73.00637 30.325,0 c 34.7125,0 26.325,48.2675 31.9,73.00637 l 42.3,0 c -19.1625,-33.9175 4,-79.79512 -45.4875,-89.37012 m -176.3275,-3.1925 -33.5137,0 c -0.7975,-9.18 -9.18,-13.9525 -17.9438,-13.9525 -7.9837,0 -19.5537,2.39 -19.1562,12.76 0.4,7.98 9.18,10.37125 15.555,11.95875 l 14.3737,3.60875 c 21.9438,4.78 47.075,13.9525 47.075,40.28525 0,31.90962 -32.7325,41.48587 -59.0587,41.48587 -25.9275,0 -51.4575,-11.5635 -53.45,-39.48975 l 34.71,0 c 1.195,11.16738 9.975,16.74513 20.7475,16.74513 9.5775,0 21.9275,-3.984 21.9275,-15.54788 0,-23.93612 -74.995,-6.78862 -74.995,-55.45737 0,-29.51875 29.53,-39.08875 54.2625,-39.08875 22.7412,0 45.4812,9.17125 49.0675,33.90625 l 0.3987,2.78625 m -123.2662,0 -33.51255,0 c -0.81375,-9.18 -9.18,-13.9525 -17.96,-13.9525 -7.98375,0 -19.55375,2.39 -19.15625,12.76 0.39875,7.98 9.18,10.37125 15.57,11.95875 l 14.35875,3.60875 c 21.94375,4.78 47.07505,13.9525 47.07505,40.28525 0,31.90962 -32.7175,41.48587 -59.04255,41.48587 -25.92875,0 -51.4575,-11.5635 -53.46625,-39.48975 l 34.70875,0 c 1.195,11.16738 9.97625,16.74513 20.74875,16.74513 9.5775,0 21.94375,-3.984 21.94375,-15.54788 0,-23.93612 -75.01125,-6.78862 -75.01125,-55.45737 0,-29.51875 29.53,-39.08875 54.2625,-39.08875 22.7412,0 45.4813,9.17125 49.0675,33.90625 l 0.4138,2.78625 m -165.5763,-56.645 39.90475,0 0,-31.11325 -39.90475,0 0,31.11325 z m 1.195,149.20762 37.499,0 0,-125.67 -37.499,0 0,125.67 z m -105.71875,0 -17.94375,-59.84387 c -4,-13.1625 -6.39,-26.33875 -9.17875,-39.50125 -2.00875,9.58 -3.58625,19.1675 -6.39125,28.33375 l -2.78875,9.97625 -16.74875,61.03512 -44.28625,0 L 619.5975,141.71 l 42.29125,0 17.5625,65.82625 2.39,9.16625 1.99125,8.785 c 0.7975,5.189 1.59375,10.37112 2.39125,15.55375 1.99125,-15.15875 5.59375,-29.51375 9.5775,-43.87625 l 15.5525,-55.455 43.0925,0 16.35,57.84625 c 3.99875,13.565 6.78875,27.12375 8.78125,41.09487 l 1.195,-7.1885 c 1.5925,-11.95887 4.78,-23.52887 8.3825,-35.50012 l 15.5525,-56.2525 40.3025,0 -43.09,125.67012 -43.88875,0 M 605.23,137.72 l -37.1,0 c -0.395,-17.5625 -13.16875,-27.53125 -30.31625,-27.53125 -14.76375,0 -31.91,5.5775 -31.91,23.1475 0,39.8875 104.515,13.5625 104.515,78.9875 0,40.3 -34.70875,58.63987 -71.41,58.63987 -41.89625,0 -76.5975,-14.74462 -76.19625,-60.63362 l 39.49625,0 c 0,19.94512 10.7725,33.50862 31.91,33.50862 15.5625,0 36.31125,-5.57725 36.31125,-24.33612 0,-41.8875 -102.93,-13.55875 -102.93,-80.98 0,-39.90375 37.09875,-55.4575 71.40875,-55.4575 36.3025,0 63.83,17.555 66.22125,54.655" />
+                </svg>
+                -->
+
+            </div>
+
+
+
+            <div id="north_arrow" title="Nordpfeil" style="position:absolute; display: block;
+            left: 1cm; top: 17.25cm; width: 2.75cm; height: 2.75cm; padding: 0.25cm;
+            background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+                <img src="windrose.svg" style="width: 100%; height: 100%;" />
+            </div>
+
+
+            <style>
+                .no-select
+                {
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    cursor: default;
+                }
+
+                ul
+                {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    width: 4cm;
+                    #header -webkit-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+                    #-moz-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+                    #box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+                    #-webkit-box-shadow: 1mm 1mm 3mm 0mm #A0A0A0;
+                    #-moz-box-shadow: 1mm 1mm 3mm 0mm #A0A0A0;
+                    #box-shadow: 0mm 0mm 3mm 1mm #A0A0A0;
+                    #box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+                    #box-shadow: 0 0 5px #999;
+                    box-shadow: 0 0 1mm #999;
+                    #border: 0.1mm solid black;
+                    border-radius: 3mm;
+                    background-color: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+
+                li
+                {
+                    padding-left: 0.2cm;
+                    padding-right: 0.2cm;
+                    padding-top: 0.1cm;
+                    padding-bottom: 0.1cm;
+                    #background-color: whitesmoke;
+                    #background-color: #FAFAFA;
+                    #background-color: #efefef;
+                    background-color: rgba(237,237,237,0.95);
+                    color: black;
+                    #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    #background: linear-gradient(to bottom, rgba(237,237,237,1) 0%, rgba(255,255,255,1) 47%, rgba(237,237,237,1) 100%);
+                    #font-family: "lucida sans unicode", sans-serif;
+                    font-size: 12px;
+                    font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
+                }
+
+                    li span
+                    {
+                        padding-left: 3mm;
+                    }
+
+                    li:nth-child(even)
+                    {
+                        #background-color: #efefef;
+                        #background-color: rgba(255,255,255,0.95);
+                        #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                        #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 47%, rgba(255,255,255,1) 100%);
+                    }
+
+                    li:first-child
+                    {
+                        #background-color: greenyellow;
+                        #border-top-left-radius: 3mm;
+                        border-top-right-radius: 3mm;
+                    }
+
+                    li:last-child
+                    {
+                        #background-color: yellow;
+                        border-bottom-left-radius: 3mm;
+                        border-bottom-right-radius: 3mm;
+                    }
+
+
+                    li:hover
+                    {
+                        color: #fff;
+                        #background-color: #0066aa;
+                        #background-color: rgba(0,102,170,0.95);
+                        background-color: rgba(255, 0, 0, 0.95);
+                        cursor: pointer;
+                    }
+
+                /*.context-menu-choice:hover, li:hover
+                {
+                    background: rgba(255,255,255,1);
+                    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+                    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+                }*/
+
+
+                .context-menu-icon::before
+                {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 2em;
+                    font-family: "context-menu-icons";
+                    font-size: 1em;
+                    font-style: normal;
+                    font-weight: normal;
+                    line-height: 1;
+                    color: #2980b9;
+                    text-align: center;
+                    -webkit-transform: translateY(-50%);
+                    -ms-transform: translateY(-50%);
+                    -o-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+
+                .context-menu-icon-edit:before
+                {
+                    #content: "\EA05";
+                    content: "\2702";
+                }
+
+                .context-menu-icon-expand:after
+                {
+                    content: "\25ba";
+                    position: absolute;
+                    right: 0px;
+                    padding-right: 0.25cm;
+                    #transform: translateY(-50%);
+                }
+
+
+                li.expando:hover > ul
+                {
+                    display: block !important;
+                }
+
+
+                div > ul, div > ul > li:first-child
+                {
+                    border-top-left-radius: 3mm;
+                }
+            </style>
+
+
+            <div id="contextmenu" style="position:absolute; display: none; transform-origin: 0 0; left: 10cm; top: 5cm;
+                #background-color: #fffdf9; border: none;
+                 ">
+                <ul class="contextmenu-items" onmouseleave="PageDesigner.ContextMenu.closeContextMenu(this);">
+                    <li onclick="PageDesigner.ContextMenu.deleteElement(this);"><span>L&ouml;schen</span></li>
+
+                    <li class="context-menu-icon-expand expando" style="position: relative;">
+                        <span>Align</span><ul style="position: absolute; top: 0px; display: none; left: 100%;">
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 1, 1);">Top-Left</li>
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 1, 2);">Top-Center</li>
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 1, 3);">Top-Right</li>
+
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 2, 1);">Middle-Left</li>
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 2, 2);">Middle-Center</li>
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 2, 3);">Middle-Right</li>
+
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 3, 1);">Bottom-Left</li>
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 3, 2);">Bottom-Center</li>
+                            <li onclick="PageDesigner.ContextMenu.alignImage(this, 3, 3);">Bottom-Right</li>
+
+                            <!--
+                            <li class="context-menu-icon-expand expando" style="position: relative;">P2.5
+                                <ul style="position: absolute; display: none; top: 0px; left: 100%;">
+                                    <li>P1</li>
+                                    <li>P2</li>
+                                    <li>P3</li>
+                                </ul>
+                            </li>
+                            <li>p3</li>
+                            -->
+                        </ul>
+                    </li>
+
+
+                    <!-- in den Hintergrund -->
+                    <li onclick="PageDesigner.ContextMenu.alterZIndex(this, -1/0);"><span>Send to Back</span></li>
+                    <!-- in den Vordergrund -->
+                    <li onclick="PageDesigner.ContextMenu.alterZIndex(this, 1/0);"><span>Bring to Front</span></li>
+                    <!-- eine Ebene nach hinten -->
+                    <li onclick="PageDesigner.ContextMenu.alterZIndex(this, -1);"><span>Send Backward</span></li>
+                    <!-- eine Ebene nach vorne -->
+                    <li onclick="PageDesigner.ContextMenu.alterZIndex(this, +1);"><span>Bring Forward</span></li>
+
+                    <li onclick="PageDesigner.ContextMenu.edit(this);"><span>Edit Data</span></li>
+                    <li class="context-menu-icon-edit"><span>Cut</span></li>
+                    <!--<li style="height: 0mm;"></li>-->
+                </ul>
+
+            </div>
+
+
+            <div id="legende_footer" style="position:absolute; display: block;
+                left: 22.7cm; top: 14.5cm;
+                background-color: #fffdf9; border: 1px solid #e6e6e6; ">
+
+
+                <div style="width: 100%; height: 100%; overflow: hidden;">
+                    <table>
+                        <tr>
+                            <td colspan="2" class="footer" style="color:orange; font-weight: normal;">1. Untergeschoss</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="footer">GB01 / Via Crusch 8</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="footer">CH - 7402 Bonaduz</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2">COR Managementsysteme GmbH</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">Facility Management</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">Postfach</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">CH-8586 Erlen</td>
+                        </tr>
+
+                        <tr>
+                            <td>Druckdatum:</td>
+                            <td>21.11.2017</td>
+                        </tr>
+
+                        <tr>
+                            <td>Benutzer:</td>
+                            <td>Administrator</td>
+                        </tr>
+                    </table>
+                </div>
+            </div> <!--  End legende_footer -->
+
+            <div id="legend" style="display: block; position: absolute;
+left: 22.7cm; top: 3.0cm; width: 6.1cm; height: 11cm; z-index: 7;
+background-color: deepskyblue; border: 1px solid black;"></div>
+
+
+            <div id="drawing_border" style="display: block; position: absolute;
+left: 0.5cm; top: 0.5cm; width: 28.7cm; height: 20cm; z-index: -1;
+background-color: green; border: 1px solid black;"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function fkey(e)
+        {
+            e = e || event;
+
+            // use e.keyCode
+            //if (e.keyCode == 116) // 116: F5
+
+            if (e.keyCode == 112) // 112: F1
+            {
+                e.preventDefault() ? e.preventDefault() : e.returnValue = false;
+                e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+                console.log("TODO: Open Help");
+            }
+
+            if (e.keyCode == 27) // 27: F1
+            {
+                e.preventDefault() ? e.preventDefault() : e.returnValue = false;
+                e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+                document.getElementById("contextmenu").style.display = "none";
+            }
+
+            // console.log(e.keyCode);
+        }
+
+        document.onkeydown = fkey;
+
+        function setDefaultPosition()
+        {
+            var A4 = { w: 29.7, h: 21 };
+            var A0 = { w: 84.1, h: 118.9 };
+            var A0quer = { w: A0.h, h: A0.w };
+
+            function querformat(f)
+            {
+                quer = JSON.parse(JSON.stringify(f));
+                if (f.h > f.w)
+                {
+                    quer.w = f.h;
+                    quer.h = f.w;
+                }
+
+                return quer;
+            }
+
+            function hochformat(f)
+            {
+                hoch = JSON.parse(JSON.stringify(f));
+                if (f.h < f.w)
+                {
+                    hoch.w = f.h;
+                    hoch.h = f.w;
+                }
+
+                return hoch;
+            }
+
+            var paperSize = querformat(A4);
+
+
+            var page = document.getElementById("page")
+                , drawing = document.getElementById("drawing")
+                , title = document.getElementById("title")
+                , logo = document.getElementById("logo")
+                , north_arrow = document.getElementById("north_arrow")
+                , legend = document.getElementById("legend")
+                , printdate = document.getElementById("printdate")
+                , footer = document.getElementById("legende_footer")
+                , page_border = document.getElementById("drawing_border");
+
+
+            PageDesigner.Ruler.drawRuler(paperSize.w, paperSize.h);
+
+            // Set page-Size
+            page.style.width = paperSize.w + "cm";
+            page.style.height = paperSize.h + "cm";
+
+
+            function positionElement(ele, pos)
+            {
+                ele.style.top = pos.top + "cm";
+                ele.style.left = pos.left + "cm";
+                ele.style.width = pos.w + "cm";
+                ele.style.height = pos.h + "cm";
+            }
+
+
+            var printRange = { left: 0 + 0.5, top: 0 + 0.5, w: paperSize.w - 2 * 0.5, h: paperSize.h - 2 * 0.5 };
+            positionElement(page_border, printRange);
+
+
+
+            var logoFrame = JSON.parse(JSON.stringify(printRange));
+            logoFrame.w = 6;
+            logoFrame.h = 1.75;
+            logoFrame.left = printRange.left + printRange.w - logoFrame.w;
+            positionElement(logo, logoFrame);
+
+
+
+            var titleFrame = JSON.parse(JSON.stringify(printRange));
+            titleFrame.w = printRange.w - logoFrame.w - 0.5;
+            titleFrame.h = 1.75;
+            positionElement(title, titleFrame);
+
+
+
+            //var printdateFrame = JSON.parse(JSON.stringify(printRange));
+            //printdateFrame.w = 7;
+            //printdateFrame.h = 1.75;
+            //printdateFrame.left = printRange.left + printRange.w - printdateFrame.w;
+            //positionElement(printdate, printdateFrame);
+
+
+
+            var north_arrowFrame = JSON.parse(JSON.stringify(printRange));
+            north_arrowFrame.w = 2.75;
+            north_arrowFrame.h = 2.75;
+            north_arrowFrame.top = printRange.top + printRange.h - north_arrowFrame.h;
+            positionElement(north_arrow, north_arrowFrame);
+
+
+
+            var footerFrame = JSON.parse(JSON.stringify(printRange));
+            footerFrame.w = logoFrame.w;
+            footerFrame.h = 5;
+            footerFrame.left = printRange.left + printRange.w - footerFrame.w;
+            footerFrame.top = printRange.top + printRange.h - footerFrame.h;
+            positionElement(footer, footerFrame);
+
+
+
+            var legendFrame = JSON.parse(JSON.stringify(printRange));
+            legendFrame.w = logoFrame.w;
+            legendFrame.left = printRange.left + printRange.w - legendFrame.w;
+            legendFrame.top = logoFrame.top + logoFrame.h + 0.5;
+
+            legendFrame.h = printRange.top + printRange.h - legendFrame.top - footerFrame.h;
+            positionElement(legend, legendFrame);
+
+
+
+            var drawingFrame = JSON.parse(JSON.stringify(printRange));
+            drawingFrame.top = legendFrame.top;
+            drawingFrame.w = printRange.left + printRange.w - drawingFrame.left - legendFrame.w - 0.5;
+            drawingFrame.h = printRange.top + printRange.h - drawingFrame.top - north_arrowFrame.h - 0.5;
+            positionElement(drawing, drawingFrame);
+
+        }
+
+
+        function autoRun(e)
+        {
+            console.log("autoRun");
+            // console.log("awww", e.detail.withError);
+            setDefaultPosition();
+            PageDesigner.UI.Init();
+        }
+
+        if (document.addEventListener) window.addEventListener("allScriptsLoaded", autoRun)
+        else if (document.attachEvent) document.attachCustomEvent("allScriptsLoaded", autoRun);
+
+    </script>
+
+</body>
+</html>

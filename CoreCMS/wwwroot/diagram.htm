@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+
+<svg id="svgOne" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+    <!--
+    <rect x="50" y="50" width="50" height="50" fill="black" />
+    -->
+</svg>
+
+    <script type="text/javascript">
+        
+        function createSvg(id, width, height)
+        {
+            var svgns = "http://www.w3.org/2000/svg";
+
+            var svg = document.createElementNS(svgns, 'svg');
+            svg.id = id;
+            svg.setAttribute('xlink','http://www.w3.org/1999/xlink');
+            svg.setAttribute('viewBox','0 0 ' + width + ' ' + height);
+            svg.setAttribute('width', width);
+            svg.setAttribute('height', height);
+            
+            return svg;
+        }
+        
+        
+        function createGroup() {
+            var svgns = "http://www.w3.org/2000/svg";
+            
+            var g = document.createElementNS (svgns, "g");
+            return g;
+        }
+        
+        
+        // createRectangle(x, y, 50);
+        // id = table_name, class=column_column_name
+        function createRectangle(x,y, squareSize) {
+            var svgns = "http://www.w3.org/2000/svg";
+            
+            var rect = document.createElementNS(svgns, 'rect');
+            rect.setAttributeNS(null, 'x', x);
+            rect.setAttributeNS(null, 'y', y);
+            rect.setAttributeNS(null, 'height', squareSize);
+            rect.setAttributeNS(null, 'width', squareSize);
+            // rect.setAttribute('fill', '#000');
+            rect.setAttributeNS(null, 'style',"fill: red; stroke-width:3;stroke:hotpink;");
+            
+            return rect;
+        }
+
+
+        function createCircle(x,y, r, color) {
+            var svgns = "http://www.w3.org/2000/svg";
+            
+            var shape = document.createElementNS(svgns, "circle");
+            shape.setAttributeNS(null, "cx", x);
+            shape.setAttributeNS(null, "cy", y);
+            shape.setAttributeNS(null, "r",  r);
+            shape.setAttributeNS(null, "fill", color);
+            
+            shape.setAttributeNS(null, 'style', 'fill: none; stroke: blue; stroke-width: 1px;' );
+            
+            return shape;
+        }
+        
+        function createPath() {
+            var svgns = "http://www.w3.org/2000/svg";
+            
+            var path = document.createElementNS(svgns, "path");
+            
+            path.setAttribute("id", "pathIdD");
+            path.setAttribute("d", "M 1,97.857143 C 19.285714,96.428571 24.016862,131.64801 90.714286,132.85714 140.78762,133.7649 202.79376,66.16041 202.79376,66.16041");
+            path.setAttribute("stroke", "black");
+            path.setAttribute("stroke-width", 3);
+            path.setAttribute("opacity", 1);
+            path.setAttribute("fill", "none");
+            
+            return path;
+        }
+
+        
+        function createText(x,y, text) 
+        {
+            var svgns = "http://www.w3.org/2000/svg";
+            
+            var el = document.createElementNS(svgns, 'text');
+            el.setAttributeNS(null, 'x', x);
+            el.setAttributeNS(null, 'y', y);
+            el.setAttributeNS(null, 'style',"font-family: Verdana; font-size:100; fill: white; font-style: bold;");
+            el.textContent = text;
+            
+            return el;
+        }
+
+        function createLine(x1, y1, x2, y2, color, w) 
+        {
+            var svgns = "http://www.w3.org/2000/svg";
+
+            var el = document.createElementNS(svgns, 'line');
+            el.setAttribute('x1', x1);
+            el.setAttribute('y1', y1);
+            el.setAttribute('x2', x2);
+            el.setAttribute('y2', y2);
+            el.setAttribute('stroke', color);
+            el.setAttribute('stroke-width', w);
+            return el;
+        }
+        
+        
+        // https://stackoverflow.com/questions/3492322/javascript-createelement-and-svg
+        // alert(document.getElementById('s3').getAttribute('d'));
+        function createPath() 
+        {
+            var svgns = "http://www.w3.org/2000/svg";
+            
+            // draw borders
+            var coords = "M 0, 0";
+            coords += " l 0, 300";
+            coords += " l 300, 0";
+            coords += " l 0, -300";
+            coords += " l -300, 0";
+            
+            var path = document.createElementNS (svgns, "path");
+            path.setAttributeNS (null, 'stroke', "#000000");
+            path.setAttributeNS (null, 'stroke-width', 10);
+            path.setAttributeNS (null, 'stroke-linejoin', "round");
+            path.setAttributeNS (null, 'd', coords);
+            // path.setAttributeNS (null, 'fill', "url(#gradient)");
+            path.setAttributeNS (null, 'opacity', 1.0);
+            
+            return path;
+        }
+        
+        
+        function test() 
+        {
+            var rects = [];
+            var squareSize = 50;
+            
+            var width = 1000;
+            var numSquares = width/squareSize;
+            numSquares = Math.floor(numSquares);
+            
+            
+            // console.log("numSquares", numSquares);
+            
+            for (var y = 0; y < numSquares; ++y) 
+            {
+                // console.log("y", y);
+                
+                // var x = Math.random() * 1000,
+                //     y = Math.random() * 1000;
+                for (var x = 0; x < numSquares; ++x)
+                {
+                    // console.log("x", x);
+                    
+                    rects.push(
+                        createRectangle(x*squareSize, y * squareSize, squareSize)
+                    );
+                } // Next x
+                
+            } // Next y
+            
+            var svgOne = document.getElementById('svgOne');
+            
+            for (var i = 0; i < rects.length; ++i)
+            {
+                svgOne.appendChild(rects[i]);
+            }
+
+            svgOne.appendChild(createText(200, 200, "Hello World"));
+            
+            svgOne.appendChild(createLine(0,1000, 1000, 0, "#ffff00", 2));
+            svgOne.appendChild(createPath());
+        }
+        
+        test();
+    </script>
+
+</body>
+</html>

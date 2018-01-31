@@ -1,0 +1,16 @@
+﻿@model CoreCMS.Controllers.BlogPost
+
+
+<div id="edit-@Model.Id" >
+    @if (true)
+    {
+        <div style="border-bottom: 1px solid #CCC;">
+            <h1 id="title-@Model.Id" >@Model.Text</h1>
+            <input name="model-@Model.Id" type="text" value=""/>
+        </div>
+
+        <input name="model-someValue" type="text" value="@Model.Value" />
+        <div style="clear: both;"></div>        
+    }
+</div>
+

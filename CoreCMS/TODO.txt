@@ -1,0 +1,18 @@
+
+https://api.jquery.com/attribute-starts-with-selector/
+document.querySelector("script[src^='" + document.location.href + "']");
+document.querySelector("script[data-main]");
+https://stackedit.io/editor
+
+http://localhost:58343/js/require/require1k.js
+
+var me = document.currentScript;
+ProblemsWill not work in older browsers and IE.
+
+https://github.com/JamesMGreene/document.currentScript/blob/master/dist/document.currentScript.js
+
+
+https://curiosity-driven.org/amd-loader-with-promises
+
+
+https://curiosity-driven.org/minimal-loader
