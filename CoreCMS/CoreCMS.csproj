@@ -4,7 +4,6 @@
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <UserSecretsId>c03bf52a-aada-4216-a61c-ed2c8a8fc1df</UserSecretsId>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
@@ -20,12 +19,9 @@
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
-
-
   <ItemGroup>
     <Compile Remove="Scripts\**" />
     <Content Remove="Scripts\**" />
