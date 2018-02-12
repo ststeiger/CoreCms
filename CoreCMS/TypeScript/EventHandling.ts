@@ -27,8 +27,10 @@ namespace  JQuery.Replacement
         // JQuery.Replacement.Test();
     }
 
-
-    // for all existing or newly added children matching selector in static parent, subscribe event
+    
+    /// attach an event handler, now or in the future, 
+    /// for all elements which match childselector,
+    /// within the child tree of the element maching parentSelector.
     export function subscribeEvent(parentSelector: string | Element
         , eventName: string
         , childSelector: string
