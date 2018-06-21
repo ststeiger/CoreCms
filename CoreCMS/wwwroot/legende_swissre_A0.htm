@@ -23,7 +23,18 @@
         // window.Promise = null;
     </script>
 
-    
+
+
+
+    <link rel="stylesheet" type="text/css" href="js/jodit-3_1_95/jodit.min.css">
+    <link rel="stylesheet" type="text/css" href="js/fonts/bowl/stylesheet.css">
+
+    <link rel="stylesheet" type="text/css" href="js/fonts/fo-web/fontawesome-webfont.css">
+    <link rel="stylesheet" type="text/css" href="js/fontawesome/fontawesome.min.css">
+    <script src="js/jodit-3_1_95/jodit.js"></script>
+    <script src="js/jodit-3_1_95/require.js"></script>
+
+
     <script src="GeneratedScripts/loader.js?v=1"
             data-js="['js/ruler', 'js/contextMenu', 'js/AsyncAjax', 'js/dragElement', 'js/loadElements', 'js/HtmlTools']"
             data-js-ie="['js/polyfills/es6-promise-2.0.0.min', 'js/polyfills/classList']"
@@ -38,20 +49,41 @@
     -->
 
     <style type="text/css">
+        /*<![CDATA[*/
 
-        *
-        {
+        * {
             margin: 0px;
             padding: 0px;
             box-sizing: border-box;
             #white-space-collapse: discard;
         }
 
+        .jodit_toolbar_popup-inline-target {
+            z-index: 9999999;
+        }
+
+        .jodit_statusbar {
+            display: none !important;
+        }
+
+
+        .jodit_table_resizer {
+            z-index: 9999999 !important;
+        }
+
+
+        .jodit_resizer {
+            z-index: 9999999 !important;
+            #cursor: col-resize;
+        }
+
+
+        /*]]>*/
     </style>
 
 
     <script>
-
+        //<![CDATA[
         function forwardMouse(ele)
         {
             var referenceElement = ele.parentElement;
@@ -180,15 +212,14 @@
             doc.onmouseover = forwardMouseOver;
         } // End Function forwardMouse
 
+    //]]>
     </script>
 
 
 
 
     <style>
-
-        .lblLeft
-        {
+        .lblLeft {
             display: inline-block;
             width: 3cm;
             font-family: Arial;
@@ -198,63 +229,60 @@
             font-weight: bold;
         }
 
-        select, option, input
-        {
+        select, option, input {
             font-family: Arial;
             font-size: 3mm;
             width: 3.5cm;
         }
 
             /*
-            input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn {
-                color: #ffffff;
-                background-color: #0095ff;
-                border-color: #0077cc;
-                box-shadow: inset 0 1px 0 #66bfff;
-            }
-            */
-
         input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn {
             color: #ffffff;
-            background-color: #868686;
-            border-color: #6B6B6B;
-            box-shadow: inset 0 1px 0 #B6B6B6;
+            background-color: #0095ff;
+            border-color: #0077cc;
+            box-shadow: inset 0 1px 0 #66bfff;
         }
+        */
+
+            input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn {
+                color: #ffffff;
+                background-color: #868686;
+                border-color: #6B6B6B;
+                box-shadow: inset 0 1px 0 #B6B6B6;
+            }
 
 
-        input[type="button"].red
-        {
-            color: #ffffff;
-            background-color: #950000;
-            border-color: #620000;
-            box-shadow: inset 0 1px 0 #fb0000;
-        }
+                input[type="button"].red {
+                    color: #ffffff;
+                    background-color: #950000;
+                    border-color: #620000;
+                    box-shadow: inset 0 1px 0 #fb0000;
+                }
 
-        input[type="submit"], input[type="button"]
-        , button, .button, .btn, [class*="btn-"]
-        {
-            box-sizing: border-box;
-            display: inline-block;
-            position: relative;
-            outline: none;
-            padding: 0mm 5mm;
-            line-height: 10mm;
-            vertical-align: middle;
-            font-weight: 400;
-            font-family: inherit;
-            text-align: center;
-            text-decoration: none;
-            #background-color: transparent;
-            border-radius: 5px;
-            margin: 1mm;
-            border: 1px solid transparent;
-            cursor: pointer;
-            touch-action: manipulation;
-            transition: all .1s ease-in;
-        }
+            input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"] {
+                box-sizing: border-box;
+                display: inline-block;
+                position: relative;
+                outline: none;
+                padding: 0mm 5mm;
+                line-height: 10mm;
+                vertical-align: middle;
+                font-weight: 400;
+                font-family: Arial;
+                font-size: 12px;
+                text-align: center;
+                text-decoration: none;
+                #border-radius: 5px;
+                #border: 1px solid transparent;
+                border: none;
+                #background-color: transparent;
+                margin: 1mm;
+                cursor: pointer;
+                touch-action: manipulation;
+                transition: all .1s ease-in;
+            }
 
-        #paperMenu
-        {
+        #paperMenu {
             transition: all .5s ease-in;
         }
 
@@ -284,8 +312,7 @@
             box-shadow: inset 0 1px 0 #c80000;
         }
 
-        #saveNotifier
-        {
+        #saveNotifier {
             transition: all 0.75s ease-in-out;
             opacity: 0;
             top: 60%;
@@ -293,8 +320,8 @@
             background-color: limegreen;
         }
 
-        .noselect
-        {
+
+        .noselect {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;
@@ -302,7 +329,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-
     </style>
 
 
@@ -326,13 +352,12 @@
             <div class="scale" style="display: block; width: 1cm; position: absolute; top: 0.25cm; left: 0cm; z-index: 9999;"></div>
         </div>
 
-        
+
 
         <div id="saveNotifier" class="noselect"></div>
-            
+
 
         <style>
-
             #paperMenu {
                 box-shadow: none !important;
                 border-radius: 0mm !important;
@@ -351,20 +376,24 @@
                     margin: -0.5cm;
                 }
 
-            #paperMenu label 
-            {
-                color: white;
-                font-weight: normal !important;
-            }
+                #paperMenu label {
+                    color: white;
+                    font-weight: normal !important;
+                }
 
 
             #paperMenu {
                 box-shadow: none !important;
                 border-radius: 0mm !important;
                 background-color: #444 !important;
+                #background-color: #666 !important;
+                #border: 1px solid #000;
+                box-shadow: 4px 4px 5px 0px #000 !important;
+                -moz-box-shadow: 4px 4px 5px 0px #000 !important;
+                -webkit-box-shadow: 4px 4px 5px 0px #000 !important;
             }
 
-            /*
+                /*
             input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"] {
                 border-radius: 0mm;
                 filter: grayscale(100%);
@@ -372,76 +401,93 @@
             */
 
 
+                #paperMenu h1 {
+                    letter-spacing: 0.3px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    color: #888;
+                    padding: 15px 20px;
+                    margin: -0.501cm;
+                    line-height: 36px !important;
+                }
 
+
+
+                #paperMenu h1, #confirmBox p {
+                    font: 26px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+                    background: url(../../images/Confirm/header_bg.jpg) repeat-x left bottom #f5f5f5;
+                    padding: 10px 25px;
+                    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+                    color: #666;
+                }
         </style>
 
 
-            <div id="paperMenu" style="display: none; ">
-                
-                <h5>Select legend to load</h5>
-                <br />
-                <br />
+        <div id="paperMenu" style="display: none; ">
 
-                <label class="lblLeft">Paper format</label>
-                <select id="selPaperFormat"></select>
-                <br />
+            <h1>Select legend to load</h1>
+            <!--
+            <h5>Select legend to load</h5>
+                -->
+            <br />
+            <br />
 
-
-                <label class="lblLeft">Layerset</label>
-                <select id="selDarstellung">
-                </select>
-                <br />
+            <label class="lblLeft">Paper format</label>
+            <select id="selPaperFormat"></select>
+            <br />
 
 
-                <label class="lblLeft">Category</label>
-                <select id="selCathegory" onchange="PageDesigner.UI.toggleCustomCategory(this);">
-                </select>
-                <br /><br />
+            <label class="lblLeft">Layerset</label>
+            <select id="selDarstellung"></select>
+            <br />
 
 
-                <div id="customCategory" style="display: none;">
+            <label class="lblLeft">Category</label>
+            <select id="selCathegory" onchange="PageDesigner.UI.toggleCustomCategory(this);"></select>
+            <br /><br />
 
-                    <!--
-                    <div id="customCategory_DE" >
-                        <label class="lblLeft">DE</label>
-                        <input type="text" value="" placeholder="Name name" />
-                    </div>
 
-                    <div id="customCategory_FR" >
-                        <label class="lblLeft">FR</label>
-                        <input type="text" value="" placeholder="category name" />
-                    </div>
+            <div id="customCategory" style="display: none;">
 
-                    <div id="customCategory_IT" >
-                        <label class="lblLeft">IT</label>
-                        <input type="text" value="" placeholder="custom name" />
-                    </div>
-                    -->
-
-                    <div id="customCategory_EN" >
-                        <label class="lblLeft">New Category</label>
-                        <input id="txtNewCategory" type="text" value="" placeholder="e.g. ''Drawing Only''" />
-                    </div>
-
-                </div>
-
-                
-                <br />
-                
-                <div style="padding: 0.1cm; text-align: right; position: absolute; bottom: 3mm; left: 3mm; right: 3mm;">
-                    <input type="button" value="Apply" onclick="PageDesigner.UI.mainMenuApply(this);" />
-                </div>
                 <!--
-                <a class="btn" href="www.google.com">test</a>
+                <div id="customCategory_DE" >
+                    <label class="lblLeft">DE</label>
+                    <input type="text" value="" placeholder="Name name" />
+                </div>
+
+                <div id="customCategory_FR" >
+                    <label class="lblLeft">FR</label>
+                    <input type="text" value="" placeholder="category name" />
+                </div>
+
+                <div id="customCategory_IT" >
+                    <label class="lblLeft">IT</label>
+                    <input type="text" value="" placeholder="custom name" />
+                </div>
                 -->
 
-            </div>
-            
-            
-        <style>
+                <div id="customCategory_EN">
+                    <label class="lblLeft">New Category</label>
+                    <input id="txtNewCategory" type="text" value="" placeholder="e.g. ''Drawing Only''" />
+                </div>
 
-            .no-select 
-            {
+            </div>
+
+
+            <br />
+
+            <div style="padding: 0.1cm; text-align: right; position: absolute; bottom: 3mm; left: 3mm; right: 3mm;">
+                <input type="button" value="Apply" onclick="PageDesigner.UI.mainMenuApply(this);" />
+            </div>
+            <!--
+            <a class="btn" href="www.google.com">test</a>
+            -->
+
+        </div>
+
+
+        <style>
+            .no-select {
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
@@ -449,8 +495,7 @@
                 cursor: default;
             }
 
-            ul 
-            {
+            #contextmenu ul {
                 list-style: none;
                 margin: 0;
                 padding: 0;
@@ -475,8 +520,7 @@
                 user-select: none;
             }
 
-            li 
-            {
+            #contextmenu li {
                 padding-left: 0.2cm;
                 padding-right: 0.2cm;
                 padding-top: 0.1cm;
@@ -494,41 +538,36 @@
                 #font-size: 1vh;
             }
 
-            li span 
-            {
-                padding-left: 3mm;
-            }
+                #contextmenu li span {
+                    padding-left: 3mm;
+                }
 
-            li:nth-child(even) 
-            {
-                #background-color: #efefef;
-                #background-color: rgba(255,255,255,0.95);
-                #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-                #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 47%, rgba(255,255,255,1) 100%);
-            }
+                #contextmenu li:nth-child(even) {
+                    #background-color: #efefef;
+                    #background-color: rgba(255,255,255,0.95);
+                    #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                    #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 47%, rgba(255,255,255,1) 100%);
+                }
 
-            li:first-child 
-            {
-                #background-color: greenyellow;
-                #border-top-left-radius: 3mm;
-                border-top-right-radius: 3mm;
-            }
+                #contextmenu li:first-child {
+                    #background-color: greenyellow;
+                    #border-top-left-radius: 3mm;
+                    border-top-right-radius: 3mm;
+                }
 
-            li:last-child 
-            {
-                #background-color: yellow;
-                border-bottom-left-radius: 3mm;
-                border-bottom-right-radius: 3mm;
-            }
+                #contextmenu li:last-child {
+                    #background-color: yellow;
+                    border-bottom-left-radius: 3mm;
+                    border-bottom-right-radius: 3mm;
+                }
 
-            li:hover 
-            {
-                color: #fff;
-                #background-color: #0066aa;
-                #background-color: rgba(0,102,170,0.95);
-                background-color: rgba(255, 0, 0, 0.95);
-                cursor: pointer;
-            }
+                #contextmenu li:hover {
+                    color: #fff;
+                    #background-color: #0066aa;
+                    #background-color: rgba(0,102,170,0.95);
+                    background-color: rgba(255, 0, 0, 0.95);
+                    cursor: pointer;
+                }
 
 
             /*
@@ -546,8 +585,7 @@
             */
 
 
-            .context-menu-icon::before 
-            {
+            .context-menu-icon::before {
                 position: absolute;
                 top: 50%;
                 left: 0;
@@ -567,14 +605,12 @@
                 -moz-osx-font-smoothing: grayscale;
             }
 
-            .context-menu-icon-edit:before 
-            {
+            .context-menu-icon-edit:before {
                 #content: "\EA05";
                 content: "\2702";
             }
 
-            .context-menu-icon-expand:after 
-            {
+            .context-menu-icon-expand:after {
                 content: "\25ba";
                 position: absolute;
                 right: 0px;
@@ -582,18 +618,25 @@
                 #transform: translateY(-50%);
             }
 
-            li.expando:hover > ul 
-            {
+            #contextmenu li.expando:hover > ul {
                 display: block !important;
             }
 
-            div > ul, div > ul > li:first-child 
-            {
+            #contextmenu div > ul, div > ul > li:first-child {
                 border-top-left-radius: 3mm;
             }
 
+
+            .jodit_toolbar_btn {
+                border-radius: 0 !important;
+            }
         </style>
 
+        <div id="xaxis1" style="display:none; position: absolute; top: 5cm; left: 0cm; z-index: 999999; width: 1.5cm; height: 0.25mm; background-color: red;"></div>
+        <div id="yaxis1" style="display:none; position: absolute; top: 0cm; left: 5cm; z-index: 999999; width: 0.25mm; height: 1.5cm; background-color: red;"></div>
+
+        <div id="xaxis2" style="display:none; position: absolute; top: 5cm; left: 0cm; z-index: 999999; width: 1.5cm; height: 0.25mm; background-color: red;"></div>
+        <div id="yaxis2" style="display:none; position: absolute; top: 0cm; left: 5cm; z-index: 999999; width: 0.25mm; height: 1.5cm; background-color: red;"></div>
 
 
         <div id="contextmenu" style="position:absolute; display: block; transform-origin: 0 0; left: 10cm; top: 5cm;
@@ -640,120 +683,121 @@
                 <li onclick="PageDesigner.ContextMenu.alterZIndex(this, +1);"><span>Bring Forward</span></li>
                 <!-- Daten bearbeiten -->
                 <li onclick="PageDesigner.ContextMenu.edit(this);"><span>Edit Data</span></li>
+                <!-- -->
+                <li onclick="PageDesigner.ContextMenu.killJudy(this);"><span>Editieren beenden</span></li>
                 <!-- Cut -->
                 <li class="context-menu-icon-edit"><span>Cut</span></li>
                 <!--<li style="height: 0mm;"></li>-->
             </ul>
 
         </div>
-            
-            
-            <div id="page" style="z-index: 9999; display: block; position:relative;
-left: 1cm; top: 1cm; 
+
+
+        <div id="page" style="z-index: 9999; display: block; position:relative;
+left: 1cm; top: 1cm;
 width: 84.1cm; height: 118.9cm;
 background-color: white; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);">
 
-            </div>
-            
-            <div id="tools" style="background-color: #ecebeb; box-sizing: border-box; position:absolute; display: block;
-left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
-            
+        </div>
 
-                <style>
-                    .configElement {
-                        display: block;
-                        #width: 3cm;
-                        height: 1cm;
-                        line-height: 1cm;
-                        vertical-align: middle;
-                        padding-left: 0.25cm;
-                        padding-right: 0.25cm;
-                        text-align: left;
-                        #background-color: #A5A5A5;
-                    }
+        <div id="tools" style="background-color: #ecebeb; box-sizing: border-box; position:absolute; display: block;
+left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
+
+
+            <style>
+                .configElement {
+                    display: block;
+                    #width: 3cm;
+                    height: 1cm;
+                    line-height: 1cm;
+                    vertical-align: middle;
+                    padding-left: 0.25cm;
+                    padding-right: 0.25cm;
+                    text-align: left;
+                    #background-color: #A5A5A5;
+                }
 
                     .configElement:nth-child(2n) {
                         background-color: #F0F0F0;
                     }
+            </style>
 
-                </style>
 
-
-                <style>
-                    #components {
-                    }
+            <style>
+                #components {
+                }
 
                     #components div {
                         font-family: Arial;
                         font-size: 12px;
                         border: 1px solid whitesmoke;
                     }
-
-                </style>
-
-
-                <div id="components">
-
-                    <div style="font-weight: bold; background-color: black; color: #ffa500; padding: 0.25cm; ">
-                        Components
-                    </div>
+            </style>
 
 
-                    <div class="configElement" onclick="PageDesigner.UI.addBorder();">
-                        Border
-                    </div>
+            <div id="components">
 
-                    <div class="configElement" onclick="PageDesigner.UI.addLogo();">
-                        Logo
-                    </div>
-
-                    <div class="configElement" onclick="PageDesigner.UI.addTitle();">
-                        Title
-                    </div>
-
-                    <div class="configElement" onclick="PageDesigner.UI.addDate();">
-                        Date
-                    </div>
-
-                    <div class="configElement" onclick="PageDesigner.UI.addDrawing();">
-                        Drawing
-                    </div>
-
-                    <div class="configElement" onclick="PageDesigner.UI.addLegend();">
-                        Legend
-                    </div>
+                <div style="font-weight: bold; background-color: black; color: #ffa500; padding: 0.25cm; ">
+                    Components
                 </div>
 
 
+                <div class="configElement" onclick="PageDesigner.UI.addBorder();">
+                    Border
+                </div>
+
+                <div class="configElement" onclick="PageDesigner.UI.addLogo();">
+                    Logo
+                </div>
+
+                <div class="configElement" onclick="PageDesigner.UI.addTitle();">
+                    Title
+                </div>
+
+                <div class="configElement" onclick="PageDesigner.UI.addDate();">
+                    Date
+                </div>
+
+                <div class="configElement" onclick="PageDesigner.UI.addDrawing();">
+                    Drawing
+                </div>
+
+                <div class="configElement" onclick="PageDesigner.UI.addLegend();">
+                    Legend
+                </div>
             </div>
-            
+
+
         </div>
-        
-    <script>
+
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
 
         function registerShortcutKeys(e)
         {
             e = e || event;
             // console.log(e.keyCode);
 
-            // if (e.keyCode == 116) // 116: F5  { } // End if F1 
+            // if (e.keyCode == 116) // 116: F5  { } // End if F1
 
-            if (e.keyCode == 112) // 112: F1 
+            if (e.keyCode == 112) // 112: F1
             {
                 e.preventDefault() ? e.preventDefault() : e.returnValue = false;
                 e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
                 console.log("TODO: Open Help");
-            } // End if F1 
+            } // End if F1
 
-            if (e.keyCode == 27) // 27: ESC 
+            if (e.keyCode == 27) // 27: ESC
             {
                 console.log("Quitting contextmenu")
                 e.preventDefault() ? e.preventDefault() : e.returnValue = false;
                 e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
                 document.getElementById("contextmenu").style.display = "none";
-            } // End if ESC 
+            } // End if ESC
 
-        } // End Function fkey 
+        } // End Function fkey
 
         document.onkeydown = registerShortcutKeys;
 
@@ -763,12 +807,12 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
         function removeStyle(styleDict, key)
         {
             var index = styleDict.indexOf(key);
-            
+
             if (index > -1)
             {
                 styleDict.splice(index, 1);
             }
-            
+
         }
 
         function addStyle(styleDict, key, value)
@@ -788,7 +832,7 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
                 styleDict.push(key);
                 styleDict[key] = kvp[1].trim();
             }
-            
+
             return styleDict;
         }
 
@@ -799,7 +843,7 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
             {
                 style = style + styleDict[i] + ": " + styleDict[styleDict[i]] + "; ";
             }
-            
+
             return style;
         }
         */
@@ -838,7 +882,7 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
             // var width = window.innerWidth;
             // menu.style.fontSize = (width / 20) + 'px';
 
-        }; // End window.onresize 
+        }; // End window.onresize
 
         window.onresize(null);
 
@@ -848,6 +892,162 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
         //    console.log("foo");
         //}());
 
+    //]]>
+    </script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+
+
+        function foo()
+        {
+            console.clear();
+            var editors = [].slice.call(document.querySelectorAll('span[contenteditable="true"]'));
+            console.log("editors", editors);
+
+            editors.forEach(function (div)
+            {
+                div.addEventListener('click', function (e)
+                {
+                    if (!Jodit.instances[div.id])
+                    {
+                        Object.keys(Jodit.instances).forEach(function (id)
+                        {
+                            Jodit.instances[id].destruct();
+                        });
+
+                        var editor = new Jodit(div, { preset: 'inline' });
+                        editor.selection.insertCursorAtPoint(e.clientX, e.clientY);
+                    }
+                });
+            });
+        }
+
+
+        function foo()
+        {
+            return;
+            var styles = [].slice.call(document.querySelectorAll('style'));
+
+            styles.forEach(function (div)
+            {
+
+                if (div.innerHTML.indexOf("config") === -1)
+                {
+                    console.log(div);
+                    div.parentElement.removeChild(div);
+                }
+
+            });
+
+            /*
+            var elements = [].slice.call(document.querySelectorAll('*'));
+
+            elements.forEach(function (div)
+            {
+                if (div.style && div.style["z-index"] != null)
+                    div.style["z-index"] = null;
+
+
+                if (div.style && div.style["position"] != null)
+                    div.style["position"] = null;
+            });
+            */
+        }
+
+
+        function foobar()
+        {
+            // var span = document.querySelector('span[contenteditable="true"]');
+            //span = span.parentElement;
+            var span = document.getElementById("be85cc79-b8c7-65be-3f55-668fadab317e");
+            var zi = span.style["z-index"] = null;
+            span = span.firstElementChild;
+            span = span.firstElementChild;
+
+            console.log(span);
+
+            span.removeAttribute('attribute?')
+
+
+            console.log("span", span);
+
+            var editor = new Jodit(span, {
+                preset: 'inline',
+                language: 'de',
+                buttons: [
+                    //'source', '|',
+                    'bold',
+                    'strikethrough',
+                    'underline',
+                    'italic', '|',
+                    'ul',
+                    'ol', '|',
+                    'outdent', 'indent', '|',
+                    'font',
+                    'fontsize',
+                    'brush',
+                    'paragraph', '|',
+                    'image',
+                    //'video',
+                    'table',
+                    'link', '|',
+                    'align', 'undo', 'redo', '|',
+                    'hr',
+                    'eraser',
+                    'copyformat', '|',
+                    'symbol',
+                    'fullsize'
+                    //,'print'
+                    //,'about'
+
+                ],
+
+                buttonsXS: [
+                    'bold',
+                    'image', '|',
+                    'brush',
+                    'paragraph', '|',
+                    'align', '|',
+                    'undo', 'redo', '|',
+                    'eraser',
+                    'dots'
+                ]
+
+                , events: {
+                    getIcon: function (name, control, clearName)
+                    {
+                        // name: omega, control:{}, clearName: symbol
+
+                        switch (clearName)
+                        {
+                            case 'bold':
+                                return '<span style="text-align: center;font-size:14px; font-weight: bold; text-shadow: 2px 2px #f0f0f0;">F</span>';
+                                break;
+                            case 'italic':
+                                return '<span style="text-align: center;font-size:14px; font-weight: bold; font-style: italic; text-shadow: 2px 2px #f0f0f0;">K</span>';
+                                break;
+                            case 'strikethrough':
+                                return '<span style="text-align: center;font-size:14px; font-weight: bold; text-decoration: line-through; " >D</span>';
+                                break;
+                            // case 'symbol':
+                            //     return '<span style="text-align: center;font-size:14px;">Ω</span>';
+                            //     break;
+                        }
+
+                        //if (Jodit.modules.ToolbarIcon.icons[clearName] != null) return Jodit.modules.ToolbarIcon.icons[clearName];
+                        if (Jodit.modules.ToolbarIcon.icons[name] != null) return Jodit.modules.ToolbarIcon.icons[name];
+
+                        return '<i style="font-size:14px" class="fa fa-' + clearName + ' fa-xs"></i>';
+                    }
+                }
+
+            });
+        }
+
+
+        // window.setTimeout(foo, 10000);
+        //]]>
     </script>
 
 </body>

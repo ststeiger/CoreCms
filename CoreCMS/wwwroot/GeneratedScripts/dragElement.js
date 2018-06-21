@@ -36,6 +36,16 @@ var PageDesigner;
                 return (e.touches && e.touches.length) ? e.touches[0].pageY
                     : e.pageY || event.pageY || event.clientY;
             }
+            function setRed(left, top, w, h) {
+                var xaxis1 = document.getElementById("xaxis1");
+                var yaxis1 = document.getElementById("yaxis1");
+                var xaxis2 = document.getElementById("xaxis2");
+                var yaxis2 = document.getElementById("yaxis2");
+                xaxis1.style.top = (top - -1).toString() + "cm";
+                yaxis1.style.left = (left - -1).toString() + "cm";
+                xaxis2.style.top = (top - -1 + h).toString() + "cm";
+                yaxis2.style.left = (left - -1 + w).toString() + "cm";
+            }
             var setPos = function (eX, eY) {
                 var ele = page.querySelector(".active"), width = ele.offsetWidth, height = ele.offsetHeight, dragX = ele.getAttribute("data-dragoffset-x"), dragY = ele.getAttribute("data-dragoffset-y"), pos = { x: eX - dragX, y: eY - dragY }, ow = page.offsetWidth, oh = page.offsetHeight;
                 if (pos.x < 0)
@@ -46,8 +56,11 @@ var PageDesigner;
                     pos.x = ow - width;
                 if (pos.y + height > oh)
                     pos.y = oh - height;
-                ele.style.left = (pos.x / hres).toString() + 'cm';
-                ele.style.top = (pos.y / vres).toString() + 'cm';
+                var le = (pos.x / hres);
+                var to = (pos.y / vres);
+                ele.style.left = le.toString() + 'cm';
+                ele.style.top = to.toString() + 'cm';
+                setRed(le, to, width / hres, height / vres);
             }.bind(this);
             function getOffset(el) {
                 var _x = 0, _y = 0;
@@ -122,6 +135,14 @@ var PageDesigner;
                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
                 if ((e.keyCode || e.which) == 3)
                     return;
+                var xaxis1 = document.getElementById("xaxis1");
+                var yaxis1 = document.getElementById("yaxis1");
+                var xaxis2 = document.getElementById("xaxis2");
+                var yaxis2 = document.getElementById("yaxis2");
+                xaxis1.style.display = "block";
+                yaxis1.style.display = "block";
+                xaxis2.style.display = "block";
+                yaxis2.style.display = "block";
                 ele.style["z-index"] = getMaxZindex() + 1;
                 ele.setAttribute("data-dragoffset-x", fX(e) - ele.offsetLeft);
                 ele.setAttribute("data-dragoffset-y", fY(e) - ele.offsetTop);
@@ -135,6 +156,14 @@ var PageDesigner;
                     return;
                 if ((e.keyCode || e.which) == 3)
                     return;
+                var xaxis1 = document.getElementById("xaxis1");
+                var yaxis1 = document.getElementById("yaxis1");
+                var xaxis2 = document.getElementById("xaxis2");
+                var yaxis2 = document.getElementById("yaxis2");
+                xaxis1.style.display = "none";
+                yaxis1.style.display = "none";
+                xaxis2.style.display = "none";
+                yaxis2.style.display = "none";
                 ele.classList.remove("active");
                 ele.removeAttribute("data-dragoffset-x");
                 ele.removeAttribute("data-dragoffset-y");
@@ -142,6 +171,11 @@ var PageDesigner;
                 PageDesigner.UI.dispatchSave();
             }.bind(this, element);
             element.onmouseenter = function (ele, e) {
+                return;
+                if (PageDesigner.ContextMenu.inEditMode != null && PageDesigner.ContextMenu.inEditMode === true) {
+                    ele.style.cursor = "default";
+                    return;
+                }
                 ele.style.cursor = "move";
             }.bind(this, element);
             var d = document.createElement("div");
@@ -197,15 +231,15 @@ var PageDesigner;
         }
         function dispatchSave() {
             var evtName = "saveData";
-            var loadCompleteEvent = new CustomEvent(evtName, {
+            var saveEvent = new CustomEvent(evtName, {
                 detail: {
                     withError: false
                 }
             });
             if (document.dispatchEvent)
-                window.dispatchEvent(loadCompleteEvent);
+                window.dispatchEvent(saveEvent);
             else
-                document.documentElement[evtName] = loadCompleteEvent;
+                document.documentElement[evtName] = saveEvent;
         }
         UI.dispatchSave = dispatchSave;
         function listenSave() {
@@ -284,6 +318,10 @@ var PageDesigner;
                 var saveData = [], divs = document.querySelectorAll("#page > div");
                 for (var i = 0; i < divs.length; ++i) {
                     var objectData = getObjectData(divs[i]);
+                    if (objectData.type === "null" || objectData.type === "undefined")
+                        objectData.type = null;
+                    if (objectData.format === "null" || objectData.format === "undefined")
+                        objectData.format = null;
                     var mes = document.getElementById("measure");
                     saveData.push({
                         "PL_UID": objectData.id,

@@ -2,11 +2,107 @@ var PageDesigner;
 (function (PageDesigner) {
     var ContextMenu;
     (function (ContextMenu) {
-        function edit(menuPoint) {
-            var menu = menuPoint.parentElement.parentElement;
-            console.log(menu);
+        function killJudy(menuPoint) {
+            console.log("killJudy");
+            var e = event;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
             PageDesigner.ContextMenu.hasDoneSomething = true;
-            alert("COR: TODO LIST");
+            var menu = menuPoint.parentElement.parentElement;
+            var id = menu.getAttribute("data-elementId");
+            var ele = document.getElementById(id);
+            console.log("killele", ele);
+            Object.keys(Jodit.instances).forEach(function (id) {
+                var editor = Jodit.instances[id];
+                ele.onmousedown = editor.pageDesigner.onmousedown;
+                ele.onmouseup = editor.pageDesigner.onmouseup;
+                window["prevent_touch_move"] = editor.pageDesigner.window_touch_move;
+                editor.destruct();
+            });
+            PageDesigner.ContextMenu.inEditMode = false;
+            ele.lastElementChild.style.display = "block";
+            menu.style.display = "none";
+            menu.removeAttribute("data-elementId");
+        }
+        ContextMenu.killJudy = killJudy;
+        function judy(div) {
+            var limitDiv = div.firstElementChild;
+            var span = limitDiv.firstElementChild;
+            div.lastElementChild.style.display = "none";
+            console.log("span", span);
+            var editor = new Jodit(span, {
+                language: 'de',
+                buttons: [
+                    'bold',
+                    'strikethrough',
+                    'underline',
+                    'subscript', 'superscript',
+                    'italic', '|',
+                    'ul',
+                    'ol', '|',
+                    'outdent', 'indent', '|',
+                    'font',
+                    'fontsize',
+                    'brush',
+                    'paragraph', '|',
+                    'image',
+                    'table',
+                    'link', '|',
+                    'align', 'undo', 'redo', '|',
+                    'hr',
+                    'eraser',
+                    'copyformat', '|',
+                    'symbol',
+                    'fullsize'
+                ],
+                buttonsXS: [
+                    'bold',
+                    'image', '|',
+                    'brush',
+                    'paragraph', '|',
+                    'align', '|',
+                    'undo', 'redo', '|',
+                    'eraser',
+                    'dots'
+                ],
+                events: {
+                    getIcon: function (name, control, clearName) {
+                        switch (clearName) {
+                            case 'bold':
+                                return '<span style="text-align: center;font-size:14px; font-weight: bold; text-shadow: 2px 2px #f0f0f0;">F</span>';
+                                break;
+                            case 'italic':
+                                return '<span style="text-align: center;font-size:14px; font-weight: bold; font-style: italic; text-shadow: 2px 2px #f0f0f0;">K</span>';
+                                break;
+                            case 'strikethrough':
+                                return '<span style="text-align: center;font-size:14px; font-weight: bold; text-decoration: line-through; " >D</span>';
+                                break;
+                        }
+                        if (Jodit.modules.ToolbarIcon.icons[name] != null)
+                            return Jodit.modules.ToolbarIcon.icons[name];
+                        return '<i style="font-size:14px" class="fa fa-' + clearName + ' fa-xs"></i>';
+                    }
+                }
+            });
+            editor.pageDesigner = {};
+            editor.pageDesigner.onmousedown = div.onmousedown;
+            editor.pageDesigner.onmouseup = div.onmouseup;
+            editor.pageDesigner.window_touch_move = window["prevent_touch_move"];
+            window["prevent_touch_move"] = false;
+            div.onmousedown = null;
+            div.onmouseup = null;
+        }
+        function edit(menuPoint) {
+            console.log("edit");
+            var e = event;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+            PageDesigner.ContextMenu.hasDoneSomething = false;
+            PageDesigner.ContextMenu.inEditMode = true;
+            var menu = menuPoint.parentElement.parentElement;
+            var id = menu.getAttribute("data-elementId");
+            var ele = document.getElementById(id);
+            judy(ele);
             menu.style.display = "none";
             menu.removeAttribute("data-elementId");
         }

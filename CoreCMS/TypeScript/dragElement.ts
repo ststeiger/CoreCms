@@ -77,6 +77,25 @@ namespace PageDesigner.UI
         }
 
 
+
+        function setRed(left, top, w, h)
+        {
+            var xaxis1 = document.getElementById("xaxis1");
+            var yaxis1 = document.getElementById("yaxis1");
+
+            var xaxis2 = document.getElementById("xaxis2");
+            var yaxis2 = document.getElementById("yaxis2");
+
+            // console.log(xaxis, yaxis, left, top);
+            xaxis1.style.top = (top - -1).toString() + "cm";
+            yaxis1.style.left = (left - -1).toString() + "cm";
+
+            xaxis2.style.top = (top - -1 + h).toString() + "cm";
+            yaxis2.style.left = (left - -1 + w).toString() + "cm";
+
+        }
+
+
         let setPos = function (eX, eY)
         {
             // console.log("setPos");
@@ -104,8 +123,15 @@ namespace PageDesigner.UI
 
             // console.log("rest", pos)
             // console.log(ele);
-            ele.style.left = (pos.x / hres).toString() + 'cm';
-            ele.style.top = (pos.y / vres).toString() + 'cm';
+
+            let le = (pos.x / hres);
+            let to = (pos.y / vres);
+
+            ele.style.left = le.toString() + 'cm';
+            ele.style.top = to.toString() + 'cm';
+
+            setRed(le, to, width / hres, height / vres);
+
         }.bind(this);
 
 
@@ -277,15 +303,29 @@ namespace PageDesigner.UI
         this.i = 0;
 
 
-        element.onmousedown = element.ontouchstart = function (ele, e)
+        element.onmousedown = element.ontouchstart = function (ele, e) 
         {
             console.log("drag mousedown");
             e = e || event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
-            // 0: touch, 1: left, 3: right
+            // 0: touch, 1: left, 3: right 
             if ((e.keyCode || e.which) == 3)
                 return;
+
+
+            var xaxis1 = document.getElementById("xaxis1");
+            var yaxis1 = document.getElementById("yaxis1");
+
+            var xaxis2 = document.getElementById("xaxis2");
+            var yaxis2 = document.getElementById("yaxis2");
+
+
+            xaxis1.style.display = "block";
+            yaxis1.style.display = "block";
+            xaxis2.style.display = "block";
+            yaxis2.style.display = "block";
+
 
             ele.style["z-index"] = getMaxZindex() + 1;
 
@@ -296,7 +336,7 @@ namespace PageDesigner.UI
 
 
 
-        element.onmouseup = element.ontouchend = function (ele, e)
+        element.onmouseup = element.ontouchend = function (ele, e) 
         {
             console.log("onmouseup");
             e = e || event;
@@ -307,6 +347,17 @@ namespace PageDesigner.UI
 
             if ((e.keyCode || e.which) == 3)
                 return;
+
+            var xaxis1 = document.getElementById("xaxis1");
+            var yaxis1 = document.getElementById("yaxis1");
+
+            var xaxis2 = document.getElementById("xaxis2");
+            var yaxis2 = document.getElementById("yaxis2");
+
+            xaxis1.style.display = "none";
+            yaxis1.style.display = "none";
+            xaxis2.style.display = "none";
+            yaxis2.style.display = "none";
 
             ele.classList.remove("active");
             ele.removeAttribute("data-dragoffset-x");
@@ -320,8 +371,15 @@ namespace PageDesigner.UI
 
         element.onmouseenter = function (ele, e)
         {
+            return;
             // e = e || event;
             // console.log(e);
+            if (PageDesigner.ContextMenu.inEditMode != null && PageDesigner.ContextMenu.inEditMode === true)
+            {
+                ele.style.cursor = "default";
+                return;
+            }
+
             ele.style.cursor = "move";
         }.bind(this, element);
 
@@ -487,8 +545,10 @@ namespace PageDesigner.UI
 
     export function dispatchSave()
     {
+        // PageDesigner.ContextMenu.killJudy()
+
         let evtName = "saveData";
-        let loadCompleteEvent = new CustomEvent(evtName,
+        let saveEvent = new CustomEvent(evtName,
             {
                 detail: {
                     withError: false
@@ -497,10 +557,10 @@ namespace PageDesigner.UI
         );
 
         if (document.dispatchEvent)
-            window.dispatchEvent(loadCompleteEvent);
+            window.dispatchEvent(saveEvent);
         else
             //document.documentElement[evtName]++;
-            document.documentElement[evtName] = loadCompleteEvent;
+            document.documentElement[evtName] = saveEvent;
     }
 
     function listenSave()
@@ -625,7 +685,7 @@ namespace PageDesigner.UI
 
 
             let saveData = [], divs: NodeListOf<HTMLDivElement> = <NodeListOf<HTMLDivElement>>document.querySelectorAll("#page > div");
-
+            // debugger;
             for (let i = 0; i < divs.length; ++i)
             {
                 // console.log(da[i]);
@@ -639,9 +699,13 @@ namespace PageDesigner.UI
                 // console.log("ele", divs[i])
                 // console.log(objectData)
 
+                if (objectData.type === "null" || objectData.type === "undefined")
+                    objectData.type = null;
+
+                if (objectData.format === "null" || objectData.format === "undefined")
+                    objectData.format = null;
 
                 let mes = document.getElementById("measure");
-
 
                 saveData.push(
                     {
