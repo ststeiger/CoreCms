@@ -3,26 +3,47 @@
 // let setScriptSudo:string = "sudo chmod +s myscript";
 
 
-export class Table
+export class TableWrapper 
 {
     public rows: Array<any[]>;
-    private m_length:number;
-    public columns: string[];
-    private m_columnMap: { [columnName: string]: number; };
+    protected m_columnMap: { [columnName: string]: number; };
+    protected m_columns: string[];
+    protected m_columnLength:number;
     
+    
+    public get columnCount(): number
+    {
+        return this.m_columns.length;
+    }
+
+
+    get columns(): string[]
+    {
+        return this.m_columns;
+    }
+    set columns(cols: string[])
+    {
+        this.m_columnLength = cols.length;
+
+        this.m_columnMap = null;
+        this.m_columnMap = {};
+
+        for (let i = 0; i < this.m_columnLength; ++i)
+        {
+            this.m_columnMap[cols[i]] = i;
+        }
+
+        this.m_columns = cols;
+    }
+
     
     constructor(columns: string[], data: Array<any[]>)
     {
         this.item.bind(this);
+        this.getIndex.bind(this);
+        
         this.rows = data;
         this.columns = columns;
-        this.m_length = this.rows.length;
-        this.m_columnMap = {};
-        
-        for (let i = 0; i < this.m_length; ++i)
-        {
-            this.m_columnMap[this.columns[i]] = i;
-        }
     }
     
     public getIndex(name:string):number
@@ -35,15 +56,10 @@ export class Table
         return <T>(this.rows[row][this.getIndex(item)]);
     }
     
-    public get columnCount(): number
-    {
-        return this.m_length;
-    }
-    
 }
 
 
-let tab = new Table(["col1","col2"], [[1,2], [3,4]]);
+let tab: TableWrapper = new TableWrapper(["col1","col2"], [[1,2], [3,4]]);
 tab.columns=["col1","col2", "col3"];
 
 tab.item(0, "col1");

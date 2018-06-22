@@ -17,7 +17,7 @@ namespace PageDesigner.UI
     } // End Function guid 
 
 
-    function compareStrings(string1: string, string2:string, ignoreCase: boolean, useLocale:boolean) : boolean
+    function compareStrings(string1: string, string2: string, ignoreCase: boolean, useLocale: boolean): boolean
     {
         if (string1 == null && string2 == null)
             return true;
@@ -325,7 +325,7 @@ namespace PageDesigner.UI
 
 
     export function mainMenuApply(dialog) 
-    { 
+    {
         console.log("mainMenuApply");
 
         let mes = document.getElementById("measure");
@@ -336,7 +336,7 @@ namespace PageDesigner.UI
 
         let ps_uid: string = null;
         let plk_code: string = null;
-        let paperWidth:number = 84.1;
+        let paperWidth: number = 84.1;
         let paperHeight: number = 118.9;
         let paperFormat: string = "A0";
 
@@ -355,10 +355,10 @@ namespace PageDesigner.UI
             // console.log("pwh", paperWidth, paperHeight)
         } // End if (selPaperFormat.selectedIndex != -1) 
 
-        
+
         mes.innerHTML = "";
         mes.appendChild(document.createTextNode(paperFormat));
-        
+
         if (selCategory.selectedIndex != -1)
         {
             if (selCategory.value === 'custom')
@@ -366,26 +366,26 @@ namespace PageDesigner.UI
                 let newCategoryName = document.getElementById("txtNewCategory").value;
                 // console.log(newCategoryName);
 
-                let newCategory = 
-                    { 
-	                      "PLK_UID": guid() 
-                        , "PLK_Code": plk_code 
-                        , "PLK_PS_UID": ps_uid 
-	                    , "PLK_DAR_UID": null 
-                        , "PLK_Name_DE": newCategoryName 
-                        , "PLK_Name_FR": newCategoryName 
-                        , "PLK_Name_IT": newCategoryName 
-                        , "PLK_Name_EN": newCategoryName 
-	                    , "PLK_IsDefault": false 
-	                    , "PLK_Status": 1 
-                    }; 
+                let newCategory =
+                    {
+                        "PLK_UID": guid()
+                        , "PLK_Code": plk_code
+                        , "PLK_PS_UID": ps_uid
+                        , "PLK_DAR_UID": null
+                        , "PLK_Name_DE": newCategoryName
+                        , "PLK_Name_FR": newCategoryName
+                        , "PLK_Name_IT": newCategoryName
+                        , "PLK_Name_EN": newCategoryName
+                        , "PLK_IsDefault": false
+                        , "PLK_Status": 1
+                    };
 
                 new Http.Json("../../ajax/anyInsert.ashx?sql=PL_T_VWS_Ref_PdfLegendenKategorie_Insert.sql"
                     , newCategory, function (result)
                     {
                         // console.log("success", result);
                         mes.setAttribute("data-plk_uid", newCategory.PLK_UID);
-                        loadElements(dialog, newCategory.PLK_UID, paperWidth, paperHeight); 
+                        loadElements(dialog, newCategory.PLK_UID, paperWidth, paperHeight);
                     }
                 ).send();
 
@@ -393,7 +393,7 @@ namespace PageDesigner.UI
             } // End if (selCategory.value === 'custom') 
 
             mes.setAttribute("data-plk_uid", selCategory.value);
-            loadElements(dialog, selCategory.value, paperWidth, paperHeight); 
+            loadElements(dialog, selCategory.value, paperWidth, paperHeight);
         } // End if (selCategory.selectedIndex != -1)
 
         document.getElementById("paperMenu").style.display = "none";
@@ -473,17 +473,17 @@ namespace PageDesigner.UI
                     throw Error(`type "${pl_type}" is not supported in legend`);
                 }
 
-                let html = ctrl.RenderFragment(); 
+                let html = ctrl.RenderFragment();
                 // console.log(html); 
                 // ls.push(ctrl); 
-                page.insertAdjacentHTML("beforeend", html); 
+                page.insertAdjacentHTML("beforeend", html);
             } // Next i 
 
-            PageDesigner.UI.Init(); 
-        }).send(); 
+            PageDesigner.UI.Init();
+        }).send();
 
     } // End Function loadElements 
-    
+
 
 
     export abstract class DrawingControl
@@ -507,7 +507,7 @@ namespace PageDesigner.UI
         protected m_Type: string;
 
 
-        constructor(dataRow:any)
+        constructor(dataRow: any)
         {
             this.RenderFragment = this.RenderFragment.bind(this);
 
@@ -528,7 +528,7 @@ namespace PageDesigner.UI
             this.m_Type = <string>dataRow["PL_Type"];
         } // End Constructor 
 
-        
+
         get PL_UID(): string
         {
             return this.m_PL_UID;
@@ -565,7 +565,7 @@ namespace PageDesigner.UI
             return this.m_Text;
         }
 
-        set Text(value:string)
+        set Text(value: string)
         {
             this.m_Text = value;
         }
@@ -637,7 +637,7 @@ namespace PageDesigner.UI
         }
 
 
-        public RenderFragment():string 
+        public RenderFragment(): string 
         {
             throw Error("RenderFragment not implemented...");
         } // End Function RenderFragment 
@@ -658,7 +658,7 @@ namespace PageDesigner.UI
         } // End Constructor 
 
 
-        public RenderFragment() : string
+        public RenderFragment(): string
         {
             let html: string = `
 <div id="${this.PL_UID}" data-type="${this.Type}" data-format="${this.Format}" style="display: block; position: absolute;
@@ -687,14 +687,14 @@ z-index: ${this.Sort}; background-color: ${this.Color}; border: 1px solid black;
         public RenderFragment(): string
         {
             if (this.Legende == null)
-            { 
+            {
 
                 if (compareStrings(this.Type, "legend", true, false))
                     this.Legende = "<h3>Legend Placeholder</h3>";
                 else
                     this.Legende = '<h3 style="padding: 0.25cm;">Border-Box</h3>';
             }
-            
+
 
             let html: string = `
 <div id="${this.PL_UID}" data-type="${this.Type}" data-format="${this.Format}" style="display: block; position: absolute;
@@ -738,7 +738,7 @@ z-index: ${this.Sort}; background-color: ${this.Color}; border: 1px solid black;
             {
                 let parser = new DOMParser();
                 let doc = <SVGSVGElement><any>
-                    parser.parseFromString(this.Text, "image/svg+xml").documentElement; 
+                    parser.parseFromString(this.Text, "image/svg+xml").documentElement;
                 parser = null;
 
                 let attrWidth = null;
@@ -749,7 +749,7 @@ z-index: ${this.Sort}; background-color: ${this.Color}; border: 1px solid black;
                 doc.setAttribute("width", "100%");
                 doc.setAttribute("height", "100%");
                 doc.setAttribute("preserveAspectRatio", this.AspectRatio);
-                
+
                 let serializer = new XMLSerializer();
                 this.Text = serializer.serializeToString(doc);
                 doc = null;
@@ -804,7 +804,7 @@ background-color: rgba(245,245,245, 0.75); border: 1px solid #e6e6e6; border: no
                 //let month_names: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
                 //    , month_names_short: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 //month = month_names_short[month];
-                
+
                 //strText = `${day} - ${month} - ${year}`;
                 strText = this.Text;
             }
@@ -813,7 +813,7 @@ background-color: rgba(245,245,245, 0.75); border: 1px solid #e6e6e6; border: no
                 strText = this.Text;
             }
 
-            
+
             if (strText == null || strText == "")
             {
                 strText = "some Text";
@@ -841,7 +841,7 @@ font-family: 'Bodoni MT'; font-size: 1cm; padding: 0.25cm; " >
 
     export class HtmlTextFragment extends DrawingControl
     {
-        
+
         constructor(dataRow: any)
         {
             super(dataRow);
