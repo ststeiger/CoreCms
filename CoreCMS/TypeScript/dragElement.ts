@@ -615,12 +615,11 @@ namespace PageDesigner.UI
 
 
 
-            function getObjectData(ele): any
+            function getObjectData(ele: HTMLElement): any
             {
+
                 // console.log("getObjectData")
                 let aspect = null;
-                let svg = ele.getElementsByTagName("svg");
-                let ifrm = ele.getElementsByTagName("iframe");
                 let data: any = {
                     "id": ele.getAttribute("id")
                     , "aspect": null
@@ -631,17 +630,28 @@ namespace PageDesigner.UI
                     , "format": ele.getAttribute("data-format")
                 };
 
+                let svg = null, ifrm = null;
 
+                // let svg = ele.getElementsByTagName("svg")[0];
+                // let ifrm = ele.getElementsByTagName("iframe")[0];
 
-                if (ifrm != null && ifrm.length > 0)
+                if (ele.firstElementChild.tagName.toLowerCase() == 'svg')
+                    svg = ele.firstElementChild;
+
+                if (ele.firstElementChild.tagName.toLowerCase() == 'iframe')
                 {
-                    ifrm = ifrm[0].contentWindow.document.documentElement;
+                    ifrm = (<HTMLIFrameElement>ele.firstElementChild).contentWindow.document.documentElement;
+                }
+
+
+                if (ifrm != null)
+                {
                     aspect = ifrm.getAttribute("preserveAspectRatio");
                     data["aspect"] = aspect;
                     return data;
                 } // End if (ifrm != null && ifrm.length > 0) 
 
-                if (svg != null && svg.length > 0)
+                if (svg != null)
                 {
                     svg = svg[0];
                     aspect = svg.getAttribute("preserveAspectRatio");
@@ -658,7 +668,7 @@ namespace PageDesigner.UI
                 } // End if (svg != null && svg.length > 0) 
 
 
-                let div = ele.querySelector("div[contenteditable]");
+                let div: HTMLDivElement = <HTMLDivElement>ele.querySelector("div[contenteditable]");
                 if (div != null)
                 {
                     // console.log("div", div);
@@ -681,8 +691,6 @@ namespace PageDesigner.UI
                 // console.log(ele);
                 return data;
             } // End Function getObjectData 
-
-
 
             let saveData = [], divs: NodeListOf<HTMLDivElement> = <NodeListOf<HTMLDivElement>>document.querySelectorAll("#page > div");
             // debugger;

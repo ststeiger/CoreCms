@@ -5160,7 +5160,7 @@
             s = o(3);
 
         var lsfs = [];
-        for (var fsi = 0; fsi <= 200; fsi+=0.25)
+        for (var fsi = 0; fsi <= 200; fsi += 0.25)
             lsfs.push(fsi + "mm");
 
         // console.log(kkk);
@@ -5168,7 +5168,7 @@
         r.Config.prototype.controls.fontsize = {
             command: "fontSize",
             list: lsfs //["8", "9", "10", "11", "12", "14", "16", "18", "24", "30", "36", "48", "60", "72", "96", "100"],
-            ,template: function (e, t, o)
+            , template: function (e, t, o)
             {
                 return o
             },
@@ -5222,7 +5222,7 @@
                 // https://www.fontsquirrel.com/tools/webfont-generator
                 // , "bowlby_one_scregular": "Bowlby"
                 , "Comic Sans MS": "Comic"
-                
+
             },
             template: function (e, t, o)
             {
@@ -7559,7 +7559,19 @@
                             if (n.__drag)
                             {
                                 var o = t.clientX;
-                                n.__minX > o && (o = n.__minX), o > n.__maxX && (o = n.__maxX), n.__resizerDelta = o - e, n.__resizerHandler.style.left = o + "px", n.jodit.editorWindow.getSelection().removeAllRanges(), t.preventDefault && t.preventDefault()
+                                // var joditContainer = getOffset(n.jodit.container);
+                                var joditContainer = n.jodit.container.getBoundingClientRect();
+
+
+
+                                var omg = o - joditContainer.left + 9.44882;
+
+                                n.__minX > o && (o = n.__minX),
+                                    o > n.__maxX && (o = n.__maxX),
+                                    n.__resizerDelta = o - e,
+                                    // n.__resizerHandler.style.left = o + "px", 
+                                    n.__resizerHandler.style.left = omg + "px",
+                                    n.jodit.editorWindow.getSelection().removeAllRanges(), t.preventDefault && t.preventDefault()
                             }
                         }), n.jodit.container.appendChild(n.__resizerHandler)
                     }
@@ -7696,30 +7708,31 @@
             {
                 void 0 === n && (n = 0), void 0 === s && (s = 0);
                 // https://github.com/xdan/jodit/blob/master/src/plugins/table.ts
-                console.log("r:", r);
-                console.log("o", o);
-                console.log("jo", this.jodit);
-                console.log("ed", this.jodit.editorDocument);
+                // console.log("r:", r); // https://github.com/xdan/jodit/blob/master/src/modules/Helpers.ts
+                // console.log("jo", this.jodit);
+                // // console.log("ed", this.jodit.editorDocument);
+                // console.log("container", this.jodit.container);
+                // console.log("e", e); // table
+                // console.log("o", o); // td
+                // console.log("n", n);
+                // console.log("s", s);
+
+                // padding: 0.25cm = "9.44882px";
+
 
                 var l = r.offset(o, this.jodit, this.jodit.editorDocument);
-                //console.log("container", this.jodit.container);
 
-                // var tablePosition = e.getBoundingClientRect();
-                var tablePosition = this.jodit.container.getBoundingClientRect();
+                var joditContainer = this.jodit.container.getBoundingClientRect();
+                l.left = l.left - window.scrollX - joditContainer.left + 9.44882; //pdadding left
 
-                console.log("e.top", tablePosition.top);
-                console.log("e.left", tablePosition.left);
 
-                l.top = l.top - tablePosition.top;
-                l.left = l.left - tablePosition.left;
-
-                
-                
-                if (n > i.NEARBY && l.width - n > i.NEARBY) this.__resizerHandler.style.display = "none";
+                if (n > i.NEARBY && l.width - n > i.NEARBY)
+                    this.__resizerHandler.style.display = "none";
                 else
                 {
                     var c = r.offset(e, this.jodit, this.jodit.editorDocument);
-                    
+                    c.top = c.top - window.scrollY - joditContainer.top + 9.44882; //pdadding top
+
                     if (this.__resizerHandler.style.left = (n > i.NEARBY ? l.left + l.width : l.left) + s + "px",
                         this.__resizerHandler.style.height = c.height + "px",
                         this.__resizerHandler.style.top = c.top + "px",
@@ -7727,24 +7740,19 @@
                         this.__setWorkCell(o, !!a.Dom.next(o, t.isCell, o.parentNode) && null);
                     else
                     {
+                        // on enterconsole.log("OOOO")
                         var d = a.Dom.prev(o, t.isCell, o.parentNode);
                         d ? this.__setWorkCell(d) : this.__setWorkCell(o, !0)
                     }
                 }
 
-                // console.log("e", e); // table
-                // console.log("o", o); // td
-                // console.log("n", n);
-                // console.log("s", s);
 
                 // l =  {top: 211, left: 59, width: 216, height: 17 }
 
-                
-
-                console.log("i.NEARBY", i.NEARBY);
-                console.log("l", l);
-                this.__resizerHandler.style.display = "block";
-                this.__resizerHandler.style["background-color"] = "red";
+                // console.log("i.NEARBY", i.NEARBY);
+                // console.log("l", l);
+                // this.__resizerHandler.style.display = "block";
+                // this.__resizerHandler.style["background-color"] = "red";
 
             }, t.prototype.observe = function (e)
             {
@@ -7785,7 +7793,8 @@
                                         height: t.top - e.top + t.height
                                     }
                                 }), i.stopPropagation()
-                            } else o.__calcResizerPosition(e, s, i.offsetX)
+                            }
+                            else o.__calcResizerPosition(e, s, i.offsetX)
                     }
                 }), this.__addResizer()
             }, t

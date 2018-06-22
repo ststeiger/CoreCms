@@ -275,8 +275,6 @@ var PageDesigner;
                 note.style.opacity = "1";
                 function getObjectData(ele) {
                     var aspect = null;
-                    var svg = ele.getElementsByTagName("svg");
-                    var ifrm = ele.getElementsByTagName("iframe");
                     var data = {
                         "id": ele.getAttribute("id"),
                         "aspect": null,
@@ -286,13 +284,18 @@ var PageDesigner;
                         "type": ele.getAttribute("data-type"),
                         "format": ele.getAttribute("data-format")
                     };
-                    if (ifrm != null && ifrm.length > 0) {
-                        ifrm = ifrm[0].contentWindow.document.documentElement;
+                    var svg = null, ifrm = null;
+                    if (ele.firstElementChild.tagName.toLowerCase() == 'svg')
+                        svg = ele.firstElementChild;
+                    if (ele.firstElementChild.tagName.toLowerCase() == 'iframe') {
+                        ifrm = ele.firstElementChild.contentWindow.document.documentElement;
+                    }
+                    if (ifrm != null) {
                         aspect = ifrm.getAttribute("preserveAspectRatio");
                         data["aspect"] = aspect;
                         return data;
                     }
-                    if (svg != null && svg.length > 0) {
+                    if (svg != null) {
                         svg = svg[0];
                         aspect = svg.getAttribute("preserveAspectRatio");
                         data["aspect"] = aspect;
