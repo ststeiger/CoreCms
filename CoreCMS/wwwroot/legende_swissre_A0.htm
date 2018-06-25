@@ -390,8 +390,8 @@
                 -moz-box-shadow: 4px 4px 5px 0px #000 !important;
                 -webkit-box-shadow: 4px 4px 5px 0px #000 !important;
             }
-
-                /*
+            
+            /*
             input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"] {
                 border-radius: 0mm;
                 filter: grayscale(100%);
@@ -408,9 +408,7 @@
                     margin: -0.501cm;
                     line-height: 36px !important;
                 }
-
-
-
+                
                 #paperMenu h1, #confirmBox p {
                     font: 26px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
                     background: url(../../images/Confirm/header_bg.jpg) repeat-x left bottom #f5f5f5;
@@ -683,13 +681,88 @@
                 <li onclick="PageDesigner.ContextMenu.edit(this);"><span>Edit Data</span></li>
                 <!-- -->
                 <li onclick="PageDesigner.ContextMenu.killJudy(this);"><span>Editieren beenden</span></li>
+                <li onclick="PageDesigner.ContextMenu.setPosition(this);"><span>Position setzten</span></li>
                 <!-- Cut -->
                 <li class="context-menu-icon-edit"><span>Cut</span></li>
                 <!--<li style="height: 0mm;"></li>-->
             </ul>
 
         </div>
+        
+        <style>
+            #positionMenu
+            {
+                display: block;
+                background-color: lightgray;
+                width: 3.5cm;
+                padding: 0.25cm;
+                
+                position: absolute;
+                top: 100px;
+                left: 100px;
+                z-index: 999999;
+                box-shadow: rgba(0, 0, 0, 0.85) 3px 3px 2mm;
+                border-radius: 0mm;
+            }
 
+
+            #positionMenu input[type='button']
+            {
+                display: block;
+                width: 3cm;
+                margin: 0cm;
+                margin-top: 0.25cm;
+            }
+            
+            
+            #positionMenu .lbl
+            {
+                display: inline-block;
+                width: 1.25cm;
+                font-size: 12px;
+                font-family: Arial;
+            }
+
+            #positionMenu .pos
+            {
+                display: inline-block;
+                width: 1cm;
+                font-size: 12px;
+                font-family: Arial;
+                text-align: right;
+            }
+
+            #positionMenu span
+            {
+                display: inline-block;
+                width: 0.5cm;
+                font-size: 12px;
+                font-family: Arial;
+                
+            }
+            
+        </style>
+        
+        <div id="positionMenu">
+            <label for="txtTop" class="lbl">Top:</label>
+            <input id="txtTop" type="text" value="" class="pos" />
+            <span>cm</span>
+            <br />
+            <label for="txtLeft" class="lbl">Left:</label>
+            <input id="txtLeft"  type="text" value="" class="pos" />
+            <span>cm</span>
+            <br />
+            <label for="txtWidth" class="lbl">Width:</label>
+            <input id="txtWidth" type="text" value="" class="pos" />
+            <span>cm</span>
+            <br />
+            <label for="txtHeight" class="lbl">Height:</label>
+            <input id="txtHeight" type="text" value="" class="pos" />
+            <span>cm</span>
+            <br />
+            <input type="button" onclick="console.log('setPos');" value="Apply" />
+        </div>
+        
 
         <div id="page" style="z-index: 9999; display: block; position:relative;
 left: 1cm; top: 1cm;

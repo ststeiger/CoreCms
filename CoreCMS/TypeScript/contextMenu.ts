@@ -1,4 +1,5 @@
-﻿
+﻿import {publicDecrypt} from "crypto";
+
 namespace PageDesigner.ContextMenu
 {
     declare var Jodit: any;
@@ -6,6 +7,59 @@ namespace PageDesigner.ContextMenu
     export let inEditMode: boolean;
 
 
+    export function applyPosition(menuPoint: HTMLElement)
+    {
+        let menu = document.getElementById("positionMenu");
+        let id = menu.getAttribute("data-elementId");
+        
+        let txtTop = document.getElementById("txtTop");
+        let txtLeft = document.getElementById("txtLeft");
+        let txtWidth = document.getElementById("txtWidth");
+        let txtHeight = document.getElementById("txtHeight");
+        
+        let top = txtTop.value;
+        let left = txtLeft.value;
+        let width = txtWidth.value;
+        let height = txtHeight.value;
+        
+        let ele = document.getElementById(id);
+        ele.style.top = top+"cm";
+        ele.style.left = left+"cm";
+        ele.style.width = width+"cm";
+        ele.style.height = height+"cm";
+        
+        menu.style.display = "none";
+    }
+    
+    
+    
+    export function setPosition(menuPoint: HTMLElement)
+    {
+        console.log("setPosition");
+        let e = event;
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+        
+        PageDesigner.ContextMenu.hasDoneSomething = true;
+        
+        
+        let menu: HTMLElement = menuPoint.parentElement.parentElement;
+        // console.log(menu);
+        
+        let id = menu.getAttribute("data-elementId");
+        
+        let ele = document.getElementById(id);
+        console.log("ele", ele);
+        
+        //menu.removeAttribute("data-elementId");
+        
+        
+        
+        menu.style.display = "none";
+        menu.removeAttribute("data-elementId");
+    }
+    
+    
     // PageDesigner.ContextMenu.killJudy()
     export function killJudy(menuPoint: HTMLElement)
     {
@@ -15,8 +69,7 @@ namespace PageDesigner.ContextMenu
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
 
         PageDesigner.ContextMenu.hasDoneSomething = true;
-
-
+        
         let menu: HTMLElement = menuPoint.parentElement.parentElement;
         // console.log(menu);
 
@@ -305,7 +358,7 @@ namespace PageDesigner.ContextMenu
     {
         menu.removeAttribute("data-elementId");
         menu.parentElement.style.display = 'none';
-        PageDesigner.UI.dispatchSave();
+        ///PageDesigner.UI.dispatchSave();
     } // End Function closeContextMenu 
 
 
@@ -315,7 +368,7 @@ namespace PageDesigner.ContextMenu
             , ele = document.getElementById(menu.getAttribute("data-elementid"))
             , zindex: any = window.getComputedStyle(ele).getPropertyValue("z-index")
             ;
-
+/*
         if (move == (1 / 0)) // +infinitiy
         {
             zindex = 1 + PageDesigner.UI.getMaxZindex();
@@ -339,6 +392,7 @@ namespace PageDesigner.ContextMenu
         }
         else
             console.log("unknown move type", move);
+*/
 
         console.log("set zindex", zindex);
         ele.style["z-index"] = zindex;
