@@ -49,30 +49,41 @@
     <style type="text/css">
         /*<![CDATA[*/
 
-        * {
+        * 
+        {
             margin: 0px;
             padding: 0px;
             box-sizing: border-box;
             #white-space-collapse: discard;
         }
 
-        .jodit_toolbar_popup-inline-target {
+        .jodit_toolbar_popup-inline-target 
+        {
             z-index: 9999999;
         }
 
-        .jodit_statusbar {
+        .jodit_statusbar 
+        {
             display: none !important;
         }
 
 
-        .jodit_table_resizer {
+        .jodit_table_resizer 
+        {
             z-index: 9999999 !important;
         }
 
 
-        .jodit_resizer {
+        .jodit_resizer 
+        {
             z-index: 9999999 !important;
             #cursor: col-resize;
+        }
+
+        .jodit_tabs_buttons a 
+        {
+            top: 0px !important;
+            left: 0px !important;
         }
 
 
@@ -217,7 +228,8 @@
 
 
     <style>
-        .lblLeft {
+        .lblLeft 
+        {
             display: inline-block;
             width: 3cm;
             font-family: Arial;
@@ -227,14 +239,16 @@
             font-weight: bold;
         }
 
-        select, option, input {
+        select, option, input 
+        {
             font-family: Arial;
             font-size: 3mm;
             width: 3.5cm;
         }
 
-            /*
-        input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn {
+        /*
+        input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn 
+        {
             color: #ffffff;
             background-color: #0095ff;
             border-color: #0077cc;
@@ -242,43 +256,43 @@
         }
         */
 
-            input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn {
-                color: #ffffff;
-                background-color: #868686;
-                border-color: #6B6B6B;
-                box-shadow: inset 0 1px 0 #B6B6B6;
-            }
+        input[type="submit"], input[type="button"], a.button, a.button:visited, button, .button, .btn {
+            color: #ffffff;
+            background-color: #868686;
+            border-color: #6B6B6B;
+            box-shadow: inset 0 1px 0 #B6B6B6;
+        }
 
 
-                input[type="button"].red {
-                    color: #ffffff;
-                    background-color: #950000;
-                    border-color: #620000;
-                    box-shadow: inset 0 1px 0 #fb0000;
-                }
+        input[type="button"].red {
+            color: #ffffff;
+            background-color: #950000;
+            border-color: #620000;
+            box-shadow: inset 0 1px 0 #fb0000;
+        }
 
-            input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"] {
-                box-sizing: border-box;
-                display: inline-block;
-                position: relative;
-                outline: none;
-                padding: 0mm 5mm;
-                line-height: 10mm;
-                vertical-align: middle;
-                font-weight: 400;
-                font-family: Arial;
-                font-size: 12px;
-                text-align: center;
-                text-decoration: none;
-                #border-radius: 5px;
-                #border: 1px solid transparent;
-                border: none;
-                #background-color: transparent;
-                margin: 1mm;
-                cursor: pointer;
-                touch-action: manipulation;
-                transition: all .1s ease-in;
-            }
+        input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"] {
+            box-sizing: border-box;
+            display: inline-block;
+            position: relative;
+            outline: none;
+            padding: 0mm 5mm;
+            line-height: 10mm;
+            vertical-align: middle;
+            font-weight: 400;
+            font-family: Arial;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: none;
+            #border-radius: 5px;
+            #border: 1px solid transparent;
+            border: none;
+            #background-color: transparent;
+            margin: 1mm;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: all .1s ease-in;
+        }
 
         #paperMenu {
             transition: all .5s ease-in;
@@ -356,31 +370,35 @@
 
 
         <style>
-            #paperMenu {
+            #paperMenu 
+            {
                 box-shadow: none !important;
                 border-radius: 0mm !important;
                 background-color: #444 !important;
             }
 
 
-                #paperMenu h5 {
-                    font-family: Arial;
-                    #text-transform: uppercase;
-                    color: #ffa500;
-                    font-weight: bold !important;
-                    background-color: black;
-                    padding: 0.25cm;
-                    padding-left: 0.75cm;
-                    margin: -0.5cm;
-                }
+            #paperMenu h5 
+            {
+                font-family: Arial;
+                #text-transform: uppercase;
+                color: #ffa500;
+                font-weight: bold !important;
+                background-color: black;
+                padding: 0.25cm;
+                padding-left: 0.75cm;
+                margin: -0.5cm;
+            }
 
-                #paperMenu label {
-                    color: white;
-                    font-weight: normal !important;
-                }
+            #paperMenu label 
+            {
+                color: white;
+                font-weight: normal !important;
+            }
 
 
-            #paperMenu {
+            #paperMenu 
+            {
                 box-shadow: none !important;
                 border-radius: 0mm !important;
                 background-color: #444 !important;
@@ -390,7 +408,7 @@
                 -moz-box-shadow: 4px 4px 5px 0px #000 !important;
                 -webkit-box-shadow: 4px 4px 5px 0px #000 !important;
             }
-            
+
             /*
             input[type="submit"], input[type="button"], button, .button, .btn, [class*="btn-"] {
                 border-radius: 0mm;
@@ -399,23 +417,25 @@
             */
 
 
-                #paperMenu h1 {
-                    letter-spacing: 0.3px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    color: #888;
-                    padding: 15px 20px;
-                    margin: -0.501cm;
-                    line-height: 36px !important;
-                }
-                
-                #paperMenu h1, #confirmBox p {
-                    font: 26px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-                    background: url(../../images/Confirm/header_bg.jpg) repeat-x left bottom #f5f5f5;
-                    padding: 10px 25px;
-                    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
-                    color: #666;
-                }
+            #paperMenu h1 
+            {
+                letter-spacing: 0.3px;
+                white-space: nowrap;
+                overflow: hidden;
+                color: #888;
+                padding: 15px 20px;
+                margin: -0.501cm;
+                line-height: 36px !important;
+            }
+
+            #paperMenu h1, #confirmBox p 
+            {
+                font: 26px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+                background: url(../../images/Confirm/header_bg.jpg) repeat-x left bottom #f5f5f5;
+                padding: 10px 25px;
+                text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+                color: #666;
+            }
         </style>
 
 
@@ -483,7 +503,8 @@
 
 
         <style>
-            .no-select {
+            .no-select 
+            {
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
@@ -491,7 +512,8 @@
                 cursor: default;
             }
 
-            #contextmenu ul {
+            #contextmenu ul 
+            {
                 list-style: none;
                 margin: 0;
                 padding: 0;
@@ -516,7 +538,8 @@
                 user-select: none;
             }
 
-            #contextmenu li {
+            #contextmenu li 
+            {
                 padding-left: 0.2cm;
                 padding-right: 0.2cm;
                 padding-top: 0.1cm;
@@ -534,36 +557,41 @@
                 #font-size: 1vh;
             }
 
-                #contextmenu li span {
-                    padding-left: 3mm;
-                }
+            #contextmenu li span 
+            {
+                padding-left: 3mm;
+            }
 
-                #contextmenu li:nth-child(even) {
-                    #background-color: #efefef;
-                    #background-color: rgba(255,255,255,0.95);
-                    #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
-                    #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 47%, rgba(255,255,255,1) 100%);
-                }
+            #contextmenu li:nth-child(even) 
+            {
+                #background-color: #efefef;
+                #background-color: rgba(255,255,255,0.95);
+                #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                #background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 47%, rgba(255,255,255,1) 100%);
+            }
 
-                #contextmenu li:first-child {
-                    #background-color: greenyellow;
-                    #border-top-left-radius: 3mm;
-                    border-top-right-radius: 3mm;
-                }
+            #contextmenu li:first-child 
+            {
+                #background-color: greenyellow;
+                #border-top-left-radius: 3mm;
+                border-top-right-radius: 3mm;
+            }
 
-                #contextmenu li:last-child {
-                    #background-color: yellow;
-                    border-bottom-left-radius: 3mm;
-                    border-bottom-right-radius: 3mm;
-                }
+            #contextmenu li:last-child 
+            {
+                #background-color: yellow;
+                border-bottom-left-radius: 3mm;
+                border-bottom-right-radius: 3mm;
+            }
 
-                #contextmenu li:hover {
-                    color: #fff;
-                    #background-color: #0066aa;
-                    #background-color: rgba(0,102,170,0.95);
-                    background-color: rgba(255, 0, 0, 0.95);
-                    cursor: pointer;
-                }
+            #contextmenu li:hover 
+            {
+                color: #fff;
+                #background-color: #0066aa;
+                #background-color: rgba(0,102,170,0.95);
+                background-color: rgba(255, 0, 0, 0.95);
+                cursor: pointer;
+            }
 
 
             /*
@@ -581,7 +609,8 @@
             */
 
 
-            .context-menu-icon::before {
+            .context-menu-icon::before 
+            {
                 position: absolute;
                 top: 50%;
                 left: 0;
@@ -601,12 +630,14 @@
                 -moz-osx-font-smoothing: grayscale;
             }
 
-            .context-menu-icon-edit:before {
+            .context-menu-icon-edit:before 
+            {
                 #content: "\EA05";
                 content: "\2702";
             }
 
-            .context-menu-icon-expand:after {
+            .context-menu-icon-expand:after 
+            {
                 content: "\25ba";
                 position: absolute;
                 right: 0px;
@@ -614,25 +645,29 @@
                 #transform: translateY(-50%);
             }
 
-            #contextmenu li.expando:hover > ul {
+            #contextmenu li.expando:hover > ul 
+            {
                 display: block !important;
             }
 
-            #contextmenu div > ul, div > ul > li:first-child {
+            #contextmenu div > ul, div > ul > li:first-child 
+            {
                 border-top-left-radius: 3mm;
             }
 
 
-            .jodit_toolbar_btn {
+            .jodit_toolbar_btn 
+            {
                 border-radius: 0 !important;
             }
+
         </style>
 
-        <div id="xaxis1" style="display:none; position: absolute; top: 5cm; left: 0cm; z-index: 999999; width: 1.5cm; height: 0.25mm; background-color: red;"></div>
-        <div id="yaxis1" style="display:none; position: absolute; top: 0cm; left: 5cm; z-index: 999999; width: 0.25mm; height: 1.5cm; background-color: red;"></div>
+        <div id="xaxis1" style="display:none; position: absolute; top: 5cm; left: 0cm; z-index: 999999; width: 1.5cm; height: 0.25mm; background-color: lightblue;"></div>
+        <div id="yaxis1" style="display:none; position: absolute; top: 0cm; left: 5cm; z-index: 999999; width: 0.25mm; height: 1.5cm; background-color: lightblue;"></div>
 
-        <div id="xaxis2" style="display:none; position: absolute; top: 5cm; left: 0cm; z-index: 999999; width: 1.5cm; height: 0.25mm; background-color: red;"></div>
-        <div id="yaxis2" style="display:none; position: absolute; top: 0cm; left: 5cm; z-index: 999999; width: 0.25mm; height: 1.5cm; background-color: red;"></div>
+        <div id="xaxis2" style="display:none; position: absolute; top: 5cm; left: 0cm; z-index: 999999; width: 1.5cm; height: 0.25mm; background-color: lightblue;"></div>
+        <div id="yaxis2" style="display:none; position: absolute; top: 0cm; left: 5cm; z-index: 999999; width: 0.25mm; height: 1.5cm; background-color: lightblue;"></div>
 
 
         <div id="contextmenu" style="position:absolute; display: block; transform-origin: 0 0; left: 10cm; top: 5cm;
@@ -680,23 +715,22 @@
                 <!-- Daten bearbeiten -->
                 <li onclick="PageDesigner.ContextMenu.edit(this);"><span>Edit Data</span></li>
                 <!-- -->
-                <li onclick="PageDesigner.ContextMenu.killJudy(this);"><span>Editieren beenden</span></li>
-                <li onclick="PageDesigner.ContextMenu.setPosition(this);"><span>Position setzten</span></li>
+                <li onclick="PageDesigner.ContextMenu.killJudy(this);"><span>End Edit</span></li>
+                <li onclick="PageDesigner.ContextMenu.setPosition(this);"><span>Set Position</span></li>
                 <!-- Cut -->
                 <li class="context-menu-icon-edit"><span>Cut</span></li>
                 <!--<li style="height: 0mm;"></li>-->
             </ul>
 
         </div>
-        
+
         <style>
-            #positionMenu
+            #positionMenu 
             {
                 display: block;
                 background-color: lightgray;
                 width: 3.5cm;
                 padding: 0.25cm;
-                
                 position: absolute;
                 top: 100px;
                 left: 100px;
@@ -706,16 +740,16 @@
             }
 
 
-            #positionMenu input[type='button']
+            #positionMenu input[type='button'] 
             {
                 display: block;
                 width: 3cm;
                 margin: 0cm;
                 margin-top: 0.25cm;
             }
-            
-            
-            #positionMenu .lbl
+
+
+            #positionMenu .lbl 
             {
                 display: inline-block;
                 width: 1.25cm;
@@ -723,7 +757,7 @@
                 font-family: Arial;
             }
 
-            #positionMenu .pos
+            #positionMenu .pos 
             {
                 display: inline-block;
                 width: 1cm;
@@ -732,42 +766,43 @@
                 text-align: right;
             }
 
-            #positionMenu span
+            #positionMenu span 
             {
                 display: inline-block;
                 width: 0.5cm;
                 font-size: 12px;
                 font-family: Arial;
-                
             }
-            
         </style>
-        
-        <div id="positionMenu">
-            <label for="txtTop" class="lbl">Top:</label>
-            <input id="txtTop" type="text" value="" class="pos" />
-            <span>cm</span>
-            <br />
-            <label for="txtLeft" class="lbl">Left:</label>
-            <input id="txtLeft"  type="text" value="" class="pos" />
-            <span>cm</span>
-            <br />
-            <label for="txtWidth" class="lbl">Width:</label>
-            <input id="txtWidth" type="text" value="" class="pos" />
-            <span>cm</span>
-            <br />
-            <label for="txtHeight" class="lbl">Height:</label>
-            <input id="txtHeight" type="text" value="" class="pos" />
-            <span>cm</span>
-            <br />
-            <input type="button" onclick="console.log('setPos');" value="Apply" />
-        </div>
-        
+
 
         <div id="page" style="z-index: 9999; display: block; position:relative;
 left: 1cm; top: 1cm;
 width: 84.1cm; height: 118.9cm;
 background-color: white; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);">
+
+
+            <!--
+            <div id="positionMenu" style="display: block;">
+                <label for="txtTop" class="lbl">Top:</label>
+                <input id="txtTop" type="text" value="" class="pos" />
+                <span>cm</span>
+                <br />
+                <label for="txtLeft" class="lbl">Left:</label>
+                <input id="txtLeft" type="text" value="" class="pos" />
+                <span>cm</span>
+                <br />
+                <label for="txtWidth" class="lbl">Width:</label>
+                <input id="txtWidth" type="text" value="" class="pos" />
+                <span>cm</span>
+                <br />
+                <label for="txtHeight" class="lbl">Height:</label>
+                <input id="txtHeight" type="text" value="" class="pos" />
+                <span>cm</span>
+                <br />
+                <input type="button" onclick="PageDesigner.ContextMenu.applyPosition(this);" value="Apply" />
+            </div>
+            -->
 
         </div>
 

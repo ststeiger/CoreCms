@@ -526,6 +526,11 @@ namespace PageDesigner.UI
 
             this.m_Format = <string>dataRow["PL_Format"];
             this.m_Type = <string>dataRow["PL_Type"];
+
+            this.m_dataBind = <string>dataRow["PL_DataBind"];
+            if (this.m_dataBind == null)
+                this.m_dataBind = null;
+
         } // End Constructor 
 
 
@@ -628,6 +633,21 @@ namespace PageDesigner.UI
         {
             this.m_Color = value;
         }
+
+
+        protected m_dataBind: string;
+
+
+        get DataBind(): string
+        {
+            return this.m_dataBind;
+        }
+
+        set DataBind(value: string)
+        {
+            this.m_dataBind = value;
+        }
+
 
 
         protected m_Svg: string;
@@ -775,6 +795,7 @@ background-color: rgba(245,245,245, 0.75); border: 1px solid #e6e6e6; border: no
     export class PlainTextFragment extends DrawingControl
     {
 
+
         constructor(dataRow: any)
         {
             super(dataRow);
@@ -819,10 +840,12 @@ background-color: rgba(245,245,245, 0.75); border: 1px solid #e6e6e6; border: no
                 strText = "some Text";
             } // End if (strText == null || strText == "") 
 
-            strText = htmlEncode(strText);
+            console.log("loadedText");
+            // strText = htmlEncode(strText);
+
 
             let html: string = `
-<div id="${this.PL_UID}" data-type="text" data-format="${this.Format}" style="position: absolute; display: block; z-index: ${this.Sort};
+<div id="${this.PL_UID}" data-databind="${this.DataBind}" data-type="text" data-format="${this.Format}" style="position: absolute; display: block; z-index: ${this.Sort};
 left: ${this.X}cm; top: ${this.Y}cm; width: ${this.Width}cm; height: ${this.Height}cm;
 background-color: ${this.Color};
 border: 1px solid ${this.OutlineColor}; " >
@@ -831,6 +854,8 @@ font-family: 'Bodoni MT'; font-size: 1cm; padding: 0.25cm; " >
     <span contenteditable="true">${strText}</span>
     </div>
 </div>`;
+
+            console.log(html);
 
             return html;
         } // End Function RenderFragment 

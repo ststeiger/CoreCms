@@ -1,8 +1,8 @@
 ﻿
 
 // window.getSelection()
-var x: Node = document.getSelection().getRangeAt(0).startContainer;
-var pe:HTMLElement = window.getSelection().getRangeAt(0).startContainer.parentElement;
+let x: Node = document.getSelection().getRangeAt(0).startContainer;
+let pe:HTMLElement = window.getSelection().getRangeAt(0).startContainer.parentElement;
 
 // HTMLElements inherit from Element which inherit from Node.
 // HTMLElement refers explicitly to an HTML element whereas Element may refer to an XML element.

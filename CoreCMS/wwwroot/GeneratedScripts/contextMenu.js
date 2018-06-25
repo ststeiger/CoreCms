@@ -2,6 +2,53 @@ var PageDesigner;
 (function (PageDesigner) {
     var ContextMenu;
     (function (ContextMenu) {
+        var elementToPosition;
+        function applyPosition(menuPoint) {
+            console.log("ENTER applyPosition");
+            var menu = document.getElementById("positionMenu");
+            var txtTop = document.getElementById("txtTop");
+            var txtLeft = document.getElementById("txtLeft");
+            var txtWidth = document.getElementById("txtWidth");
+            var txtHeight = document.getElementById("txtHeight");
+            var top = txtTop.value;
+            var left = txtLeft.value;
+            var width = txtWidth.value;
+            var height = txtHeight.value;
+            elementToPosition.style.top = top + "cm";
+            elementToPosition.style.left = left + "cm";
+            elementToPosition.style.width = width + "cm";
+            elementToPosition.style.height = height + "cm";
+            var positionMenu = document.getElementById("positionMenu");
+            positionMenu.parentElement.removeChild(positionMenu);
+            PageDesigner.UI.dispatchSave();
+        }
+        ContextMenu.applyPosition = applyPosition;
+        function setPosition(menuPoint) {
+            console.log("setPosition");
+            var e = event;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+            PageDesigner.ContextMenu.hasDoneSomething = true;
+            var menu = menuPoint.parentElement.parentElement;
+            var id = menu.getAttribute("data-elementId");
+            elementToPosition = document.getElementById(id);
+            var tTop = parseFloat(elementToPosition.style.top);
+            var tLeft = parseFloat(elementToPosition.style.left);
+            var tWidth = parseFloat(elementToPosition.style.width);
+            var tHeight = parseFloat(elementToPosition.style.height);
+            var t3 = tTop - -tHeight;
+            var html = "\n            <div id=\"positionMenu\" style=\"display: block;\">\n                <label for=\"txtTop\" class=\"lbl\">Top:</label>\n                <input id=\"txtTop\" type=\"text\" value=\"" + tTop + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtLeft\" class=\"lbl\">Left:</label>\n                <input id=\"txtLeft\" type=\"text\" value=\"" + tLeft + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtWidth\" class=\"lbl\">Width:</label>\n                <input id=\"txtWidth\" type=\"text\" value=\"" + tWidth + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtHeight\" class=\"lbl\">Height:</label>\n                <input id=\"txtHeight\" type=\"text\" value=\"" + tHeight + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <input type=\"button\" onclick=\"PageDesigner.ContextMenu.applyPosition(this);\" value=\"Apply\" />\n            </div>\n";
+            var page = document.getElementById("page");
+            page.insertAdjacentHTML("beforeend", html);
+            var positionMenu = document.getElementById("positionMenu");
+            positionMenu.style.display = "block";
+            positionMenu.style.left = elementToPosition.style.left;
+            positionMenu.style.top = t3 + "cm";
+            console.log("ele", elementToPosition);
+            menu.style.display = "none";
+            menu.removeAttribute("data-elementId");
+        }
+        ContextMenu.setPosition = setPosition;
         function killJudy(menuPoint) {
             console.log("killJudy");
             var e = event;

@@ -113,6 +113,7 @@ var PageDesigner;
                 addStyle(styles, "height", (h / vres) + "cm");
                 var style = dictToStyle(styles);
                 ele.setAttribute("style", style);
+                setRed(parseFloat(ele.style.left), parseFloat(ele.style.top), (w / hres), (h / vres));
             }.bind(this);
             element.oncontextmenu = function (ele, e) {
                 console.log("ctxdown", e);
@@ -192,6 +193,14 @@ var PageDesigner;
                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
                 e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
                 console.log("resizing");
+                var xaxis1 = document.getElementById("xaxis1");
+                var yaxis1 = document.getElementById("yaxis1");
+                var xaxis2 = document.getElementById("xaxis2");
+                var yaxis2 = document.getElementById("yaxis2");
+                xaxis1.style.display = "block";
+                yaxis1.style.display = "block";
+                xaxis2.style.display = "block";
+                yaxis2.style.display = "block";
                 ele.classList.add("resizing");
             }.bind(this, element, d);
             element.appendChild(d);
@@ -282,7 +291,8 @@ var PageDesigner;
                         "valign": null,
                         "text": null,
                         "type": ele.getAttribute("data-type"),
-                        "format": ele.getAttribute("data-format")
+                        "format": ele.getAttribute("data-format"),
+                        "databind": ele.getAttribute("data-databind")
                     };
                     var svg = null, ifrm = null;
                     if (ele.firstElementChild.tagName.toLowerCase() == 'svg')
@@ -314,12 +324,15 @@ var PageDesigner;
                     }
                     var span = ele.querySelector("span[contenteditable]");
                     if (span != null) {
-                        data["text"] = span.textContent || span.innerHTML;
+                        console.log("span", span);
+                        data["text"] = span.innerHTML;
                     }
                     return data;
                 }
                 var saveData = [], divs = document.querySelectorAll("#page > div");
                 for (var i = 0; i < divs.length; ++i) {
+                    if (divs[i].id === "positionMenu")
+                        continue;
                     var objectData = getObjectData(divs[i]);
                     if (objectData.type === "null" || objectData.type === "undefined")
                         objectData.type = null;
@@ -345,7 +358,7 @@ var PageDesigner;
                         "PL_Text_EN": objectData["text"],
                         "PL_Outline": false,
                         "PL_Style": null,
-                        "PL_DataBind": null,
+                        "PL_DataBind": objectData["databind"],
                         "PL_Sort": parseInt(divs[i].style["z-index"])
                     });
                 }
@@ -370,6 +383,7 @@ var PageDesigner;
                 })
                     .failure(function (err) {
                     console.log("PL_T_VWS_PdfLegende_Insert: failure");
+                    console.log(err);
                     function saveFailure() {
                         note.innerHTML = "";
                         note.appendChild(document.createTextNode("Fail"));

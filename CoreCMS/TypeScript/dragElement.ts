@@ -80,11 +80,17 @@ namespace PageDesigner.UI
 
         function setRed(left, top, w, h)
         {
+            // console.log("ENTER setRed");
+
             var xaxis1 = document.getElementById("xaxis1");
             var yaxis1 = document.getElementById("yaxis1");
 
             var xaxis2 = document.getElementById("xaxis2");
             var yaxis2 = document.getElementById("yaxis2");
+
+
+            // console.log(left, top, w, h);
+
 
             // console.log(xaxis, yaxis, left, top);
             xaxis1.style.top = (top - -1).toString() + "cm";
@@ -230,6 +236,8 @@ namespace PageDesigner.UI
 
             let style = dictToStyle(styles);
             ele.setAttribute("style", style);
+
+            setRed(parseFloat(ele.style.left), parseFloat(ele.style.top), (w / hres), (h / vres));
 
             // console.log("width", ele.style.width);
             // console.log("height", ele.style.height);
@@ -405,6 +413,22 @@ namespace PageDesigner.UI
             e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
 
             console.log("resizing");
+
+
+            var xaxis1 = document.getElementById("xaxis1");
+            var yaxis1 = document.getElementById("yaxis1");
+
+            var xaxis2 = document.getElementById("xaxis2");
+            var yaxis2 = document.getElementById("yaxis2");
+
+
+            xaxis1.style.display = "block";
+            yaxis1.style.display = "block";
+            xaxis2.style.display = "block";
+            yaxis2.style.display = "block";
+
+
+
 
             // ele.setAttribute("data-dragoffset-x", fX(e) - ele.offsetLeft);
             // ele.setAttribute("data-dragoffset-y", fY(e) - ele.offsetTop);
@@ -628,6 +652,7 @@ namespace PageDesigner.UI
                     , "text": null
                     , "type": ele.getAttribute("data-type")
                     , "format": ele.getAttribute("data-format")
+                    , "databind": ele.getAttribute("data-databind")
                 };
 
                 let svg = null, ifrm = null;
@@ -683,7 +708,9 @@ namespace PageDesigner.UI
                 let span = ele.querySelector("span[contenteditable]");
                 if (span != null)
                 {
-                    data["text"] = span.textContent || span.innerHTML;
+                    console.log("span", span);
+                    //data["text"] = span.textContent || span.innerHTML;
+                    data["text"] = span.innerHTML;
                 }
 
                 //ele.style["text-align"] = ['left', 'center', 'right'][horizontal];
@@ -696,6 +723,9 @@ namespace PageDesigner.UI
             // debugger;
             for (let i = 0; i < divs.length; ++i)
             {
+                if (divs[i].id === "positionMenu")
+                    continue;
+
                 // console.log(da[i]);
                 // console.log(da[i].style.left);
                 // console.log(da[i].style.top);
@@ -730,19 +760,18 @@ namespace PageDesigner.UI
                         , "PL_H": parseFloat(divs[i].style.height) // float
                         , "PL_Angle": 0 // float
 
+                        , "PL_AspectRatio": objectData.aspect // nvarchar(255)
+                        , "PL_AlignH": objectData.halign // nvarchar(255)
+                        , "PL_AlignV": objectData.valign // nvarchar(255)
 
-                        , "PL_AspectRatio": objectData.aspect //nvarchar(255)
-                        , "PL_AlignH": objectData.halign //nvarchar(255)
-                        , "PL_AlignV": objectData.valign //nvarchar(255)
+                        , "PL_Text_DE": objectData["text"] // nvarchar(255)
+                        , "PL_Text_FR": objectData["text"] // nvarchar(255)
+                        , "PL_Text_IT": objectData["text"] // nvarchar(255)
+                        , "PL_Text_EN": objectData["text"] // nvarchar(255)
 
-                        , "PL_Text_DE": objectData["text"] //nvarchar(255)
-                        , "PL_Text_FR": objectData["text"] //nvarchar(255)
-                        , "PL_Text_IT": objectData["text"] //nvarchar(255)
-                        , "PL_Text_EN": objectData["text"] //nvarchar(255)
-
-                        , "PL_Outline": false //bit
-                        , "PL_Style": null //varchar(8000)
-                        , "PL_DataBind": null //nvarchar(255)
+                        , "PL_Outline": false // bit
+                        , "PL_Style": null // varchar(8000)
+                        , "PL_DataBind": objectData["databind"] // nvarchar(255)
                         , "PL_Sort": parseInt(divs[i].style["z-index"])
                     }
                 );
@@ -787,6 +816,7 @@ namespace PageDesigner.UI
                 .failure(function (err: any)
                 {
                     console.log("PL_T_VWS_PdfLegende_Insert: failure");
+                    console.log(err);
 
                     function saveFailure()
                     {

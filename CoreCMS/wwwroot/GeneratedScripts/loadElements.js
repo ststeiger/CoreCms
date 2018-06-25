@@ -344,6 +344,9 @@ var PageDesigner;
                 this.m_AspectRatio = dataRow["PL_AspectRatio"];
                 this.m_Format = dataRow["PL_Format"];
                 this.m_Type = dataRow["PL_Type"];
+                this.m_dataBind = dataRow["PL_DataBind"];
+                if (this.m_dataBind == null)
+                    this.m_dataBind = null;
             }
             Object.defineProperty(DrawingControl.prototype, "PL_UID", {
                 get: function () {
@@ -453,6 +456,16 @@ var PageDesigner;
                 enumerable: true,
                 configurable: true
             });
+            Object.defineProperty(DrawingControl.prototype, "DataBind", {
+                get: function () {
+                    return this.m_dataBind;
+                },
+                set: function (value) {
+                    this.m_dataBind = value;
+                },
+                enumerable: true,
+                configurable: true
+            });
             Object.defineProperty(DrawingControl.prototype, "Svg", {
                 get: function () {
                     return this.m_Svg;
@@ -557,8 +570,9 @@ var PageDesigner;
                 if (strText == null || strText == "") {
                     strText = "some Text";
                 }
-                strText = htmlEncode(strText);
-                var html = "\n<div id=\"" + this.PL_UID + "\" data-type=\"text\" data-format=\"" + this.Format + "\" style=\"position: absolute; display: block; z-index: " + this.Sort + ";\nleft: " + this.X + "cm; top: " + this.Y + "cm; width: " + this.Width + "cm; height: " + this.Height + "cm;\nbackground-color: " + this.Color + ";\nborder: 1px solid " + this.OutlineColor + "; \" >\n    <div style=\"width: 100%; height: 100%; overflow: hidden;\nfont-family: 'Bodoni MT'; font-size: 1cm; padding: 0.25cm; \" >\n    <span contenteditable=\"true\">" + strText + "</span>\n    </div>\n</div>";
+                console.log("loadedText");
+                var html = "\n<div id=\"" + this.PL_UID + "\" data-databind=\"" + this.DataBind + "\" data-type=\"text\" data-format=\"" + this.Format + "\" style=\"position: absolute; display: block; z-index: " + this.Sort + ";\nleft: " + this.X + "cm; top: " + this.Y + "cm; width: " + this.Width + "cm; height: " + this.Height + "cm;\nbackground-color: " + this.Color + ";\nborder: 1px solid " + this.OutlineColor + "; \" >\n    <div style=\"width: 100%; height: 100%; overflow: hidden;\nfont-family: 'Bodoni MT'; font-size: 1cm; padding: 0.25cm; \" >\n    <span contenteditable=\"true\">" + strText + "</span>\n    </div>\n</div>";
+                console.log(html);
                 return html;
             };
             return PlainTextFragment;

@@ -1,65 +1,112 @@
-﻿import {publicDecrypt} from "crypto";
-
+﻿
 namespace PageDesigner.ContextMenu
 {
     declare var Jodit: any;
     export let hasDoneSomething: boolean;
     export let inEditMode: boolean;
 
+    let elementToPosition: HTMLElement;
+
 
     export function applyPosition(menuPoint: HTMLElement)
     {
+        console.log("ENTER applyPosition");
+
         let menu = document.getElementById("positionMenu");
-        let id = menu.getAttribute("data-elementId");
-        
+
+
         let txtTop = document.getElementById("txtTop");
         let txtLeft = document.getElementById("txtLeft");
         let txtWidth = document.getElementById("txtWidth");
         let txtHeight = document.getElementById("txtHeight");
-        
+
         let top = txtTop.value;
         let left = txtLeft.value;
         let width = txtWidth.value;
         let height = txtHeight.value;
-        
-        let ele = document.getElementById(id);
-        ele.style.top = top+"cm";
-        ele.style.left = left+"cm";
-        ele.style.width = width+"cm";
-        ele.style.height = height+"cm";
-        
-        menu.style.display = "none";
+
+
+        elementToPosition.style.top = top + "cm";
+        elementToPosition.style.left = left + "cm";
+        elementToPosition.style.width = width + "cm";
+        elementToPosition.style.height = height + "cm";
+
+
+        let positionMenu = document.getElementById("positionMenu");
+        positionMenu.parentElement.removeChild(positionMenu);
+        PageDesigner.UI.dispatchSave();
     }
-    
-    
-    
+
+
     export function setPosition(menuPoint: HTMLElement)
     {
         console.log("setPosition");
         let e = event;
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
-        
+
         PageDesigner.ContextMenu.hasDoneSomething = true;
-        
-        
+
+
         let menu: HTMLElement = menuPoint.parentElement.parentElement;
         // console.log(menu);
-        
+
         let id = menu.getAttribute("data-elementId");
-        
-        let ele = document.getElementById(id);
-        console.log("ele", ele);
-        
+
+        elementToPosition = document.getElementById(id);
+
+
+        let tTop = parseFloat(elementToPosition.style.top);
+        let tLeft = parseFloat(elementToPosition.style.left);
+        let tWidth = parseFloat(elementToPosition.style.width);
+        let tHeight = parseFloat(elementToPosition.style.height);
+        let t3 = tTop - -tHeight;
+
+
+
+        let html = `
+            <div id="positionMenu" style="display: block;">
+                <label for="txtTop" class="lbl">Top:</label>
+                <input id="txtTop" type="text" value="${tTop}" class="pos" />
+                <span>cm</span>
+                <br />
+                <label for="txtLeft" class="lbl">Left:</label>
+                <input id="txtLeft" type="text" value="${tLeft}" class="pos" />
+                <span>cm</span>
+                <br />
+                <label for="txtWidth" class="lbl">Width:</label>
+                <input id="txtWidth" type="text" value="${tWidth}" class="pos" />
+                <span>cm</span>
+                <br />
+                <label for="txtHeight" class="lbl">Height:</label>
+                <input id="txtHeight" type="text" value="${tHeight}" class="pos" />
+                <span>cm</span>
+                <br />
+                <input type="button" onclick="PageDesigner.ContextMenu.applyPosition(this);" value="Apply" />
+            </div>
+`;
+
+        let page = document.getElementById("page");
+        page.insertAdjacentHTML("beforeend", html);
+
+
+        let positionMenu = document.getElementById("positionMenu");
+        positionMenu.style.display = "block";
+        positionMenu.style.left = elementToPosition.style.left;
+
+        positionMenu.style.top = t3 + "cm";
+
+        console.log("ele", elementToPosition);
+
         //menu.removeAttribute("data-elementId");
-        
-        
-        
+
+
+
         menu.style.display = "none";
         menu.removeAttribute("data-elementId");
     }
-    
-    
+
+
     // PageDesigner.ContextMenu.killJudy()
     export function killJudy(menuPoint: HTMLElement)
     {
@@ -69,7 +116,8 @@ namespace PageDesigner.ContextMenu
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
 
         PageDesigner.ContextMenu.hasDoneSomething = true;
-        
+
+
         let menu: HTMLElement = menuPoint.parentElement.parentElement;
         // console.log(menu);
 
@@ -103,10 +151,6 @@ namespace PageDesigner.ContextMenu
         menu.style.display = "none";
         menu.removeAttribute("data-elementId");
     }
-
-
-
-
 
 
     function judy(div: HTMLElement)
@@ -358,7 +402,7 @@ namespace PageDesigner.ContextMenu
     {
         menu.removeAttribute("data-elementId");
         menu.parentElement.style.display = 'none';
-        ///PageDesigner.UI.dispatchSave();
+        PageDesigner.UI.dispatchSave();
     } // End Function closeContextMenu 
 
 
@@ -368,7 +412,7 @@ namespace PageDesigner.ContextMenu
             , ele = document.getElementById(menu.getAttribute("data-elementid"))
             , zindex: any = window.getComputedStyle(ele).getPropertyValue("z-index")
             ;
-/*
+
         if (move == (1 / 0)) // +infinitiy
         {
             zindex = 1 + PageDesigner.UI.getMaxZindex();
@@ -392,7 +436,6 @@ namespace PageDesigner.ContextMenu
         }
         else
             console.log("unknown move type", move);
-*/
 
         console.log("set zindex", zindex);
         ele.style["z-index"] = zindex;
