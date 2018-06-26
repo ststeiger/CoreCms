@@ -1,8 +1,8 @@
 ﻿
 namespace PageDesigner.UI
 {
-
-
+    
+    
     function guid(): string
     {
         function s4()

@@ -306,7 +306,6 @@ var PageDesigner;
                         return data;
                     }
                     if (svg != null) {
-                        svg = svg[0];
                         aspect = svg.getAttribute("preserveAspectRatio");
                         data["aspect"] = aspect;
                         var serializer = new XMLSerializer();
@@ -478,7 +477,7 @@ var PageDesigner;
                     ps_uid = elePS.options[elePS.selectedIndex].value.split(';')[0];
                 if (eleDAR.selectedIndex != -1)
                     dar_uid = eleDAR.options[eleDAR.selectedIndex].value;
-                if (ps_uid == null, dar_uid == null)
+                if (ps_uid == null || dar_uid == null)
                     return false;
                 if (ps_uid == null)
                     ps_uid = null;

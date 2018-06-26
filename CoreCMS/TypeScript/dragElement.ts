@@ -1,8 +1,8 @@
 ﻿
 namespace PageDesigner.UI 
 {
-
-
+    
+    
     export function getMaxZindex()
     {
         return Math.max.apply(null,
@@ -655,20 +655,19 @@ namespace PageDesigner.UI
                     , "databind": ele.getAttribute("data-databind")
                 };
 
-                let svg = null, ifrm = null;
+                let svg = null, ifrm :HTMLElement= null;
 
                 // let svg = ele.getElementsByTagName("svg")[0];
                 // let ifrm = ele.getElementsByTagName("iframe")[0];
 
                 if (ele.firstElementChild.tagName.toLowerCase() == 'svg')
                     svg = ele.firstElementChild;
-
+                
                 if (ele.firstElementChild.tagName.toLowerCase() == 'iframe')
                 {
                     ifrm = (<HTMLIFrameElement>ele.firstElementChild).contentWindow.document.documentElement;
                 }
-
-
+                
                 if (ifrm != null)
                 {
                     aspect = ifrm.getAttribute("preserveAspectRatio");
@@ -678,7 +677,6 @@ namespace PageDesigner.UI
 
                 if (svg != null)
                 {
-                    svg = svg[0];
                     aspect = svg.getAttribute("preserveAspectRatio");
                     data["aspect"] = aspect;
 
@@ -857,7 +855,7 @@ namespace PageDesigner.UI
         } // End Function saveData2
 
         if (document.addEventListener)
-            window.addEventListener("saveData", saveData)
+            window.addEventListener("saveData", saveData);
         else if (document.attachEvent)
             document.attachCustomEvent("saveData", saveData);
     } // End Function listenSave
@@ -997,9 +995,9 @@ namespace PageDesigner.UI
             if (eleDAR.selectedIndex != -1)
                 dar_uid = eleDAR.options[eleDAR.selectedIndex].value;
 
-            if (ps_uid == null, dar_uid == null)
+            if (ps_uid == null || dar_uid == null)
                 return false;
-
+            
             // console.log("reloadCategory: ", "ps_uid", ps_uid, "dar_uid", dar_uid);
 
             if (ps_uid == null) ps_uid = null;
