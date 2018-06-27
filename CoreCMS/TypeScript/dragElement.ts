@@ -1,8 +1,16 @@
 ﻿
 namespace PageDesigner.UI 
 {
-    
-    
+
+    //let isEdge = false;
+
+    //if (navigator != null && navigator.userAgent != null)
+    //{
+    //    if (navigator.userAgent.toLowerCase().indexOf("edge/") != -1)
+    //        isEdge = true;
+    //}
+
+
     export function getMaxZindex()
     {
         return Math.max.apply(null,
@@ -67,15 +75,14 @@ namespace PageDesigner.UI
         function fX(e: any)
         {
             return (e.touches && e.touches.length) ? e.touches[0].pageX
-                : e.pageX || (<MouseEvent>event).pageX || event.clientX;
+                : e.pageX || (<MouseEvent>event).pageX || (event.clientX);
         }
 
         function fY(e: any)
         {
             return (e.touches && e.touches.length) ? e.touches[0].pageY
-                : e.pageY || (<MouseEvent>event).pageY || event.clientY;
+                : e.pageY || (<MouseEvent>event).pageY || (event.clientY);
         }
-
 
 
         function setRed(left, top, w, h)
@@ -143,13 +150,34 @@ namespace PageDesigner.UI
 
         function getOffset(el)
         {
+            let body = el.ownerDocument.body;
+
             let _x = 0, _y = 0;
-            while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop))
+            while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop) && el != body)
             {
                 _x += el.offsetLeft - el.scrollLeft;
                 _y += el.offsetTop - el.scrollTop;
+
                 el = el.offsetParent;
-            }
+
+                // if element = body, then Edge (wrongly?) has a scrollLeft & scrollTop value -
+                //if (el === body)
+                //{
+                //    _x += el.offsetLeft;
+                //    _y += el.offsetTop;
+                //    break;
+                //}
+            } // Whend 
+
+
+            //// Edge-fix
+            //if (isEdge)
+            //{
+            //    _x += window.scrollX;
+            //    _y += window.scrollY;
+            //}
+
+
             // return { left: _x, top: _y };
             return { x: _x, y: _y };
         } // End Functin getOffset 
@@ -655,19 +683,19 @@ namespace PageDesigner.UI
                     , "databind": ele.getAttribute("data-databind")
                 };
 
-                let svg = null, ifrm :HTMLElement= null;
+                let svg = null, ifrm: HTMLElement = null;
 
                 // let svg = ele.getElementsByTagName("svg")[0];
                 // let ifrm = ele.getElementsByTagName("iframe")[0];
 
                 if (ele.firstElementChild.tagName.toLowerCase() == 'svg')
                     svg = ele.firstElementChild;
-                
+
                 if (ele.firstElementChild.tagName.toLowerCase() == 'iframe')
                 {
                     ifrm = (<HTMLIFrameElement>ele.firstElementChild).contentWindow.document.documentElement;
                 }
-                
+
                 if (ifrm != null)
                 {
                     aspect = ifrm.getAttribute("preserveAspectRatio");
@@ -798,8 +826,10 @@ namespace PageDesigner.UI
                                     function ()
                                     {
                                         note.style.display = "none";
-                                        note.style.top = "60%";
-                                        note.style.left = "70%";
+                                        // note.style.top = "60%";
+                                        // note.style.left = "70%";
+                                        note.style.top = "60vh";
+                                        note.style.left = "70vw";
                                     }, 1000
                                 );
 
@@ -931,8 +961,8 @@ namespace PageDesigner.UI
         let pm = document.getElementById("paperMenu");
 
         pm.style.position = "fixed";
-        pm.style.top = "50%";
-        pm.style.left = "50%";
+        pm.style.top = "50vh"; // "50%";
+        pm.style.left = "50vw"; // "50%";
         pm.style.transform = "translate(-50%, -50%)";
         //pm.style["box-shadow"] = "0px 0px 3mm rgba(172, 172,172, 1)";
         //pm.style["box-shadow"] = "0px 0px 3mm rgba(172, 172,172, 1)";
@@ -997,7 +1027,7 @@ namespace PageDesigner.UI
 
             if (ps_uid == null || dar_uid == null)
                 return false;
-            
+
             // console.log("reloadCategory: ", "ps_uid", ps_uid, "dar_uid", dar_uid);
 
             if (ps_uid == null) ps_uid = null;

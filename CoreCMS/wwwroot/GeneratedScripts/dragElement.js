@@ -30,11 +30,11 @@ var PageDesigner;
             var page = document.getElementById("page"), unit = document.getElementById("measure"), recUnit = unit.getBoundingClientRect(), hres = recUnit.width, vres = recUnit.height;
             function fX(e) {
                 return (e.touches && e.touches.length) ? e.touches[0].pageX
-                    : e.pageX || event.pageX || event.clientX;
+                    : e.pageX || event.pageX || (event.clientX);
             }
             function fY(e) {
                 return (e.touches && e.touches.length) ? e.touches[0].pageY
-                    : e.pageY || event.pageY || event.clientY;
+                    : e.pageY || event.pageY || (event.clientY);
             }
             function setRed(left, top, w, h) {
                 var xaxis1 = document.getElementById("xaxis1");
@@ -63,8 +63,9 @@ var PageDesigner;
                 setRed(le, to, width / hres, height / vres);
             }.bind(this);
             function getOffset(el) {
+                var body = el.ownerDocument.body;
                 var _x = 0, _y = 0;
-                while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+                while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop) && el != body) {
                     _x += el.offsetLeft - el.scrollLeft;
                     _y += el.offsetTop - el.scrollTop;
                     el = el.offsetParent;
@@ -372,8 +373,8 @@ var PageDesigner;
                             note.style.opacity = "0";
                             window.setTimeout(function () {
                                 note.style.display = "none";
-                                note.style.top = "60%";
-                                note.style.left = "70%";
+                                note.style.top = "60vh";
+                                note.style.left = "70vw";
                             }, 1000);
                         }, 500);
                     }
@@ -449,8 +450,8 @@ var PageDesigner;
             clearPaper();
             var pm = document.getElementById("paperMenu");
             pm.style.position = "fixed";
-            pm.style.top = "50%";
-            pm.style.left = "50%";
+            pm.style.top = "50vh";
+            pm.style.left = "50vw";
             pm.style.transform = "translate(-50%, -50%)";
             pm.style["box-shadow"] = "0px 0px 3mm rgba(111, 111,111, 0.85)";
             pm.style.width = "10cm";

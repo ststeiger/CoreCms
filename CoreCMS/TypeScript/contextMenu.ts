@@ -6,8 +6,8 @@ namespace PageDesigner.ContextMenu
     export let inEditMode: boolean;
 
     let elementToPosition: HTMLElement;
-    
-    
+
+
     export function applyPosition(menuPoint: HTMLElement)
     {
         console.log("ENTER applyPosition");
