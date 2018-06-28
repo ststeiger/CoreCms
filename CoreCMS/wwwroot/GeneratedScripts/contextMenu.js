@@ -23,7 +23,7 @@ var PageDesigner;
             PageDesigner.UI.dispatchSave();
         }
         ContextMenu.applyPosition = applyPosition;
-        function setPosition(menuPoint) {
+        function setPosition(menuPoint, event) {
             console.log("setPosition");
             var e = event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -49,7 +49,7 @@ var PageDesigner;
             menu.removeAttribute("data-elementId");
         }
         ContextMenu.setPosition = setPosition;
-        function killJudy(menuPoint) {
+        function killJudy(menuPoint, event) {
             console.log("killJudy");
             var e = event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -139,7 +139,7 @@ var PageDesigner;
             div.onmousedown = null;
             div.onmouseup = null;
         }
-        function edit(menuPoint) {
+        function edit(menuPoint, event) {
             console.log("edit");
             var e = event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -154,7 +154,7 @@ var PageDesigner;
             menu.removeAttribute("data-elementId");
         }
         ContextMenu.edit = edit;
-        function alignImage(menuPoint, vertical, horizontal) {
+        function alignImage(menuPoint, event, vertical, horizontal) {
             var e = event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
             e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
@@ -184,8 +184,9 @@ var PageDesigner;
             menu.removeAttribute("data-elementId");
         }
         ContextMenu.alignImage = alignImage;
-        function deleteElement(menuPoint) {
+        function deleteElement(menuPoint, event) {
             console.log("deleteElement");
+            console.log(arguments);
             var e = event;
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
             e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
@@ -204,13 +205,13 @@ var PageDesigner;
             }).send();
         }
         ContextMenu.deleteElement = deleteElement;
-        function closeContextMenu(menu) {
+        function closeContextMenu(menu, event) {
             menu.removeAttribute("data-elementId");
             menu.parentElement.style.display = 'none';
             PageDesigner.UI.dispatchSave();
         }
         ContextMenu.closeContextMenu = closeContextMenu;
-        function alterZIndex(menuPoint, move) {
+        function alterZIndex(menuPoint, event, move) {
             var menu = menuPoint.parentElement.parentElement, ele = document.getElementById(menu.getAttribute("data-elementid")), zindex = window.getComputedStyle(ele).getPropertyValue("z-index");
             if (move == (1 / 0)) {
                 zindex = 1 + PageDesigner.UI.getMaxZindex();

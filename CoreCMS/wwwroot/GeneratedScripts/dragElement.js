@@ -299,7 +299,12 @@ var PageDesigner;
                     if (ele.firstElementChild.tagName.toLowerCase() == 'svg')
                         svg = ele.firstElementChild;
                     if (ele.firstElementChild.tagName.toLowerCase() == 'iframe') {
-                        ifrm = ele.firstElementChild.contentWindow.document.documentElement;
+                        try {
+                            ifrm = ele.firstElementChild.contentWindow.document.documentElement;
+                        }
+                        catch (e) {
+                            ifrm = null;
+                        }
                     }
                     if (ifrm != null) {
                         aspect = ifrm.getAttribute("preserveAspectRatio");

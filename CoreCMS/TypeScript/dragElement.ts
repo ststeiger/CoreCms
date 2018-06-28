@@ -669,7 +669,6 @@ namespace PageDesigner.UI
 
             function getObjectData(ele: HTMLElement): any
             {
-
                 // console.log("getObjectData")
                 let aspect = null;
                 let data: any = {
@@ -693,7 +692,16 @@ namespace PageDesigner.UI
 
                 if (ele.firstElementChild.tagName.toLowerCase() == 'iframe')
                 {
-                    ifrm = (<HTMLIFrameElement>ele.firstElementChild).contentWindow.document.documentElement;
+                    try
+                    {
+                        // TODO: Firefox, oh Firefox, Fix Firefox ? 
+                        ifrm = (<HTMLIFrameElement>ele.firstElementChild).contentWindow.document.documentElement;
+                    }
+                    catch (e)
+                    {
+                        ifrm = null;
+                    }
+
                 }
 
                 if (ifrm != null)

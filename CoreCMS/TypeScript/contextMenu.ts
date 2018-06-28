@@ -38,7 +38,7 @@ namespace PageDesigner.ContextMenu
     }
 
 
-    export function setPosition(menuPoint: HTMLElement)
+    export function setPosition(menuPoint: HTMLElement, event)
     {
         console.log("setPosition");
         let e = event;
@@ -100,15 +100,13 @@ namespace PageDesigner.ContextMenu
 
         //menu.removeAttribute("data-elementId");
 
-
-
         menu.style.display = "none";
         menu.removeAttribute("data-elementId");
     }
 
 
     // PageDesigner.ContextMenu.killJudy()
-    export function killJudy(menuPoint: HTMLElement)
+    export function killJudy(menuPoint: HTMLElement, event)
     {
         console.log("killJudy");
         let e = event;
@@ -262,7 +260,7 @@ namespace PageDesigner.ContextMenu
     }
 
 
-    export function edit(menuPoint: HTMLElement)
+    export function edit(menuPoint: HTMLElement, event)
     {
         console.log("edit");
         let e = event;
@@ -284,7 +282,7 @@ namespace PageDesigner.ContextMenu
     } // End Function edit  
 
 
-    export function alignImage(menuPoint: HTMLElement, vertical: number, horizontal: number)
+    export function alignImage(menuPoint: HTMLElement, event, vertical: number, horizontal: number)
     {
         let e: Event = event;
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -366,9 +364,10 @@ namespace PageDesigner.ContextMenu
     } // End Function alignImage
 
 
-    export function deleteElement(menuPoint)
+    export function deleteElement(menuPoint, event)
     {
         console.log("deleteElement");
+        console.log(arguments);
 
         let e = event;
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -398,7 +397,7 @@ namespace PageDesigner.ContextMenu
     } // End Function deleteElement
 
 
-    export function closeContextMenu(menu)
+    export function closeContextMenu(menu, event)
     {
         menu.removeAttribute("data-elementId");
         menu.parentElement.style.display = 'none';
@@ -406,7 +405,7 @@ namespace PageDesigner.ContextMenu
     } // End Function closeContextMenu 
 
 
-    export function alterZIndex(menuPoint, move)
+    export function alterZIndex(menuPoint, event, move)
     {
         let menu = menuPoint.parentElement.parentElement
             , ele = document.getElementById(menu.getAttribute("data-elementid"))
