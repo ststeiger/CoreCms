@@ -30,23 +30,36 @@ var PageDesigner;
             e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
             PageDesigner.ContextMenu.hasDoneSomething = true;
             var menu = menuPoint.parentElement.parentElement;
+            console.log("menu", menu);
             var id = menu.getAttribute("data-elementId");
+            var px = parseFloat(menu.getAttribute("data-open-x"));
+            var py = parseFloat(menu.getAttribute("data-open-y"));
+            var sx = parseFloat(menu.getAttribute("data-open-scroll-x"));
+            var sy = parseFloat(menu.getAttribute("data-open-scroll-y"));
+            console.log(px, py, sx, sy);
+            var resolution = document.getElementById("measure").getBoundingClientRect();
+            px = px - resolution.width;
+            py = py - resolution.height;
+            var posX = px + "px";
+            var posY = py + "px";
             elementToPosition = document.getElementById(id);
             var tTop = parseFloat(elementToPosition.style.top);
             var tLeft = parseFloat(elementToPosition.style.left);
             var tWidth = parseFloat(elementToPosition.style.width);
             var tHeight = parseFloat(elementToPosition.style.height);
             var t3 = tTop - -tHeight;
-            var html = "\n            <div id=\"positionMenu\" style=\"display: block;\">\n                <label for=\"txtTop\" class=\"lbl\">Top:</label>\n                <input id=\"txtTop\" type=\"text\" value=\"" + tTop + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtLeft\" class=\"lbl\">Left:</label>\n                <input id=\"txtLeft\" type=\"text\" value=\"" + tLeft + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtWidth\" class=\"lbl\">Width:</label>\n                <input id=\"txtWidth\" type=\"text\" value=\"" + tWidth + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtHeight\" class=\"lbl\">Height:</label>\n                <input id=\"txtHeight\" type=\"text\" value=\"" + tHeight + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <input type=\"button\" onclick=\"PageDesigner.ContextMenu.applyPosition(this);\" value=\"Apply\" />\n            </div>\n";
+            var html = "\n            <div id=\"positionMenu\" style=\"display: block; position: absolute; left: " + posX + "; top: " + posY + "; \">\n                <label for=\"txtTop\" class=\"lbl\">Top:</label>\n                <input id=\"txtTop\" type=\"text\" value=\"" + tTop + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtLeft\" class=\"lbl\">Left:</label>\n                <input id=\"txtLeft\" type=\"text\" value=\"" + tLeft + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtWidth\" class=\"lbl\">Width:</label>\n                <input id=\"txtWidth\" type=\"text\" value=\"" + tWidth + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <label for=\"txtHeight\" class=\"lbl\">Height:</label>\n                <input id=\"txtHeight\" type=\"text\" value=\"" + tHeight + "\" class=\"pos\" />\n                <span>cm</span>\n                <br />\n                <input type=\"button\" onclick=\"PageDesigner.ContextMenu.applyPosition(this);\" value=\"Apply\" />\n            </div>\n";
+            var oldMen = document.getElementById("positionMenu");
+            if (oldMen != null)
+                oldMen.parentElement.removeChild(oldMen);
             var page = document.getElementById("page");
             page.insertAdjacentHTML("beforeend", html);
-            var positionMenu = document.getElementById("positionMenu");
-            positionMenu.style.display = "block";
-            positionMenu.style.left = elementToPosition.style.left;
-            positionMenu.style.top = t3 + "cm";
-            console.log("ele", elementToPosition);
             menu.style.display = "none";
             menu.removeAttribute("data-elementId");
+            menu.removeAttribute("data-open-x");
+            menu.removeAttribute("data-open-y");
+            menu.removeAttribute("data-open-scroll-x");
+            menu.removeAttribute("data-open-scroll-y");
         }
         ContextMenu.setPosition = setPosition;
         function killJudy(menuPoint, event) {
@@ -76,8 +89,8 @@ var PageDesigner;
             var limitDiv = div.firstElementChild;
             var span = limitDiv.firstElementChild;
             div.lastElementChild.style.display = "none";
-            console.log("span", span);
             var editor = new Jodit(span, {
+                preset: 'inline',
                 language: 'de',
                 buttons: [
                     'bold',
@@ -203,6 +216,14 @@ var PageDesigner;
             new Http.PostJSON("../../ajax/anyList.ashx?sql=PL_T_VWS_PdfLegende_Delete.sql", params, function (data) {
                 console.log("successfully deleted element " + id + ".");
             }).send();
+            var xaxis1 = document.getElementById("xaxis1");
+            var yaxis1 = document.getElementById("yaxis1");
+            var xaxis2 = document.getElementById("xaxis2");
+            var yaxis2 = document.getElementById("yaxis2");
+            xaxis1.style.display = "none";
+            yaxis1.style.display = "none";
+            xaxis2.style.display = "none";
+            yaxis2.style.display = "none";
         }
         ContextMenu.deleteElement = deleteElement;
         function closeContextMenu(menu, event) {

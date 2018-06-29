@@ -89,11 +89,11 @@ namespace PageDesigner.UI
         {
             // console.log("ENTER setRed");
 
-            var xaxis1 = document.getElementById("xaxis1");
-            var yaxis1 = document.getElementById("yaxis1");
+            let xaxis1 = document.getElementById("xaxis1");
+            let yaxis1 = document.getElementById("yaxis1");
 
-            var xaxis2 = document.getElementById("xaxis2");
-            var yaxis2 = document.getElementById("yaxis2");
+            let xaxis2 = document.getElementById("xaxis2");
+            let yaxis2 = document.getElementById("yaxis2");
 
 
             // console.log(left, top, w, h);
@@ -302,6 +302,21 @@ namespace PageDesigner.UI
 
             PageDesigner.ContextMenu.hasDoneSomething = false;
 
+
+            let sx = (window.scrollX | window.pageXOffset);
+            let sy = (window.scrollY | window.pageYOffset);
+
+            let px = fX(e);
+            let py = fY(e);
+
+
+            ctx.setAttribute("data-open-x", px);
+            ctx.setAttribute("data-open-y", py);
+
+            ctx.setAttribute("data-open-scroll-x", sx.toString());
+            ctx.setAttribute("data-open-scroll-y", sy.toString());
+
+
             ctx.setAttribute("data-elementId", ele.id);
             ctx.style.left = pos.x + "px";
             ctx.style.top = pos.y + "px";
@@ -350,11 +365,11 @@ namespace PageDesigner.UI
                 return;
 
 
-            var xaxis1 = document.getElementById("xaxis1");
-            var yaxis1 = document.getElementById("yaxis1");
+            let xaxis1 = document.getElementById("xaxis1");
+            let yaxis1 = document.getElementById("yaxis1");
 
-            var xaxis2 = document.getElementById("xaxis2");
-            var yaxis2 = document.getElementById("yaxis2");
+            let xaxis2 = document.getElementById("xaxis2");
+            let yaxis2 = document.getElementById("yaxis2");
 
 
             xaxis1.style.display = "block";
@@ -384,11 +399,11 @@ namespace PageDesigner.UI
             if ((e.keyCode || e.which) == 3)
                 return;
 
-            var xaxis1 = document.getElementById("xaxis1");
-            var yaxis1 = document.getElementById("yaxis1");
+            let xaxis1 = document.getElementById("xaxis1");
+            let yaxis1 = document.getElementById("yaxis1");
 
-            var xaxis2 = document.getElementById("xaxis2");
-            var yaxis2 = document.getElementById("yaxis2");
+            let xaxis2 = document.getElementById("xaxis2");
+            let yaxis2 = document.getElementById("yaxis2");
 
             xaxis1.style.display = "none";
             yaxis1.style.display = "none";
@@ -443,11 +458,11 @@ namespace PageDesigner.UI
             console.log("resizing");
 
 
-            var xaxis1 = document.getElementById("xaxis1");
-            var yaxis1 = document.getElementById("yaxis1");
+            let xaxis1 = document.getElementById("xaxis1");
+            let yaxis1 = document.getElementById("yaxis1");
 
-            var xaxis2 = document.getElementById("xaxis2");
-            var yaxis2 = document.getElementById("yaxis2");
+            let xaxis2 = document.getElementById("xaxis2");
+            let yaxis2 = document.getElementById("yaxis2");
 
 
             xaxis1.style.display = "block";
@@ -539,7 +554,7 @@ namespace PageDesigner.UI
 
         //speechSynthesis.onvoiceschanged = function ()
         //{
-        //    var voices = this.getVoices();
+        //    let voices = this.getVoices();
         //    console.log(voices);
         //};
 
@@ -965,6 +980,8 @@ namespace PageDesigner.UI
     {
         console.log("mainMenu");
         clearPaper();
+
+        PageDesigner.UI.iOsBlocker();
 
         let pm = document.getElementById("paperMenu");
 

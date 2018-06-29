@@ -116,7 +116,7 @@ namespace PageDesigner.Ruler
 
     } // End Function verticalRuler 
 
-    
+
     // // Hmax = h+10,round
     function horizonalRuler(l)
     {
@@ -124,7 +124,7 @@ namespace PageDesigner.Ruler
         {
             let hr = document.getElementById("horizontalRuler"),
                 myruler = hr.getElementsByClassName("ruler")[0],
-                numCm = Math.ceil( (l+10) / 10) * 10;
+                numCm = Math.ceil((l + 10) / 10) * 10;
 
             for (let i = 0; i < numCm; ++i)
             {

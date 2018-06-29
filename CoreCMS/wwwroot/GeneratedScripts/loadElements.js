@@ -77,8 +77,8 @@ var PageDesigner;
             var onecmH = measure.height;
             var w = ele.offsetWidth;
             var h = ele.offsetHeight;
-            var x = rect.right + window.scrollX - onecmW - w;
-            var y = fY(event) - rect.top - window.scrollY;
+            var x = rect.right + (window.scrollX | window.pageXOffset) - onecmW - w;
+            var y = fY(event) - rect.top - (window.scrollY | window.pageYOffset);
             ele.style.left = (x / onecmW) + "cm";
             ele.style.top = (y / onecmH) + "cm";
         }
@@ -102,9 +102,66 @@ var PageDesigner;
             }
             return querformat(someFormat);
         }
-        function iCrapBlocker() {
+        function getFirstBrowserLanguage() {
+            var nav = window.navigator, browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'], i, language;
+            if (Object.prototype.toString.call(nav.languages) === '[object Array]') {
+                for (i = 0; i < nav.languages.length; i++) {
+                    language = nav.languages[i];
+                    if (language && language.length) {
+                        return language;
+                    }
+                }
+            }
+            for (i = 0; i < browserLanguagePropertyKeys.length; i++) {
+                language = nav[browserLanguagePropertyKeys[i]];
+                if (language && language.length) {
+                    return language;
+                }
+            }
+            return null;
         }
-        UI.iCrapBlocker = iCrapBlocker;
+        function getBrowserLanguage(dft) {
+            var bl = getFirstBrowserLanguage() || dft, pos = bl.indexOf("-");
+            if (pos !== -1)
+                bl = bl.substr(0, pos);
+            return bl.toLowerCase();
+        }
+        function getUserLanguage() {
+            var def = "de";
+            var lang = getBrowserLanguage(def);
+            if (lang != "de" && lang != "fr" && lang != "it" && lang != "en")
+                lang = "de";
+            return lang;
+        }
+        function iOS() {
+            if (!!navigator.platform) {
+                var iDevices = [
+                    'iPad Simulator',
+                    'iPhone Simulator',
+                    'iPod Simulator',
+                    'iPad',
+                    'iPhone',
+                    'iPod'
+                ];
+                while (iDevices.length) {
+                    if (navigator.platform === iDevices.pop())
+                        return true;
+                }
+            }
+            return false;
+        }
+        function iOsBlocker() {
+            if (iOS()) {
+                var language = getUserLanguage();
+                var safari_warning = document.getElementById("safari_warning");
+                var safari_warning_title = document.getElementById("no_safari_title_" + language);
+                var no_safari = document.getElementById("no_safari_" + language);
+                safari_warning.style.display = "block";
+                safari_warning_title.style.display = "block";
+                no_safari.style.display = "block";
+            }
+        }
+        UI.iOsBlocker = iOsBlocker;
         function logoRenderer(plk_uid) {
             var dr = {
                 "PL_UID": guid(),

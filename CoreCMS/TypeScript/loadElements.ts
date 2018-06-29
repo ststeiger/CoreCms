@@ -114,19 +114,17 @@ namespace PageDesigner.UI
             ele = <HTMLElement>element;
 
         let rect: ClientRect = page.getBoundingClientRect();
-        var measure = mes.getBoundingClientRect();
+        let measure = mes.getBoundingClientRect();
         let onecmW = measure.width;
         let onecmH = measure.height;
         let w = ele.offsetWidth;
         let h = ele.offsetHeight;
 
-        let x = rect.right + window.scrollX - onecmW - w; // - ; //window.pageXOffset; This is an alias for scrollX.
-        let y = fY(event) - rect.top - window.scrollY; //- window.pageYOffset; This is an alias for scrollY.
+        let x = rect.right + (window.scrollX | window.pageXOffset) - onecmW - w; // - ; //window.pageXOffset; This is an alias for scrollX. scrollX not in IE11...
+        let y = fY(event) - rect.top - (window.scrollY | window.pageYOffset); //- window.pageYOffset; This is an alias for scrollY. scrollY not in IE11...
 
-        // window.setTimeout(function () {
         ele.style.left = (x / onecmW) + "cm";
         ele.style.top = (y / onecmH) + "cm";
-        // }, 500);
     }
 
 
@@ -167,14 +165,103 @@ namespace PageDesigner.UI
     } // End Function getPageSize 
 
 
-    export function iCrapBlocker()
+    // https://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference
+    function getFirstBrowserLanguage(): string
     {
-        // Um diese Seite im iPad anzuzeigen, müsste das ganze BackOffice überarbeitet werden. 
-        // Die dafür benötigte Zeit ist vermutlich gleich gross, wie die Zeit die nötig ist, um das BackOffice neu zu erstellen. 
-        // Das ist leider aus zeitlichen Gründen nicht möglich. 
-        // Bitte verwenden sie einen richtigen Browser. 
-        // Getestet sind Internet Explorer (11), Microsoft-Edge (16+), Chrome (60+) sowie Firefox (60.0+).
+        let nav = window.navigator,
+            browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'],
+            i,
+            language;
 
+        // support for HTML 5.1 "navigator.languages"
+        //if (Array.isArray(nav.languages)) // IE8-trap
+        if (Object.prototype.toString.call(nav.languages) === '[object Array]')
+        {
+            for (i = 0; i < nav.languages.length; i++)
+            {
+                language = nav.languages[i];
+                if (language && language.length)
+                {
+                    return language;
+                }
+            }
+        }
+
+        // support for other well known properties in browsers
+        for (i = 0; i < browserLanguagePropertyKeys.length; i++)
+        {
+            language = nav[browserLanguagePropertyKeys[i]];
+            if (language && language.length)
+            {
+                return language;
+            }
+        }
+
+        return null;
+    }
+
+
+    function getBrowserLanguage(dft): string
+    {
+        let bl: string = getFirstBrowserLanguage() || dft,
+            pos = bl.indexOf("-");
+        if (pos !== -1)
+            bl = bl.substr(0, pos);
+
+        return bl.toLowerCase();
+    }
+
+
+    function getUserLanguage(): string
+    {
+        let def = "de";
+
+        let lang = getBrowserLanguage(def);
+        if (lang != "de" && lang != "fr" && lang != "it" && lang != "en")
+            lang = "de";
+
+        return lang;
+    }
+
+    function iOS(): boolean
+    {
+        if (!!navigator.platform)
+        {
+            let iDevices = [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ];
+
+            while (iDevices.length)
+            {
+                if (navigator.platform === iDevices.pop())
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    // PageDesigner.UI.iOsBlocker();
+    export function iOsBlocker()
+    {
+        if (iOS())
+        {
+            let language = getUserLanguage();
+
+            let safari_warning = document.getElementById("safari_warning");
+            let safari_warning_title = document.getElementById("no_safari_title_" + language);
+            let no_safari = document.getElementById("no_safari_" + language);
+
+            safari_warning.style.display = "block";
+            safari_warning_title.style.display = "block";
+            no_safari.style.display = "block";
+        }
     }
 
 
@@ -368,7 +455,6 @@ namespace PageDesigner.UI
         page.insertAdjacentHTML("beforeend", html);
         setElementPosition(mes, page, control.PL_UID, event);
         PageDesigner.UI.Init();
-
         PageDesigner.UI.dispatchSave();
     }
 

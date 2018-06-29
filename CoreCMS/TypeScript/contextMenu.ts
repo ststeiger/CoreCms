@@ -49,23 +49,38 @@ namespace PageDesigner.ContextMenu
 
 
         let menu: HTMLElement = menuPoint.parentElement.parentElement;
-        // console.log(menu);
+        console.log("menu", menu);
 
         let id = menu.getAttribute("data-elementId");
+        let px = parseFloat(menu.getAttribute("data-open-x"));
+        let py = parseFloat(menu.getAttribute("data-open-y"));
+        let sx = parseFloat(menu.getAttribute("data-open-scroll-x"));
+        let sy = parseFloat(menu.getAttribute("data-open-scroll-y"));
+        console.log(px, py, sx, sy);
+
+        let resolution = document.getElementById("measure").getBoundingClientRect();
+        px = px - resolution.width;
+        py = py - resolution.height;
+
+
+        let posX = px + "px";
+        let posY = py + "px";
+
+
 
         elementToPosition = document.getElementById(id);
 
 
-        let tTop = parseFloat(elementToPosition.style.top);
-        let tLeft = parseFloat(elementToPosition.style.left);
-        let tWidth = parseFloat(elementToPosition.style.width);
-        let tHeight = parseFloat(elementToPosition.style.height);
+        let tTop: any = parseFloat(elementToPosition.style.top);
+        let tLeft: any = parseFloat(elementToPosition.style.left);
+        let tWidth: any = parseFloat(elementToPosition.style.width);
+        let tHeight: any = parseFloat(elementToPosition.style.height);
         let t3 = tTop - -tHeight;
 
 
 
         let html = `
-            <div id="positionMenu" style="display: block;">
+            <div id="positionMenu" style="display: block; position: absolute; left: ${posX}; top: ${posY}; ">
                 <label for="txtTop" class="lbl">Top:</label>
                 <input id="txtTop" type="text" value="${tTop}" class="pos" />
                 <span>cm</span>
@@ -86,22 +101,19 @@ namespace PageDesigner.ContextMenu
             </div>
 `;
 
+        let oldMen = document.getElementById("positionMenu");
+        if (oldMen != null)
+            oldMen.parentElement.removeChild(oldMen);
+
         let page = document.getElementById("page");
         page.insertAdjacentHTML("beforeend", html);
 
-
-        let positionMenu = document.getElementById("positionMenu");
-        positionMenu.style.display = "block";
-        positionMenu.style.left = elementToPosition.style.left;
-
-        positionMenu.style.top = t3 + "cm";
-
-        console.log("ele", elementToPosition);
-
-        //menu.removeAttribute("data-elementId");
-
         menu.style.display = "none";
         menu.removeAttribute("data-elementId");
+        menu.removeAttribute("data-open-x");
+        menu.removeAttribute("data-open-y");
+        menu.removeAttribute("data-open-scroll-x");
+        menu.removeAttribute("data-open-scroll-y");
     }
 
 
@@ -163,12 +175,12 @@ namespace PageDesigner.ContextMenu
 
         (<HTMLElement>div.lastElementChild).style.display = "none";
 
-        console.log("span", span);
+        // console.log("span", span);
         // span.removeAttribute('attribute?')
 
         // https://github.com/xdan/jodit/blob/master/src/Config.ts
         var editor = new Jodit(span, {
-            // preset: 'inline',
+            preset: 'inline',
             language: 'de',
             buttons: [
                 //'source', '|',
@@ -394,6 +406,16 @@ namespace PageDesigner.ContextMenu
             }
         ).send();
 
+        let xaxis1 = document.getElementById("xaxis1");
+        let yaxis1 = document.getElementById("yaxis1");
+
+        let xaxis2 = document.getElementById("xaxis2");
+        let yaxis2 = document.getElementById("yaxis2");
+
+        xaxis1.style.display = "none";
+        yaxis1.style.display = "none";
+        xaxis2.style.display = "none";
+        yaxis2.style.display = "none";
     } // End Function deleteElement
 
 
