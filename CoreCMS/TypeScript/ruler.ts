@@ -20,7 +20,7 @@ namespace PageDesigner.Ruler
 
     // thou or mil (1 / 1000 of an inch)
     // 1 / 1000 inch to mm = 0.0254mm
-
+    
     // Wmax = w+5
     function verticalRuler(w)
     {

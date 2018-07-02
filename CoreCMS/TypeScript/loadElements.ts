@@ -221,7 +221,8 @@ namespace PageDesigner.UI
             lang = "de";
 
         return lang;
-    }
+    }
+
 
     function iOS(): boolean
     {

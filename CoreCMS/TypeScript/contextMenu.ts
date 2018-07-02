@@ -11,7 +11,7 @@ namespace PageDesigner.ContextMenu
     export function applyPosition(menuPoint: HTMLElement)
     {
         console.log("ENTER applyPosition");
-
+        
         let menu = document.getElementById("positionMenu");
 
 
@@ -36,8 +36,8 @@ namespace PageDesigner.ContextMenu
         positionMenu.parentElement.removeChild(positionMenu);
         PageDesigner.UI.dispatchSave();
     }
-
-
+    
+    
     export function setPosition(menuPoint: HTMLElement, event)
     {
         console.log("setPosition");
@@ -81,23 +81,23 @@ namespace PageDesigner.ContextMenu
 
         let html = `
             <div id="positionMenu" style="display: block; position: absolute; left: ${posX}; top: ${posY}; ">
-                <label for="txtTop" class="lbl">Top:</label>
+                <label id="lblTop" for="txtTop" class="lbl">Top:</label>
                 <input id="txtTop" type="text" value="${tTop}" class="pos" />
                 <span>cm</span>
                 <br />
-                <label for="txtLeft" class="lbl">Left:</label>
+                <label id="lblLeft" for="txtLeft" class="lbl">Left:</label>
                 <input id="txtLeft" type="text" value="${tLeft}" class="pos" />
                 <span>cm</span>
                 <br />
-                <label for="txtWidth" class="lbl">Width:</label>
+                <label id="lblWidth" for="txtWidth" class="lbl">Width:</label>
                 <input id="txtWidth" type="text" value="${tWidth}" class="pos" />
                 <span>cm</span>
                 <br />
-                <label for="txtHeight" class="lbl">Height:</label>
+                <label id="lblHeight" for="txtHeight" class="lbl">Height:</label>
                 <input id="txtHeight" type="text" value="${tHeight}" class="pos" />
                 <span>cm</span>
                 <br />
-                <input type="button" onclick="PageDesigner.ContextMenu.applyPosition(this);" value="Apply" />
+                <input id="btnApply2" type="button" onclick="PageDesigner.ContextMenu.applyPosition(this);" value="Apply" />
             </div>
 `;
 
@@ -107,7 +107,8 @@ namespace PageDesigner.ContextMenu
 
         let page = document.getElementById("page");
         page.insertAdjacentHTML("beforeend", html);
-
+        PageDesigner.UI.translateAll();
+        
         menu.style.display = "none";
         menu.removeAttribute("data-elementId");
         menu.removeAttribute("data-open-x");

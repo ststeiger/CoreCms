@@ -459,7 +459,10 @@
 
     <div style="z-index: 99999; display: block; position:relative;">
 
-        <div id="measure" title="Select Paper Format" class="disable-select" style="position: absolute; left: 0cm; top: 0cm; cursor: pointer; z-index: 99999999;
+        <!--
+        Select paper format
+        -->
+        <div id="measure" title="Papierformat auswählen" class="disable-select" style="position: absolute; left: 0cm; top: 0cm; cursor: pointer; z-index: 99999999;
             background-color: #eaeaeaff; width: 1cm; height: 1cm; #border: 1px solid white;
         text-align: center; line-height: 1cm; font-size: 4.25mm;"></div>
 
@@ -549,24 +552,24 @@
 
         <div id="paperMenu" style="display: none; ">
 
-            <h1>Select legend to load</h1>
+            <h1 id="lblSelectLegendToLoad">Select legend to load</h1>
             <!--
             <h5>Select legend to load</h5>
-                -->
+            -->
             <br />
             <br />
-
-            <label class="lblLeft">Paper format</label>
+            
+            <label id="lblPaperFormat" for="selPaperFormat" class="lblLeft">Paper format</label>
             <select id="selPaperFormat"></select>
             <br />
 
 
-            <label class="lblLeft">Layerset</label>
+            <label id="lblLayerset" for="selDarstellung" class="lblLeft">Layerset</label>
             <select id="selDarstellung"></select>
             <br />
 
 
-            <label class="lblLeft">Category</label>
+            <label id="lblCategory" for="selCathegory" class="lblLeft">Category</label>
             <select id="selCathegory" onchange="PageDesigner.UI.toggleCustomCategory(this);"></select>
             <br /><br />
 
@@ -591,7 +594,7 @@
                 -->
 
                 <div id="customCategory_EN">
-                    <label class="lblLeft">New Category</label>
+                    <label id="lblNewCategory" class="lblLeft">New Category</label>
                     <input id="txtNewCategory" type="text" value="" placeholder="e.g. ''Drawing Only''" />
                 </div>
 
@@ -601,7 +604,7 @@
             <br />
 
             <div style="padding: 0.1cm; text-align: right; position: absolute; bottom: 3mm; left: 3mm; right: 3mm;">
-                <input type="button" value="Apply" onclick="PageDesigner.UI.mainMenuApply(this);" />
+                <input id="btnApply" type="button" value="Apply" onclick="PageDesigner.UI.mainMenuApply(this);" />
             </div>
             <!--
             <a class="btn" href="www.google.com">test</a>
@@ -761,28 +764,27 @@
 
         <div id="xaxis2" style="display:none; position: absolute; top: 5cm; left: 0cm; width: 1.5cm; height: 0.5mm; background-color:lightblue; z-index: 99999999;"></div>
         <div id="yaxis2" style="display:none; position: absolute; top: 0cm; left: 5cm; width: 0.5mm; height: 1.5cm; background-color:lightblue; z-index: 99999999;"></div>
-
-
+        
         <div id="contextmenu" style="position:absolute; display: block; transform-origin: 0 0; left: 10cm; top: 5cm;
                 #background-color: #fffdf9; border: none;
                  ">
             <ul class="contextmenu-items" onmouseleave="PageDesigner.ContextMenu.closeContextMenu(this, event);">
-                <li onclick="PageDesigner.ContextMenu.deleteElement(this, event);"><span>L&ouml;schen</span></li>
+                <li id="lblDelete" onclick="PageDesigner.ContextMenu.deleteElement(this, event);"><span>L&ouml;schen</span></li>
 
-                <li class="context-menu-icon-expand expando" style="position: relative;">
-                    <span>Align</span><ul style="position: absolute; top: 0px; display: none; left: 100%;">
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 1, 1);">Top-Left</li>
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 1, 2);">Top-Center</li>
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 1, 3);">Top-Right</li>
+                <li id="mnuAlign" class="context-menu-icon-expand expando" style="position: relative;">
+                    <span id="lblAlign">Align</span><ul style="position: absolute; top: 0px; display: none; left: 100%;">
+                        <li id="lblAlign_top_left" onclick="PageDesigner.ContextMenu.alignImage(this, event, 1, 1);">Top-Left</li>
+                        <li id="lblAlign_top_center" onclick="PageDesigner.ContextMenu.alignImage(this, event, 1, 2);">Top-Center</li>
+                        <li id="lblAlign_top_right" onclick="PageDesigner.ContextMenu.alignImage(this, event, 1, 3);">Top-Right</li>
 
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 2, 1);">Middle-Left</li>
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 2, 2);">Middle-Center</li>
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 2, 3);">Middle-Right</li>
+                        <li id="lblAlign_middle_left" onclick="PageDesigner.ContextMenu.alignImage(this, event, 2, 1);">Middle-Left</li>
+                        <li id="lblAlign_middle_center" onclick="PageDesigner.ContextMenu.alignImage(this, event, 2, 2);">Middle-Center</li>
+                        <li id="lblAlign_middle_right" onclick="PageDesigner.ContextMenu.alignImage(this, event, 2, 3);">Middle-Right</li>
 
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 1);">Bottom-Left</li>
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 2);">Bottom-Center</li>
-                        <li onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 3);">Bottom-Right</li>
-
+                        <li id="lblAlign_bottom_left" onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 1);">Bottom-Left</li>
+                        <li id="lblAlign_bottom_center" onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 2);">Bottom-Center</li>
+                        <li id="lblAlign_bottom_right" onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 3);">Bottom-Right</li>
+                        
                         <!--
                         <li class="context-menu-icon-expand expando" style="position: relative;">P2.5
                             <ul style="position: absolute; display: none; top: 0px; left: 100%;">
@@ -795,26 +797,28 @@
                         -->
                     </ul>
                 </li>
-
-
+                
+                
                 <!-- in den Hintergrund -->
-                <li onclick="PageDesigner.ContextMenu.alterZIndex(this, event, -1/0);"><span>Send to Back</span></li>
+                <li id="lblSendToBack" onclick="PageDesigner.ContextMenu.alterZIndex(this, event, -1/0);"><span>Send to Back</span></li>
                 <!-- in den Vordergrund -->
-                <li onclick="PageDesigner.ContextMenu.alterZIndex(this, event, 1/0);"><span>Bring to Front</span></li>
+                <li id="lblBringToFront" onclick="PageDesigner.ContextMenu.alterZIndex(this, event, 1/0);"><span>Bring to Front</span></li>
                 <!-- eine Ebene nach hinten -->
-                <li onclick="PageDesigner.ContextMenu.alterZIndex(this, event, -1);"><span>Send Backward</span></li>
+                <li id="lblSendBackward" onclick="PageDesigner.ContextMenu.alterZIndex(this, event, -1);"><span>Send Backward</span></li>
                 <!-- eine Ebene nach vorne -->
-                <li onclick="PageDesigner.ContextMenu.alterZIndex(this, event, +1);"><span>Bring Forward</span></li>
+                <li id="lblSendForward" onclick="PageDesigner.ContextMenu.alterZIndex(this, event, +1);"><span>Bring Forward</span></li>
                 <!-- Daten bearbeiten -->
-                <li onclick="PageDesigner.ContextMenu.edit(this, event);"><span>Edit Data</span></li>
+                <li id="lblEditData" onclick="PageDesigner.ContextMenu.edit(this, event);"><span>Edit Data</span></li>
                 <!-- -->
-                <li onclick="PageDesigner.ContextMenu.killJudy(this, event);"><span>End Edit</span></li>
-                <li onclick="PageDesigner.ContextMenu.setPosition(this, event);"><span>Set Position</span></li>
+                <li id="lblEndEdit" onclick="PageDesigner.ContextMenu.killJudy(this, event);"><span>End Edit</span></li>
+                <li id="lblSetPosition" onclick="PageDesigner.ContextMenu.setPosition(this, event);"><span>Set Position</span></li>
                 <!-- Cut -->
-                <li class="context-menu-icon-edit"><span>Cut</span></li>
+                <!--
+                <li id="lblCut" class="context-menu-icon-edit"><span>Cut</span></li>
+                -->
                 <!--<li style="height: 0mm;"></li>-->
             </ul>
-
+            
         </div>
 
         <style>
@@ -936,32 +940,31 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
             <div id="components">
 
                 <div style="font-weight: bold; background-color: black; color: #ffa500; padding: 0.25cm; ">
-                    Components
+                    <span id="lblComponents">Components</span>
                 </div>
-
-
+                
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="border">
-                    Border
+                    <span id="lblBorder">Border</span>
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="logo">
-                    Logo
+                    <span id="lblLogo">Logo</span>
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="title">
-                    Title
+                    <span id="lblTitle">Title</span>
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="date">
-                    Date
+                    <span id="lblDate">Date</span>
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="drawing">
-                    Drawing
+                    <span id="lblDrawing" >Drawing</span>
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="legend">
-                    Legend
+                    <span id="lblLegend" >Legend</span>
                 </div>
             </div>
 

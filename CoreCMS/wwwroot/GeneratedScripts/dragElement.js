@@ -24,6 +24,185 @@ var PageDesigner;
             }));
         }
         UI.getMinZindex = getMinZindex;
+        function translateAll() {
+            var de = {
+                lblComponents: "Komponenten",
+                lblBorder: "Rahmen",
+                lblLogo: "Logo",
+                lblTitle: "Titel",
+                lblDate: "Datum",
+                lblLegend: "Legende",
+                lblDrawing: "Zeichnung",
+                lblPaperFormat: "Papierformat",
+                lblLayerset: "Darstellung",
+                lblCategory: "Kategorie",
+                lblSelectLegendToLoad: "Wählen Sie die zu ladende Legende",
+                "lblNewCategory": "Neue Kategorie",
+                "btnApply": "Anwenden",
+                "btnApply2": "Anwenden",
+                "lblDelete": "Löschen",
+                "lblAlign": "Ausrichten",
+                "lblAlign_top_left": "Oben-Links",
+                "lblAlign_top_center": "Oben-Mitte",
+                "lblAlign_top_right": "Oben-Rechts",
+                "lblAlign_middle_left": "Mitte-Links",
+                "lblAlign_middle_center": "Mitte-Center",
+                "lblAlign_middle_right": "Mitte-Rechts",
+                "lblAlign_bottom_left": "Unten-Links",
+                "lblAlign_bottom_center": "Unten-Mitte",
+                "lblAlign_bottom_right": "Unten-Rechts",
+                "lblSendToBack": "in den Hintergrund",
+                "lblBringToFront": "in den Vordergrund",
+                "lblSendBackward": "eine Ebene nach hinten",
+                "lblSendForward": "eine Ebene nach vorn",
+                "lblEditData": "Bearbeiten",
+                "lblEndEdit": "Bearbeiten beenden",
+                "lblSetPosition": "Position/Grösse setzen",
+                "lblCut": "Ausschneiden",
+                "lblTop": "Oben",
+                "lblLeft": "Links",
+                "lblWidth": "Breite",
+                "lblHeight": "Höhe"
+            };
+            var fr = {
+                lblComponents: "Composants",
+                lblBorder: "Bordure",
+                lblLogo: "Logo",
+                lblTitle: "Titre",
+                lblDate: "Date",
+                lblLegend: "Légende",
+                lblDrawing: "Dessin",
+                lblPaperFormat: "Format de papier",
+                lblLayerset: "Représentation",
+                lblCategory: "Catégorie",
+                lblSelectLegendToLoad: "Sélectionnez la légende à charger",
+                "lblNewCategory": "Neue Kategorie",
+                "btnApply": "Appliquer",
+                "btnApply2": "Appliquer",
+                "lblDelete": "Delete",
+                "lblAlign": "Align",
+                "lblAlign_top_left": "Top-Left",
+                "lblAlign_top_center": "Top-Center",
+                "lblAlign_top_right": "Top-Right",
+                "lblAlign_middle_left": "Middle-Left",
+                "lblAlign_middle_center": "Middle-Center",
+                "lblAlign_middle_right": "Middle-Right",
+                "lblAlign_bottom_left": "Bottom-Left",
+                "lblAlign_bottom_center": "Bottom-Center",
+                "lblAlign_bottom_right": "Bottom-Right",
+                "lblSendToBack": "Send to Back",
+                "lblBringToFront": "Bring to Front",
+                "lblSendBackward": "Send Backward",
+                "lblSendForward": "Send Forward",
+                "lblEditData": "Edit Data",
+                "lblEndEdit": "End Edit",
+                "lblSetPosition": "Set Position",
+                "lblCut": "Cut",
+                "lblTop": "Oben",
+                "lblLeft": "Links",
+                "lblWidth": "Breite",
+                "lblHeight": "Höhe"
+            };
+            var it = {
+                lblComponents: "Componenti",
+                lblBorder: "Bordo",
+                lblLogo: "Logo",
+                lblTitle: "Titolo",
+                lblDate: "Data",
+                lblLegend: "Leggenda",
+                lblDrawing: "Disegno",
+                lblPaperFormat: "Formato cartaceo",
+                lblLayerset: "Rappresentazione",
+                lblCategory: "Categoria",
+                lblSelectLegendToLoad: "Seleziona la legenda da caricare",
+                "lblNewCategory": "Neue Kategorie",
+                "btnApply": "Applicare",
+                "btnApply2": "Applicare",
+                "lblDelete": "Delete",
+                "lblAlign": "Align",
+                "lblAlign_top_left": "Top-Left",
+                "lblAlign_top_center": "Top-Center",
+                "lblAlign_top_right": "Top-Right",
+                "lblAlign_middle_left": "Middle-Left",
+                "lblAlign_middle_center": "Middle-Center",
+                "lblAlign_middle_right": "Middle-Right",
+                "lblAlign_bottom_left": "Bottom-Left",
+                "lblAlign_bottom_center": "Bottom-Center",
+                "lblAlign_bottom_right": "Bottom-Right",
+                "lblSendToBack": "Send to Back",
+                "lblBringToFront": "Bring to Front",
+                "lblSendBackward": "Send Backward",
+                "lblSendForward": "Send Forward",
+                "lblEditData": "Edit Data",
+                "lblEndEdit": "End Edit",
+                "lblSetPosition": "Set Position",
+                "lblCut": "Cut",
+                "lblTop": "Oben",
+                "lblLeft": "Links",
+                "lblWidth": "Breite",
+                "lblHeight": "Höhe"
+            };
+            var en = {
+                lblComponents: "Components",
+                lblBorder: "Border",
+                lblLogo: "Logo",
+                lblTitle: "Title",
+                lblDate: "Date",
+                lblLegend: "Legend",
+                lblDrawing: "Drawing",
+                lblPaperFormat: "Paper format",
+                lblLayerset: "Representation",
+                lblCategory: "Category",
+                lblSelectLegendToLoad: "Select legend to load",
+                "lblNewCategory": "New Category",
+                "btnApply": "Apply",
+                "btnApply2": "Apply",
+                "lblDelete": "Delete",
+                "lblAlign": "Align",
+                "lblAlign_top_left": "Top-Left",
+                "lblAlign_top_center": "Top-Center",
+                "lblAlign_top_right": "Top-Right",
+                "lblAlign_middle_left": "Middle-Left",
+                "lblAlign_middle_center": "Middle-Center",
+                "lblAlign_middle_right": "Middle-Right",
+                "lblAlign_bottom_left": "Bottom-Left",
+                "lblAlign_bottom_center": "Bottom-Center",
+                "lblAlign_bottom_right": "Bottom-Right",
+                "lblSendToBack": "Send to Back",
+                "lblBringToFront": "Bring to Front",
+                "lblSendBackward": "Send Backward",
+                "lblSendForward": "Send Forward",
+                "lblEditData": "Edit Data",
+                "lblEndEdit": "End Edit",
+                "lblSetPosition": "Set Position",
+                "lblCut": "Cut",
+                "lblTop": "Top",
+                "lblLeft": "Left",
+                "lblWidth": "Width",
+                "lblHeight": "Height"
+            };
+            var t = { "de": de, "fr": fr, "it": it, "en": en };
+            var sprache = "de";
+            for (var k in t[sprache]) {
+                if (t[sprache].hasOwnProperty(k)) {
+                    var value = t[sprache][k];
+                    var ele = document.getElementById(k);
+                    if (ele == null)
+                        continue;
+                    if (ele.tagName.toUpperCase() === "INPUT") {
+                        ele.value = value;
+                    }
+                    else {
+                        while (ele.firstChild) {
+                            ele.removeChild(ele.firstChild);
+                        }
+                        var tn = document.createTextNode(value);
+                        ele.appendChild(tn);
+                    }
+                }
+            }
+        }
+        UI.translateAll = translateAll;
         function dragElement(element) {
             if (element == null)
                 return;
@@ -41,10 +220,16 @@ var PageDesigner;
                 var yaxis1 = document.getElementById("yaxis1");
                 var xaxis2 = document.getElementById("xaxis2");
                 var yaxis2 = document.getElementById("yaxis2");
+                var x = window.scrollX || window.pageXOffset;
+                var y = window.scrollY || window.pageYOffset;
                 xaxis1.style.top = (top - -1).toString() + "cm";
+                xaxis1.style.left = x + "px";
                 yaxis1.style.left = (left - -1).toString() + "cm";
+                yaxis1.style.top = y + "px";
                 xaxis2.style.top = (top - -1 + h).toString() + "cm";
+                xaxis2.style.left = x + "px";
                 yaxis2.style.left = (left - -1 + w).toString() + "cm";
+                yaxis2.style.top = y + "px";
             }
             var setPos = function (eX, eY) {
                 var ele = page.querySelector(".active"), width = ele.offsetWidth, height = ele.offsetHeight, dragX = ele.getAttribute("data-dragoffset-x"), dragY = ele.getAttribute("data-dragoffset-y"), pos = { x: eX - dragX, y: eY - dragY }, ow = page.offsetWidth, oh = page.offsetHeight;
@@ -122,6 +307,22 @@ var PageDesigner;
                 e.preventDefault ? e.preventDefault() : e.returnValue = false;
                 var ctx = document.getElementById("contextmenu"), ctxParent = getOffset(ele.offsetParent), pos = { x: fX(e) - ctxParent.x, y: fY(e) - ctxParent.y }, zindex = getMaxZindex() + 1;
                 PageDesigner.ContextMenu.hasDoneSomething = false;
+                var ctele = (ele.innerHTML || "").toLowerCase();
+                if (ctele.indexOf("jodit") != -1) {
+                    document.getElementById("mnuAlign").style.display = "none";
+                    document.getElementById("lblEditData").style.display = "none";
+                    document.getElementById("lblEndEdit").style.display = "block";
+                }
+                else if (ctele.indexOf("svg") != -1 || ctele.indexOf("iframe") != -1) {
+                    document.getElementById("mnuAlign").style.display = "block";
+                    document.getElementById("lblEditData").style.display = "none";
+                    document.getElementById("lblEndEdit").style.display = "none";
+                }
+                else {
+                    document.getElementById("mnuAlign").style.display = "none";
+                    document.getElementById("lblEditData").style.display = "block";
+                    document.getElementById("lblEndEdit").style.display = "none";
+                }
                 var sx = (window.scrollX | window.pageXOffset);
                 var sy = (window.scrollY | window.pageYOffset);
                 var px = fX(e);
@@ -380,7 +581,7 @@ var PageDesigner;
                     .success(function (result) {
                     function saveSuccess() {
                         note.innerHTML = "";
-                        note.appendChild(document.createTextNode("Saved"));
+                        note.appendChild(document.createTextNode("Gespeichert"));
                         note.style["background-color"] = "limegreen";
                         window.setTimeout(function () {
                             note.style.opacity = "0";
@@ -399,7 +600,7 @@ var PageDesigner;
                     console.log(err);
                     function saveFailure() {
                         note.innerHTML = "";
-                        note.appendChild(document.createTextNode("Fail"));
+                        note.appendChild(document.createTextNode("Fehler"));
                         note.style["background-color"] = "red";
                         window.setTimeout(function () {
                             note.style.opacity = "0";
@@ -468,7 +669,7 @@ var PageDesigner;
             pm.style.left = "50vw";
             pm.style.transform = "translate(-50%, -50%)";
             pm.style["box-shadow"] = "0px 0px 3mm rgba(111, 111,111, 0.85)";
-            pm.style.width = "10cm";
+            pm.style.width = "13cm";
             pm.style.height = "30vh";
             pm.style["background-color"] = "rgba(240, 240, 240, 0.94)";
             pm.style["border-radius"] = "3mm";
@@ -482,7 +683,7 @@ var PageDesigner;
                 pm.style.display = "block";
             }).send();
             new Http.PostJSON("../../ajax/anyList.ashx?sql=PL_DropDown_Darstellung_List.sql", null, function (data) {
-                data.splice(data, 0, { v: "00000000-0000-0000-0000-000000000000", t: "All", s: 1 });
+                data.splice(data, 0, { v: "00000000-0000-0000-0000-000000000000", t: "Alle", s: 1 });
                 HtmlTools.popDrop(eleDAR, data);
                 pm.style.display = "block";
             }).send();
@@ -511,6 +712,7 @@ var PageDesigner;
             }
             elePS.onchange = reloadCategory;
             eleDAR.onchange = reloadCategory;
+            PageDesigner.UI.translateAll();
         }
         UI.mainMenu = mainMenu;
         function Init() {
