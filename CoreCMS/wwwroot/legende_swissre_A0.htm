@@ -558,7 +558,7 @@
             -->
             <br />
             <br />
-            
+
             <label id="lblPaperFormat" for="selPaperFormat" class="lblLeft">Paper format</label>
             <select id="selPaperFormat"></select>
             <br />
@@ -764,7 +764,7 @@
 
         <div id="xaxis2" style="display:none; position: absolute; top: 5cm; left: 0cm; width: 1.5cm; height: 0.5mm; background-color:lightblue; z-index: 99999999;"></div>
         <div id="yaxis2" style="display:none; position: absolute; top: 0cm; left: 5cm; width: 0.5mm; height: 1.5cm; background-color:lightblue; z-index: 99999999;"></div>
-        
+
         <div id="contextmenu" style="position:absolute; display: block; transform-origin: 0 0; left: 10cm; top: 5cm;
                 #background-color: #fffdf9; border: none;
                  ">
@@ -784,7 +784,7 @@
                         <li id="lblAlign_bottom_left" onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 1);">Bottom-Left</li>
                         <li id="lblAlign_bottom_center" onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 2);">Bottom-Center</li>
                         <li id="lblAlign_bottom_right" onclick="PageDesigner.ContextMenu.alignImage(this, event, 3, 3);">Bottom-Right</li>
-                        
+
                         <!--
                         <li class="context-menu-icon-expand expando" style="position: relative;">P2.5
                             <ul style="position: absolute; display: none; top: 0px; left: 100%;">
@@ -797,8 +797,8 @@
                         -->
                     </ul>
                 </li>
-                
-                
+
+
                 <!-- in den Hintergrund -->
                 <li id="lblSendToBack" onclick="PageDesigner.ContextMenu.alterZIndex(this, event, -1/0);"><span>Send to Back</span></li>
                 <!-- in den Vordergrund -->
@@ -818,7 +818,7 @@
                 -->
                 <!--<li style="height: 0mm;"></li>-->
             </ul>
-            
+
         </div>
 
         <style>
@@ -864,6 +864,12 @@
                     width: 0.5cm;
                     font-size: 12px;
                     font-family: Arial;
+                }
+
+
+                #positionMenu input {
+                    border: none;
+                    margin-bottom: 3px;
                 }
         </style>
 
@@ -942,7 +948,7 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
                 <div style="font-weight: bold; background-color: black; color: #ffa500; padding: 0.25cm; ">
                     <span id="lblComponents">Components</span>
                 </div>
-                
+
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="border">
                     <span id="lblBorder">Border</span>
                 </div>
@@ -960,11 +966,11 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="drawing">
-                    <span id="lblDrawing" >Drawing</span>
+                    <span id="lblDrawing">Drawing</span>
                 </div>
 
                 <div class="configElement" onclick="PageDesigner.UI.addElement(this, event);" data-render-control="legend">
-                    <span id="lblLegend" >Legend</span>
+                    <span id="lblLegend">Legend</span>
                 </div>
             </div>
 
@@ -1066,6 +1072,7 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
         var baseStyle = ctxMenuElement.style.cssText;
 
 
+
         window.onresize = function (e)
         {
             var event = window.event || e;
@@ -1076,6 +1083,14 @@ left: 22cm; top: 1cm; width: 10cm; height: 100%;  ">
                 + (1.0 / window.devicePixelRatio) // x
                 + ", " + (1.0 / window.devicePixelRatio) // y
                 + "); ");
+
+            var pm = document.getElementById("positionMenu");
+            if (pm)
+                pm.style.transform = "scale(" + (1.0 / window.devicePixelRatio) // x
+                    + ", " + (1.0 / window.devicePixelRatio) // y
+                    + "); ";
+
+
 
             // console.log(ctxMenuElement.style.cssText);
             // transform: scale(x, y)

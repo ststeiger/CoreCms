@@ -229,7 +229,7 @@ var PageDesigner;
                 "PL_AspectRatio": null,
                 "PL_AlignH": null,
                 "PL_AlignV": null,
-                "PL_Text": isSwissRe ? "{@LC_Lang_en} - {@PR_Name} - {@FloorDisplayString} - {@Darstellung}" : "{@SO_Nr} {@SO_Bezeichnung} - {@GB_Nr} {@GB_Bezeichnung} - {@GS_Display_Kurz} - {@Darstellung}",
+                "PL_Text": isSwissRe ? "{@LC_Lang_en} - {@PR_Name} - {@FloorDisplayString} - {@Darstellung}" : "{@Heute} - {@SO_Nr} {@SO_Bezeichnung} - {@GB_Nr} {@GB_Bezeichnung} - {@PLZ} - {@Ort} - {@GS_Display_Kurz} - {@GS_Display_Lang} - {@Darstellung} - {@Vorname} - {@Nachname} - {@Benutzer}",
                 "PL_Outline": false,
                 "PL_Style": null,
                 "PL_DataBind": isSwissRe ? "tfu_VWS_PDF_LegendeTitelDaten_SwissRe" : "tfu_VWS_PDF_LegendeTitelDaten",

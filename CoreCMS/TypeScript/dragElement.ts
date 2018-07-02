@@ -52,8 +52,8 @@ namespace PageDesigner.UI
             )
         );
     } // End Function getMinZindex 
-    
-    
+
+
     export function translateAll()
     {
         let de = {
@@ -65,7 +65,7 @@ namespace PageDesigner.UI
             lblLegend: "Legende",
             lblDrawing: "Zeichnung",
             lblPaperFormat: "Papierformat",
-            lblLayerset:"Darstellung",
+            lblLayerset: "Darstellung",
             lblCategory: "Kategorie",
             lblSelectLegendToLoad: "Wählen Sie die zu ladende Legende",
             "lblNewCategory": "Neue Kategorie",
@@ -73,27 +73,27 @@ namespace PageDesigner.UI
             "btnApply2": "Anwenden",
             "lblDelete": "Löschen",
             "lblAlign": "Ausrichten",
-            "lblAlign_top_left":"Oben-Links",
-            "lblAlign_top_center":"Oben-Mitte",
-            "lblAlign_top_right":"Oben-Rechts",
-            "lblAlign_middle_left":"Mitte-Links",
-            "lblAlign_middle_center":"Mitte-Center",
-            "lblAlign_middle_right":"Mitte-Rechts",
-            "lblAlign_bottom_left":"Unten-Links",
-            "lblAlign_bottom_center":"Unten-Mitte",
-            "lblAlign_bottom_right":"Unten-Rechts",
-            "lblSendToBack":"in den Hintergrund",
+            "lblAlign_top_left": "Oben-Links",
+            "lblAlign_top_center": "Oben-Mitte",
+            "lblAlign_top_right": "Oben-Rechts",
+            "lblAlign_middle_left": "Mitte-Links",
+            "lblAlign_middle_center": "Mitte-Center",
+            "lblAlign_middle_right": "Mitte-Rechts",
+            "lblAlign_bottom_left": "Unten-Links",
+            "lblAlign_bottom_center": "Unten-Mitte",
+            "lblAlign_bottom_right": "Unten-Rechts",
+            "lblSendToBack": "in den Hintergrund",
             "lblBringToFront": "in den Vordergrund",
-            "lblSendBackward":"eine Ebene nach hinten",
+            "lblSendBackward": "eine Ebene nach hinten",
             "lblSendForward": "eine Ebene nach vorn",
             "lblEditData": "Bearbeiten",
-            "lblEndEdit":"Bearbeiten beenden",
-            "lblSetPosition":"Position/Grösse setzen",
+            "lblEndEdit": "Bearbeiten beenden",
+            "lblSetPosition": "Position/Grösse setzen",
             "lblCut": "Ausschneiden"
-            ,"lblTop": "Oben"
-            ,"lblLeft": "Links"
-            ,"lblWidth": "Breite"
-            ,"lblHeight": "Höhe"
+            , "lblTop": "Oben"
+            , "lblLeft": "Links"
+            , "lblWidth": "Breite"
+            , "lblHeight": "Höhe"
         };
         let fr = {
             lblComponents: "Composants",
@@ -104,36 +104,36 @@ namespace PageDesigner.UI
             lblLegend: "Légende",
             lblDrawing: "Dessin",
             lblPaperFormat: "Format de papier",
-            lblLayerset:"Représentation",
-            lblCategory:"Catégorie",
+            lblLayerset: "Représentation",
+            lblCategory: "Catégorie",
             lblSelectLegendToLoad: "Sélectionnez la légende à charger",
             "lblNewCategory": "Neue Kategorie",
             "btnApply": "Appliquer",
             "btnApply2": "Appliquer",
             "lblDelete": "Delete",
             "lblAlign": "Align",
-            "lblAlign_top_left":"Top-Left",
-            "lblAlign_top_center":"Top-Center",
-            "lblAlign_top_right":"Top-Right",
-            "lblAlign_middle_left":"Middle-Left",
-            "lblAlign_middle_center":"Middle-Center",
-            "lblAlign_middle_right":"Middle-Right",
-            "lblAlign_bottom_left":"Bottom-Left",
-            "lblAlign_bottom_center":"Bottom-Center",
-            "lblAlign_bottom_right":"Bottom-Right",
-            "lblSendToBack":"Send to Back",
+            "lblAlign_top_left": "Top-Left",
+            "lblAlign_top_center": "Top-Center",
+            "lblAlign_top_right": "Top-Right",
+            "lblAlign_middle_left": "Middle-Left",
+            "lblAlign_middle_center": "Middle-Center",
+            "lblAlign_middle_right": "Middle-Right",
+            "lblAlign_bottom_left": "Bottom-Left",
+            "lblAlign_bottom_center": "Bottom-Center",
+            "lblAlign_bottom_right": "Bottom-Right",
+            "lblSendToBack": "Send to Back",
             "lblBringToFront": "Bring to Front",
-            "lblSendBackward":"Send Backward",
+            "lblSendBackward": "Send Backward",
             "lblSendForward": "Send Forward",
             "lblEditData": "Edit Data",
-            "lblEndEdit":"End Edit",
-            "lblSetPosition":"Set Position",
+            "lblEndEdit": "End Edit",
+            "lblSetPosition": "Set Position",
             "lblCut": "Cut"
 
-            ,"lblTop": "Oben"
-            ,"lblLeft": "Links"
-            ,"lblWidth": "Breite"
-            ,"lblHeight": "Höhe"
+            , "lblTop": "Oben"
+            , "lblLeft": "Links"
+            , "lblWidth": "Breite"
+            , "lblHeight": "Höhe"
         };
         let it = {
             lblComponents: "Componenti",
@@ -144,36 +144,36 @@ namespace PageDesigner.UI
             lblLegend: "Leggenda",
             lblDrawing: "Disegno",
             lblPaperFormat: "Formato cartaceo",
-            lblLayerset:"Rappresentazione",
-            lblCategory:"Categoria",
+            lblLayerset: "Rappresentazione",
+            lblCategory: "Categoria",
             lblSelectLegendToLoad: "Seleziona la legenda da caricare",
             "lblNewCategory": "Neue Kategorie",
             "btnApply": "Applicare",
             "btnApply2": "Applicare",
             "lblDelete": "Delete",
             "lblAlign": "Align",
-            "lblAlign_top_left":"Top-Left",
-            "lblAlign_top_center":"Top-Center",
-            "lblAlign_top_right":"Top-Right",
-            "lblAlign_middle_left":"Middle-Left",
-            "lblAlign_middle_center":"Middle-Center",
-            "lblAlign_middle_right":"Middle-Right",
-            "lblAlign_bottom_left":"Bottom-Left",
-            "lblAlign_bottom_center":"Bottom-Center",
-            "lblAlign_bottom_right":"Bottom-Right",
-            "lblSendToBack":"Send to Back",
+            "lblAlign_top_left": "Top-Left",
+            "lblAlign_top_center": "Top-Center",
+            "lblAlign_top_right": "Top-Right",
+            "lblAlign_middle_left": "Middle-Left",
+            "lblAlign_middle_center": "Middle-Center",
+            "lblAlign_middle_right": "Middle-Right",
+            "lblAlign_bottom_left": "Bottom-Left",
+            "lblAlign_bottom_center": "Bottom-Center",
+            "lblAlign_bottom_right": "Bottom-Right",
+            "lblSendToBack": "Send to Back",
             "lblBringToFront": "Bring to Front",
-            "lblSendBackward":"Send Backward",
+            "lblSendBackward": "Send Backward",
             "lblSendForward": "Send Forward",
             "lblEditData": "Edit Data",
-            "lblEndEdit":"End Edit",
-            "lblSetPosition":"Set Position",
+            "lblEndEdit": "End Edit",
+            "lblSetPosition": "Set Position",
             "lblCut": "Cut"
 
-            ,"lblTop": "Oben"
-            ,"lblLeft": "Links"
-            ,"lblWidth": "Breite"
-            ,"lblHeight": "Höhe"
+            , "lblTop": "Oben"
+            , "lblLeft": "Links"
+            , "lblWidth": "Breite"
+            , "lblHeight": "Höhe"
         };
         let en = {
             lblComponents: "Components",
@@ -186,36 +186,36 @@ namespace PageDesigner.UI
             lblPaperFormat: "Paper format",
             lblLayerset: "Representation",
             lblCategory: "Category",
-            lblSelectLegendToLoad:"Select legend to load",
+            lblSelectLegendToLoad: "Select legend to load",
             "lblNewCategory": "New Category",
             "btnApply": "Apply",
             "btnApply2": "Apply",
             "lblDelete": "Delete",
             "lblAlign": "Align",
-            "lblAlign_top_left":"Top-Left",
-            "lblAlign_top_center":"Top-Center",
-            "lblAlign_top_right":"Top-Right",
-            "lblAlign_middle_left":"Middle-Left",
-            "lblAlign_middle_center":"Middle-Center",
-            "lblAlign_middle_right":"Middle-Right",
-            "lblAlign_bottom_left":"Bottom-Left",
-            "lblAlign_bottom_center":"Bottom-Center",
-            "lblAlign_bottom_right":"Bottom-Right",
-            "lblSendToBack":"Send to Back",
+            "lblAlign_top_left": "Top-Left",
+            "lblAlign_top_center": "Top-Center",
+            "lblAlign_top_right": "Top-Right",
+            "lblAlign_middle_left": "Middle-Left",
+            "lblAlign_middle_center": "Middle-Center",
+            "lblAlign_middle_right": "Middle-Right",
+            "lblAlign_bottom_left": "Bottom-Left",
+            "lblAlign_bottom_center": "Bottom-Center",
+            "lblAlign_bottom_right": "Bottom-Right",
+            "lblSendToBack": "Send to Back",
             "lblBringToFront": "Bring to Front",
-            "lblSendBackward":"Send Backward",
+            "lblSendBackward": "Send Backward",
             "lblSendForward": "Send Forward",
             "lblEditData": "Edit Data",
-            "lblEndEdit":"End Edit",
-            "lblSetPosition":"Set Position",
+            "lblEndEdit": "End Edit",
+            "lblSetPosition": "Set Position",
             "lblCut": "Cut"
-            ,"lblTop": "Top"
-            ,"lblLeft": "Left"
-            ,"lblWidth": "Width"
-            ,"lblHeight": "Height"
+            , "lblTop": "Top"
+            , "lblLeft": "Left"
+            , "lblWidth": "Width"
+            , "lblHeight": "Height"
         };
-        
-        let t = { "de" : de, "fr": fr, "it": it, "en":en};
+
+        let t = { "de": de, "fr": fr, "it": it, "en": en };
 
         let sprache = "de";
 
@@ -227,29 +227,29 @@ namespace PageDesigner.UI
                 let ele = document.getElementById(k);
                 if (ele == null)
                     continue;
-                
-                if ( ele.tagName.toUpperCase() === "INPUT")
+
+                if (ele.tagName.toUpperCase() === "INPUT")
                 {
                     ele.value = value;
                 }
                 else
                 {
-                    while(ele.firstChild)
+                    while (ele.firstChild)
                     {
                         ele.removeChild(ele.firstChild);
                     }
-                    
+
                     let tn = document.createTextNode(value);
-                    ele.appendChild(tn);    
+                    ele.appendChild(tn);
                 }
-                
-                
+
+
             }
         }
-        
+
     }
-    
-    
+
+
     function dragElement(element)
     {
         // console.log(elmnt)
@@ -290,27 +290,27 @@ namespace PageDesigner.UI
 
             let xaxis2 = document.getElementById("xaxis2");
             let yaxis2 = document.getElementById("yaxis2");
-            
+
             // console.log(left, top, w, h);
-            
+
             var x = window.scrollX || window.pageXOffset;
             var y = window.scrollY || window.pageYOffset;
-            
+
             // console.log(xaxis, yaxis, left, top);
             // Indicator on y-axis
             xaxis1.style.top = (top - -1).toString() + "cm";
             xaxis1.style.left = x + "px";
             // xaxis1.style["background-color"] = "hotpink";
-            
+
             yaxis1.style.left = (left - -1).toString() + "cm";
             yaxis1.style.top = y + "px";
             // yaxis1.style["background-color"] = "hotpink";
-            
+
             // Indicator on x-axis
             xaxis2.style.top = (top - -1 + h).toString() + "cm";
             xaxis2.style.left = x + "px";
             // xaxis2.style["background-color"] = "hotpink";
-            
+
             yaxis2.style.left = (left - -1 + w).toString() + "cm";
             yaxis2.style.top = y + "px";
             // yaxis2.style["background-color"] = "hotpink";
@@ -509,16 +509,16 @@ namespace PageDesigner.UI
             // console.log("maxz", getMaxZindex());
 
             PageDesigner.ContextMenu.hasDoneSomething = false;
-            
+
             let ctele = (ele.innerHTML || "").toLowerCase();
-            
+
             if (ctele.indexOf("jodit") != -1)
             {
                 document.getElementById("mnuAlign").style.display = "none";
                 document.getElementById("lblEditData").style.display = "none";
                 document.getElementById("lblEndEdit").style.display = "block";
             }
-            else if (ctele.indexOf("svg") != -1  || ctele.indexOf("iframe") != -1 ) 
+            else if (ctele.indexOf("svg") != -1 || ctele.indexOf("iframe") != -1) 
             {
                 document.getElementById("mnuAlign").style.display = "block";
                 document.getElementById("lblEditData").style.display = "none";
@@ -530,8 +530,8 @@ namespace PageDesigner.UI
                 document.getElementById("lblEditData").style.display = "block";
                 document.getElementById("lblEndEdit").style.display = "none";
             }
-            
-            
+
+
             let sx = (window.scrollX | window.pageXOffset);
             let sy = (window.scrollY | window.pageYOffset);
 
@@ -864,9 +864,9 @@ namespace PageDesigner.UI
 
         function saveData()
         {
-            let note = document.getElementById("saveNotifier");
-            note.style.opacity = "0";
-            note.style.display = "block";
+            // let note = document.getElementById("saveNotifier");
+            // note.style.opacity = "0";
+            // note.style.display = "block";
 
             window.setTimeout(
                 function ()
@@ -880,6 +880,8 @@ namespace PageDesigner.UI
         function saveData2()
         {
             console.log("saving data");
+
+            /*
             let note = document.getElementById("saveNotifier");
 
             note.innerHTML = "";
@@ -908,7 +910,7 @@ namespace PageDesigner.UI
             note.style["z-index"] = 99999999;
             //note.style.display = "block";
             note.style.opacity = "1";
-
+            */
 
 
             function getObjectData(ele: HTMLElement): any
@@ -986,7 +988,7 @@ namespace PageDesigner.UI
                 let span = ele.querySelector("span[contenteditable]");
                 if (span != null)
                 {
-                    console.log("span", span);
+                    // console.log("span", span);
                     //data["text"] = span.textContent || span.innerHTML;
                     data["text"] = span.innerHTML;
                 }
@@ -1020,6 +1022,9 @@ namespace PageDesigner.UI
 
                 if (objectData.format === "null" || objectData.format === "undefined")
                     objectData.format = null;
+
+                if (objectData.databind === "null" || objectData.databind === "undefined")
+                    objectData.databind = null;
 
                 let mes = document.getElementById("measure");
 
@@ -1055,14 +1060,14 @@ namespace PageDesigner.UI
                 );
 
             } // Next i
-            
+
             console.log("saveData", JSON.stringify(saveData, null, 2));
-            
+
             new Http.Json("../../ajax/anyInsert.ashx?sql=PL_T_VWS_PdfLegende_Insert.sql", JSON.stringify(saveData))
                 .success(
                 function (result)
                 {
-
+                    /*
                     function saveSuccess()
                     {
                         note.innerHTML = "";
@@ -1073,7 +1078,7 @@ namespace PageDesigner.UI
                             function ()
                             {
                                 note.style.opacity = "0";
-
+                                
                                 window.setTimeout(
                                     function ()
                                     {
@@ -1084,14 +1089,15 @@ namespace PageDesigner.UI
                                         note.style.left = "70vw";
                                     }, 1000
                                 );
-
+                                
                             }, 500
                         );
 
                     } // End Function saveSuccess 
+                    */
 
                     console.log("success", result);
-                    saveSuccess();
+                    // saveSuccess();
                 })
                 .failure(function (err: any)
                 {
@@ -1100,6 +1106,37 @@ namespace PageDesigner.UI
 
                     function saveFailure()
                     {
+                        console.log("save failure");
+
+                        let note = document.getElementById("saveNotifier");
+                        note.style.opacity = "0";
+                        note.style.display = "block";
+
+                        note.style.position = "fixed";
+                        note.style.top = "50%";
+                        note.style.left = "50%";
+                        note.style.transform = "translate(-50%, -50%)";
+
+                        note.style.width = "50vw";
+                        note.style.height = "25vh";
+                        note.style["line-height"] = "25vh";
+                        note.style["text-align"] = "center";
+
+
+                        note.style.color = "#F0F0F0";
+                        note.style["font-family"] = "Arial";
+                        note.style["font-size"] = "3cm";
+                        note.style["font-weight"] = "bold";
+
+                        note.style["background-color"] = "rgba(160, 160, 160, 0.6)"; // "#A0A0A0A0";
+                        note.style["border-radius"] = "3mm";
+                        note.style.padding = "0.5cm";
+                        note.style["z-index"] = 99999999;
+                        //note.style.display = "block";
+                        note.style.opacity = "1";
+
+
+
                         note.innerHTML = "";
                         note.appendChild(document.createTextNode("Fehler"));
                         note.style["background-color"] = "red";
@@ -1119,7 +1156,6 @@ namespace PageDesigner.UI
                                 );
                             }, 500
                         );
-
                     } // End Function saveFailure 
 
                     saveFailure();
@@ -1209,7 +1245,7 @@ namespace PageDesigner.UI
     {
         console.log("mainMenu");
         clearPaper();
-        
+
         PageDesigner.UI.iOsBlocker();
 
         let pm = document.getElementById("paperMenu");
@@ -1294,15 +1330,15 @@ namespace PageDesigner.UI
             };
 
             // console.log("param", parameter)
-            
-            
+
+
             new Http.PostJSON("../../ajax/anyList.ashx?sql=PL_Load_LegendCategory_List.sql"
                 , parameter
                 , function (data) 
                 {
                     // console.log("success", data); 
                     // data.splice(data, 0, { v: "custom", t: "Custom", s: 1 });
-                    data.push({ v: "custom", t: "Custom", s: 0 });
+                    data.push({ v: "custom", t: "Benutzerdefiniert", s: 0 });
                     // console.log("modified", data, typeof (data)); 
 
                     HtmlTools.popDrop(elePLK, data);

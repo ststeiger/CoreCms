@@ -11,7 +11,7 @@ namespace PageDesigner.ContextMenu
     export function applyPosition(menuPoint: HTMLElement)
     {
         console.log("ENTER applyPosition");
-        
+
         let menu = document.getElementById("positionMenu");
 
 
@@ -36,8 +36,8 @@ namespace PageDesigner.ContextMenu
         positionMenu.parentElement.removeChild(positionMenu);
         PageDesigner.UI.dispatchSave();
     }
-    
-    
+
+
     export function setPosition(menuPoint: HTMLElement, event)
     {
         console.log("setPosition");
@@ -79,8 +79,13 @@ namespace PageDesigner.ContextMenu
 
 
 
+        let transf = "transform: scale(" + (1.0 / window.devicePixelRatio) // x
+            + ", " + (1.0 / window.devicePixelRatio) // y
+            + "); ";
+
+
         let html = `
-            <div id="positionMenu" style="display: block; position: absolute; left: ${posX}; top: ${posY}; ">
+            <div id="positionMenu" style="display: block; position: absolute; left: ${posX}; top: ${posY}; ${transf}">
                 <label id="lblTop" for="txtTop" class="lbl">Top:</label>
                 <input id="txtTop" type="text" value="${tTop}" class="pos" />
                 <span>cm</span>
@@ -108,7 +113,7 @@ namespace PageDesigner.ContextMenu
         let page = document.getElementById("page");
         page.insertAdjacentHTML("beforeend", html);
         PageDesigner.UI.translateAll();
-        
+
         menu.style.display = "none";
         menu.removeAttribute("data-elementId");
         menu.removeAttribute("data-open-x");

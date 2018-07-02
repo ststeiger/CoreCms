@@ -463,35 +463,12 @@ var PageDesigner;
         UI.dispatchSave = dispatchSave;
         function listenSave() {
             function saveData() {
-                var note = document.getElementById("saveNotifier");
-                note.style.opacity = "0";
-                note.style.display = "block";
                 window.setTimeout(function () {
                     saveData2();
                 }, 100);
             }
             function saveData2() {
                 console.log("saving data");
-                var note = document.getElementById("saveNotifier");
-                note.innerHTML = "";
-                note.appendChild(document.createTextNode("Saving"));
-                note.style.position = "fixed";
-                note.style.top = "50%";
-                note.style.left = "50%";
-                note.style.transform = "translate(-50%, -50%)";
-                note.style.width = "50vw";
-                note.style.height = "25vh";
-                note.style["line-height"] = "25vh";
-                note.style["text-align"] = "center";
-                note.style.color = "#F0F0F0";
-                note.style["font-family"] = "Arial";
-                note.style["font-size"] = "3cm";
-                note.style["font-weight"] = "bold";
-                note.style["background-color"] = "rgba(160, 160, 160, 0.6)";
-                note.style["border-radius"] = "3mm";
-                note.style.padding = "0.5cm";
-                note.style["z-index"] = 99999999;
-                note.style.opacity = "1";
                 function getObjectData(ele) {
                     var aspect = null;
                     var data = {
@@ -538,7 +515,6 @@ var PageDesigner;
                     }
                     var span = ele.querySelector("span[contenteditable]");
                     if (span != null) {
-                        console.log("span", span);
                         data["text"] = span.innerHTML;
                     }
                     return data;
@@ -552,6 +528,8 @@ var PageDesigner;
                         objectData.type = null;
                     if (objectData.format === "null" || objectData.format === "undefined")
                         objectData.format = null;
+                    if (objectData.databind === "null" || objectData.databind === "undefined")
+                        objectData.databind = null;
                     var mes = document.getElementById("measure");
                     saveData.push({
                         "PL_UID": objectData.id,
@@ -579,26 +557,33 @@ var PageDesigner;
                 console.log("saveData", JSON.stringify(saveData, null, 2));
                 new Http.Json("../../ajax/anyInsert.ashx?sql=PL_T_VWS_PdfLegende_Insert.sql", JSON.stringify(saveData))
                     .success(function (result) {
-                    function saveSuccess() {
-                        note.innerHTML = "";
-                        note.appendChild(document.createTextNode("Gespeichert"));
-                        note.style["background-color"] = "limegreen";
-                        window.setTimeout(function () {
-                            note.style.opacity = "0";
-                            window.setTimeout(function () {
-                                note.style.display = "none";
-                                note.style.top = "60vh";
-                                note.style.left = "70vw";
-                            }, 1000);
-                        }, 500);
-                    }
                     console.log("success", result);
-                    saveSuccess();
                 })
                     .failure(function (err) {
                     console.log("PL_T_VWS_PdfLegende_Insert: failure");
                     console.log(err);
                     function saveFailure() {
+                        console.log("save failure");
+                        var note = document.getElementById("saveNotifier");
+                        note.style.opacity = "0";
+                        note.style.display = "block";
+                        note.style.position = "fixed";
+                        note.style.top = "50%";
+                        note.style.left = "50%";
+                        note.style.transform = "translate(-50%, -50%)";
+                        note.style.width = "50vw";
+                        note.style.height = "25vh";
+                        note.style["line-height"] = "25vh";
+                        note.style["text-align"] = "center";
+                        note.style.color = "#F0F0F0";
+                        note.style["font-family"] = "Arial";
+                        note.style["font-size"] = "3cm";
+                        note.style["font-weight"] = "bold";
+                        note.style["background-color"] = "rgba(160, 160, 160, 0.6)";
+                        note.style["border-radius"] = "3mm";
+                        note.style.padding = "0.5cm";
+                        note.style["z-index"] = 99999999;
+                        note.style.opacity = "1";
                         note.innerHTML = "";
                         note.appendChild(document.createTextNode("Fehler"));
                         note.style["background-color"] = "red";
@@ -705,7 +690,7 @@ var PageDesigner;
                     "DAR_UID": dar_uid
                 };
                 new Http.PostJSON("../../ajax/anyList.ashx?sql=PL_Load_LegendCategory_List.sql", parameter, function (data) {
-                    data.push({ v: "custom", t: "Custom", s: 0 });
+                    data.push({ v: "custom", t: "Benutzerdefiniert", s: 0 });
                     HtmlTools.popDrop(elePLK, data);
                     pm.style.display = "block";
                 }).send();
