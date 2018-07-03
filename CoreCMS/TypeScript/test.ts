@@ -1,5 +1,4 @@
 
-
 // https://blog.oio.de/2014/01/31/an-introduction-to-typescript-module-system/
 // https://auth0.com/blog/javascript-module-systems-showdown/
 // https://www.tutorialspoint.com/typescript/typescript_modules.htm
@@ -12,10 +11,10 @@
 // A better statement is thus Modules are what used to be called external modules,
 // namespace is what used to be called internal modules.
 // Stop mixing TypeScript internal and external modules.
-// They aren�t designed to work together.They are mutually exclusive.
-// If you are using NodeJS, you don�t even have to choose.
-// You must use external modules � so your code shouldn�t have the �module� keyword anywhere.
-// The file is the module, so you don�t need to write the word �module�. Ever.
+// They aren't designed to work together.They are mutually exclusive.
+// If you are using NodeJS, you don't even have to choose.
+// You must use external modules so your code shouldn't have the 'module' keyword anywhere.
+// The file is the module, so you don't need to write the word 'module'. Ever.
 
 
 // For our server-side code we use CommonJS- style Node.js modules.
@@ -41,10 +40,8 @@ import { MySalute } from "./Salute";
 import { MySalute as kung } from "./Salute";
 
 
-
 MySalute.foo();
 kung.foo();
-
 
 
 let greeter = new MySalute.Greeter("world");
