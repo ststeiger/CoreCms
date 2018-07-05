@@ -4,12 +4,19 @@ interface Window
     CustomEvent: any;
     attachEvent: any;
     getStackTrace: any;
+    AudioContext: any;
+    webkitAudioContext: any;
 }
 
 interface Document
 {
     attachEvent: any;
     attachCustomEvent: any;
+}
+
+interface Response
+{
+    useFinalURL: any;
 }
 
 interface ErrorConstructor
