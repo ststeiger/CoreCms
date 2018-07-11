@@ -38,6 +38,7 @@
     <None Remove="SQL\PL_T_VWS_PdfLegende_Insert.sql" />
     <None Remove="SQL\PL_T_VWS_Ref_PdfLegendenKategorie_Insert.sql" />
     <None Remove="TypeScript\AsyncAjax.ts" />
+    <None Remove="TypeScript\svg.ts" />
     <None Remove="TypeScript\UrlHelper.ts" />
     <None Remove="TypeScript\vanilla_tree.ts" />
     <None Remove="TypeScript\yourscript.ts" />
@@ -218,6 +219,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="TypeScript\DataListPolyFill.ts" />
     <TypeScriptCompile Include="TypeScript\AsyncAjax.ts" />
+    <TypeScriptCompile Include="TypeScript\svg.ts" />
     <TypeScriptCompile Include="TypeScript\UrlHelper.ts" />
     <TypeScriptCompile Include="TypeScript\xmlReader.ts" />
     <TypeScriptCompile Include="TypeScript\vanilla_tree.ts" />
