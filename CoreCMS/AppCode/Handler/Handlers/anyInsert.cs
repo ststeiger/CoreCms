@@ -13,10 +13,12 @@ namespace CoreCMS
         : HandlerMiddleware<anyInsert>, IHttpHandler
     {
         
-        public anyInsert() : base()
+        public anyInsert() 
+            : base()
         { }
 
-        public anyInsert(RequestDelegate next) : base(next)
+        public anyInsert(RequestDelegate next) 
+            : base(next)
         { }
         
         void IHttpHandler.ProcessRequest(HttpContext context)

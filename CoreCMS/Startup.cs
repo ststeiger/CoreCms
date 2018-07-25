@@ -220,8 +220,8 @@ namespace CoreCMS
                }
             );
 
-                    // https://blog.elmah.io/improving-security-in-asp-net-mvc-using-custom-headers/
-                    app.UseMvc(routes =>
+            // https://blog.elmah.io/improving-security-in-asp-net-mvc-using-custom-headers/
+            app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
