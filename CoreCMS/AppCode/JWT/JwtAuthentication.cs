@@ -29,9 +29,29 @@ namespace AuthTest
                         ValidateIssuer = true,
                         ValidIssuer = "ExampleIssuer",
 
+                        // The "iss" (issuer) claim identifies the principal that issued the JWT.
+                        // The processing of this claim is generally application specific.
+                        // The "iss" value is a case-sensitive string containing a StringOrURI value.
+                        // Use of this claim is OPTIONAL.
+
                         // Validate the JWT Audience (aud) claim
                         ValidateAudience = true,
                         ValidAudience = "ExampleAudience",
+
+                        // https://tools.ietf.org/html/rfc7519#section-4.1.3
+                        // In practical use, this tends to be the "client id" or "client key" or "URL" 
+                        // of the application that the JWT is intended to be used by. 
+                        // If the principal processing the claim does not identify itself 
+                        // with a value in the "aud" claim when this claim is present, 
+                        // then the JWT MUST be rejected.
+                        // In the general case,
+                        // the "aud" value is an array of case-sensitive strings,
+                        // each containing a StringOrURI value.
+                        // In the special case when the JWT has one audience,
+                        // the "aud" value MAY be a single case-sensitive string
+                        // containing a StringOrURI value.The
+
+
 
                         // Validate the token expiry
                         ValidateLifetime = true,

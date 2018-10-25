@@ -3,7 +3,8 @@ namespace CoreCMS.JWT
 {
 
 
-    public class BouncyRsa : System.Security.Cryptography.RSA // abstract class RSA : AsymmetricAlgorithm
+    public class BouncyRsa 
+        : System.Security.Cryptography.RSA // abstract class RSA : AsymmetricAlgorithm
     {
         // protected RSA();
 

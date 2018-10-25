@@ -5,7 +5,8 @@ namespace CoreCMS.JWT
 
     // https://stackoverflow.com/questions/37526036/how-to-determine-the-public-key-size-from-the-csr-file-using-bouncy-castle-in-ja
     // https://searchcode.com/file/94872444/crypto/src/asn1/sec/SECNamedCurves.cs
-    public class BouncyECDSA : System.Security.Cryptography.ECDsa // abstract class ECDsa : AsymmetricAlgorithm
+    public class BouncyECDSA 
+        : System.Security.Cryptography.ECDsa // abstract class ECDsa : AsymmetricAlgorithm
     {
 
         protected Org.BouncyCastle.Crypto.Parameters.ECPrivateKeyParameters m_privKey;
