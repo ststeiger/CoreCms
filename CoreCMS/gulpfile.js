@@ -3,6 +3,10 @@ This file is the main entry point for defining Gulp tasks and using Gulp plugins
 Click here to learn more. https://go.microsoft.com/fwlink/?LinkId=518007
 */
 
+// https://docs.microsoft.com/en-us/aspnet/core/client-side/bundling-and-minification?view=aspnetcore-3.1#manually-convert-the-bundling-and-minification-workflow-to-use-gulp
+// The gulp-uglify module doesn't support ECMAScript (ES) 2015 / ES6 and later. 
+// Install gulp-terser instead of gulp-uglify to use ES2015 / ES6 or later.
+
 var gulp = require('gulp'),
     concat = require("gulp-concat"),
     gap = require('gulp-append-prepend'),
