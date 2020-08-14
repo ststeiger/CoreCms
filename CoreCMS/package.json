@@ -3,7 +3,7 @@
   "name": "corecms",
   "private": true,
   "dependencies": {
-    "axios": "0.17.1",
+    "axios": "0.18.1",
     "circular-json": "0.4.0",
     "d3": "4.11.0",
     "jsdom": "11.4.0",
