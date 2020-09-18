@@ -217,13 +217,10 @@
     <ProjectReference Include="..\BouncyCastle\BouncyCastle.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="TypeScript\DataListPolyFill.ts" />
-    <TypeScriptCompile Include="TypeScript\AsyncAjax.ts" />
-    <TypeScriptCompile Include="TypeScript\svg.ts" />
-    <TypeScriptCompile Include="TypeScript\UrlHelper.ts" />
-    <TypeScriptCompile Include="TypeScript\xmlReader.ts" />
-    <TypeScriptCompile Include="TypeScript\vanilla_tree.ts" />
     <TypeScriptCompile Include="wwwroot\js\monaco-editor\monaco.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TypeScript\" />
   </ItemGroup>
   <Import Project="..\..\CoreDAL\CoreDb\CoreDb.projitems" Label="Shared" />
 </Project>

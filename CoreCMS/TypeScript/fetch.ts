@@ -167,11 +167,11 @@ namespace TestFetch
 
     export function post(url)
     {
+        // const requestHeaders: HeadersInit = new Headers(); requestHeaders.set('auth', '1234');
+
         fetch(url, {
             method: 'POST',
-            headers: {
-                'auth': '1234'
-            },
+            headers: new Headers({ "auth": "1234" }), // { 'auth': '1234' },
             body: JSON.stringify({
                 name: 'dean',
                 login: 'dean',

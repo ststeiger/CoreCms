@@ -162,9 +162,7 @@ var TestFetch;
     function post(url) {
         fetch(url, {
             method: 'POST',
-            headers: {
-                'auth': '1234'
-            },
+            headers: new Headers({ "auth": "1234" }),
             body: JSON.stringify({
                 name: 'dean',
                 login: 'dean',
