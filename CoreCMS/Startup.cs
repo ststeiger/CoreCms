@@ -203,7 +203,19 @@ namespace CoreCMS
                 return ps.Equals(context.Request.Path, StringComparison.InvariantCultureIgnoreCase);
             }, x => x.UseMiddleware<FooMiddleware>());
             */
-            
+
+            // Enable the DefaultFiles middleware and specify default file names
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new List<string> {
+                    "monaco.htm",
+                    "index.html",
+                    "default.html", 
+                    "home.html" }
+            });
+
+
+
             app.UseStaticFiles();
             app.UseFileServer(enableDirectoryBrowsing: false);
 
