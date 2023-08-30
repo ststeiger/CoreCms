@@ -22,13 +22,37 @@
             width: 100%; height: 100%;
         }
         
+         body, html {
+	        padding: 0;
+	        margin: 0;
+	        height: calc(100vh - 2em);
+        }
+        #container {
+	        height: 100%;
+	        width: 100%;
+	        box-sizing: border-box;
+        }
+
+        .actions {
+	        height: 2em;
+	        display: flex;
+	        align-items: center;
+	        border-top: 1px solid #aaa;
+	        padding: 0.2em;
+	        box-sizing: border-box;
+        }
+
+        label {
+	        padding-right: 0.3em;
+        }
+
     </style>
     
     <script src="js/monaco-editor/min/vs/loader.js"></script>
 </head>
 <body>
 
-    <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
+    <div id="container" style="border:1px solid grey"></div>
     <input type="button" onclick="alert(window.editor.getValue());" value="Get Text" />
     <input type="button" onclick="window.editor.setValue('SELECT * FROM T_Benutzer');" value="Set Text" />
     <input type="button" onclick="alert(window.editor.getModel().getValueInRange(window.editor.getSelection()));" value="Get Selection" />
@@ -52,18 +76,76 @@
             });
         }
 
+        // let text1 = `hello\r\nworld`;
+        // let text2 = `hello\r\nmy\r\nworld`;
+
+
+
+
+        let text1 = `
+file1.txt
+file2.js
+file3.css
+file4.blat
+file 5.blatt
+file6.blyat
+file7.cs
+file8.html
+file9.cshtml
+file10.cshtml
+`;
+
+
+        let text2 = `
+file1.txt
+file2.js
+
+file3.css
+ file4.blat
+fil5.blatt
+
+file6.blyat
+file7.cs
+file8.html
+file9.cshtml
+file11.cshtml
+`;
+
+
 
         // console.log(require);
         require.config({ paths: { 'vs': 'js/monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function ()
         {
+            const containerEl = document.getElementById('container');
+            window.editor = monaco.editor.createDiffEditor(containerEl, {
+                // Render the diff inline
+                // renderSideBySide: false,
+                originalEditable: true,
+				automaticLayout: true,
+                // followsCaret: true, // resets the navigator state when the user selects something in the editor
+                // ignoreCharChanges: true, // jump from line to line
+            });
+
+
+            editor.setModel({
+                original: monaco.editor.createModel(text1, 'javascript'),
+                modified: monaco.editor.createModel(text2, 'javascript'),
+            });
+
+            //document.querySelector('.inline-it').addEventListener('change', (e) =>
+            //{
+            //    editor.updateOptions({ renderSideBySide: !e.target.checked });
+            //});
+
+
+            /*
             window.editor = monaco.editor.create(document.getElementById('container'), {
                 value: [
-                    /*
-                    'function x() {',
-                    '\tconsole.log("Hello world!");',
-                    '}'
-                    */
+                    // 'function x() {',
+                    // '\tconsole.log("Hello world!");',
+                    // '}'
+                    
                     "SELECT * FROM T_Benutzer "
                     ,"WHERE BE_User = 'administrator' "
                     
@@ -83,7 +165,7 @@
                 // console.log("change", arguments);
                 console.log(editor.getValue());
             });
-            
+            */
             
             console.log("cursor position: ", window.editor.getPosition());
             console.log("set position: ", window.editor.setPosition({lineNumber: 2, column: 14}));
